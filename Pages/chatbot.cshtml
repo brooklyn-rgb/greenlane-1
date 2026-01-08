@@ -1,0 +1,126 @@
+﻿<!-- Chat Bot Functionality -->
+<script>
+    // Chat Bot Functionality
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotBody = document.getElementById('chatbotBody');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const quickQuestionBtns = document.querySelectorAll('.quick-question-btn');
+
+    // Toggle chatbot
+    chatbotToggle.addEventListener('click', () => {
+        chatbotContainer.classList.toggle('open');
+        if (chatbotContainer.classList.contains('open')) {
+            chatbotInput.focus();
+        }
+    });
+
+    closeChatbot.addEventListener('click', () => {
+        chatbotContainer.classList.remove('open');
+    });
+
+    // Quick question buttons
+    quickQuestionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const question = btn.getAttribute('data-question');
+            sendUserMessage(question);
+            handleBotResponse(question);
+        });
+    });
+
+    // Send message on button click
+    sendMessage.addEventListener('click', sendUserMessageFromInput);
+
+    // Send message on Enter key
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendUserMessageFromInput();
+        }
+    });
+
+    function sendUserMessageFromInput() {
+        const message = chatbotInput.value.trim();
+        if (message) {
+            sendUserMessage(message);
+            handleBotResponse(message);
+            chatbotInput.value = '';
+            chatbotInput.focus();
+        }
+    }
+
+    function sendUserMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message user';
+        messageDiv.innerHTML = `
+            <div class="message-content">${message}</div>
+            <div class="message-time">${getCurrentTime()}</div>
+        `;
+        chatbotBody.appendChild(messageDiv);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    }
+
+    function handleBotResponse(userMessage) {
+        // Responses database
+        const responses = {
+            'registration deadlines': 'Our 2026 registration deadlines are:<br><br>• Early Bird: March 31, 2026<br>• Final Deadline: May 31, 2026<br>• Applications open: January 1, 2026',
+            'required documents': 'Required documents for registration:<br><br>1. Birth Certificate<br>2. Immunization Record<br>3. Proof of Residence<br>4. Parent ID Copy<br>5. Latest School Report (for transfers)<br>6. ID Photo (passport size)',
+            'application fee': 'The non-refundable application fee is R250. Payment details are emailed after submission. Early bird applications (before March 31, 2026) qualify for a free starter pack worth R800!',
+            'grades offered': 'We offer comprehensive education from:<br><br>• Grade 1 (Age 4-5)<br>• Foundation Phase: Grades 1-3<br>• Intermediate Phase: Grades 4-6<br>• Senior Phase: Grade 7<br>• FET Phase: Grades 8-12 (Matric)'
+        };
+
+        const messageLower = userMessage.toLowerCase();
+        let response = 'Thank you for your question! For specific information about ' + userMessage + ', please contact our admissions office at admissions2026@greenlane.co.za or call +27 11 492 1778. Our team will be happy to assist you.';
+
+        // Check for keywords in the question
+        for (const [key, value] of Object.entries(responses)) {
+            if (messageLower.includes(key)) {
+                response = value;
+                break;
+            }
+        }
+
+        // Simulate typing delay
+        setTimeout(() => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.innerHTML = `
+                <div class="message-content">${response}</div>
+                <div class="message-time">${getCurrentTime()}</div>
+            `;
+            chatbotBody.appendChild(messageDiv);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }, 1000);
+    }
+
+    function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Auto-open chat after 10 seconds on registration page
+    if (window.location.pathname.includes('/Registration')) {
+        setTimeout(() => {
+            if (!localStorage.getItem('chatbotOpenedRegistration')) {
+                chatbotContainer.classList.add('open');
+                localStorage.setItem('chatbotOpenedRegistration', 'true');
+            }
+        }, 10000);
+    }
+
+    // Auto-open on other pages after 20 seconds
+    setTimeout(() => {
+        if (!localStorage.getItem('chatbotOpenedGeneral') && !window.location.pathname.includes('/Registration')) {
+            chatbotContainer.classList.add('open');
+            localStorage.setItem('chatbotOpenedGeneral', 'true');
+
+            // Auto-close after 30 seconds if no interaction
+            setTimeout(() => {
+                if (chatbotContainer.classList.contains('open')) {
+                    chatbotContainer.classList.remove('open');
+                }
+            }, 30000);
+        }
+    }, 20000);
+</script>

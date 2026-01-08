@@ -1,0 +1,734 @@
+﻿@page
+@model greenlane.Pages.GalleryModel
+@{
+    ViewData["Title"] = "Photo & Video Gallery - Greenlane College";
+}
+
+<style>
+    .gallery-section {
+        padding: 80px 0;
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #6c757d;
+        text-align: center;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Gallery Filters */
+    .gallery-filters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .filter-btn {
+        padding: 8px 20px;
+        border: 2px solid #dee2e6;
+        background: white;
+        color: #495057;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+    /* Gallery Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 4rem;
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.4s ease;
+        background: white;
+        cursor: pointer;
+        height: 300px;
+    }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: white;
+        padding: 20px;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+
+    .gallery-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .gallery-description {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-bottom: 0;
+    }
+
+    .gallery-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        z-index: 2;
+    }
+
+    /* Video Section */
+    .video-section {
+        background: white;
+        padding: 60px 0;
+        border-radius: 15px;
+        margin-top: 4rem;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 2rem;
+    }
+
+    .video-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+    .video-thumbnail {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .video-card:hover .play-button {
+        background: var(--primary);
+        color: white;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .video-duration {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+
+    .video-content {
+        padding: 20px;
+    }
+
+    .video-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    .video-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* Lightbox */
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.95);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .lightbox-info {
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+
+    .lightbox-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .lightbox-description {
+        color: #ccc;
+        margin-bottom: 5px;
+    }
+
+    .lightbox-date {
+        color: #999;
+        font-size: 0.9rem;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.1);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+    .lightbox-prev {
+        left: 20px;
+    }
+
+    .lightbox-next {
+        right: 20px;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .empty-state-icon {
+        font-size: 4rem;
+        color: #dee2e6;
+        margin-bottom: 20px;
+    }
+
+    .empty-state-title {
+        font-size: 1.5rem;
+        color: #6c757d;
+        margin-bottom: 10px;
+    }
+
+    .empty-state-text {
+        color: #adb5bd;
+        max-width: 500px;
+        margin: 0 auto 20px;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .video-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .gallery-filters {
+            padding: 10px;
+        }
+
+        .filter-btn {
+            padding: 6px 15px;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<section class="gallery-section">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="text-center mb-5">
+            <h1 class="section-title">School Gallery</h1>
+            <p class="section-subtitle">Explore moments from our vibrant school community. From academic achievements to sports events and cultural celebrations.</p>
+        </div>
+
+        <!-- Gallery Filters -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Photos</button>
+            <button class="filter-btn" data-filter="academic">Academic</button>
+            <button class="filter-btn" data-filter="sports">Sports</button>
+            <button class="filter-btn" data-filter="arts">Arts & Culture</button>
+            <button class="filter-btn" data-filter="events">School Events</button>
+            <button class="filter-btn" data-filter="facilities">Facilities</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+            @foreach (var image in Model.Images)
+            {
+                <div class="gallery-item" data-category="@image.Category" data-id="@image.Id">
+                    <span class="gallery-category">@image.Category.ToUpper()</span>
+                    <img src="@image.ImageUrl" alt="@image.Title" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5 class="gallery-title">@image.Title</h5>
+                        <p class="gallery-description">@image.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">
+                <i class="bi bi-images"></i>
+            </div>
+            <h3 class="empty-state-title">No Images Found</h3>
+            <p class="empty-state-text">There are no images in this category. Try selecting a different filter.</p>
+            <button class="btn btn-primary" onclick="resetFilters()">
+                <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Filters
+            </button>
+        </div>
+
+        <!-- Video Section -->
+        <div class="video-section">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">School Videos</h2>
+                    <p class="section-subtitle">Watch highlights from school events, performances, and activities.</p>
+                </div>
+
+                <div class="video-grid">
+                    @foreach (var video in Model.Videos)
+                    {
+                        <div class="video-card">
+                            <div class="video-thumbnail" onclick="openVideoModal('@video.VideoUrl', '@video.Title')">
+                                <img src="@video.Thumbnail" alt="@video.Title">
+                                <div class="play-button">
+                                    <i class="bi bi-play-fill"></i>
+                                </div>
+                                <span class="video-duration">@video.Duration</span>
+                            </div>
+                            <div class="video-content">
+                                <h3 class="video-title">@video.Title</h3>
+                                <p class="video-description">@video.Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Statistics -->
+        <div class="row mt-5 pt-4">
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="display-4 fw-bold text-primary">@Model.Images.Count+</div>
+                <p class="text-muted">Gallery Photos</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="display-4 fw-bold text-primary">@Model.Videos.Count+</div>
+                <p class="text-muted">School Videos</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="display-4 fw-bold text-primary">6</div>
+                <p class="text-muted">Categories</p>
+            </div>
+            <div class="col-md-3 col-6 text-center mb-4">
+                <div class="display-4 fw-bold text-primary">2025</div>
+                <p class="text-muted">Updated</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">
+        <i class="bi bi-x-lg"></i>
+    </button>
+
+    <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+
+    <div class="lightbox-content">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+        <div class="lightbox-info">
+            <h3 id="lightboxTitle" class="lightbox-title"></h3>
+            <p id="lightboxDescription" class="lightbox-description"></p>
+            <p id="lightboxDate" class="lightbox-date"></p>
+            <p id="lightboxCategory" class="lightbox-date"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Gallery filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const emptyState = document.getElementById('emptyState');
+
+        // Active filter
+        let activeFilter = 'all';
+
+        // Filter images
+        function filterGallery(category) {
+            activeFilter = category;
+            let visibleItems = 0;
+
+            galleryItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = 'block';
+                    visibleItems++;
+
+                    // Add fade-in animation
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            // Show/hide empty state
+            if (visibleItems === 0) {
+                galleryGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                galleryGrid.style.display = 'grid';
+                emptyState.style.display = 'none';
+            }
+
+            // Update active button
+            filterButtons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Add click events to filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                filterGallery(filter);
+            });
+        });
+
+        // Initialize gallery
+        filterGallery('all');
+
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        const images = Array.from(galleryItems);
+
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentImageIndex = index;
+                openLightbox();
+            });
+        });
+
+        // Open lightbox function
+        window.openLightbox = function() {
+            const lightbox = document.getElementById('lightbox');
+            const image = images[currentImageIndex];
+            const imgSrc = image.querySelector('img').src;
+            const title = image.querySelector('.gallery-title').textContent;
+            const description = image.querySelector('.gallery-description').textContent;
+            const category = image.getAttribute('data-category');
+            const id = image.getAttribute('data-id');
+
+            // Find date from model data (you might need to pass this differently)
+            const imageData = @Html.Raw(Json.Serialize(Model.Images));
+            const currentImageData = imageData.find(img => img.id == id);
+            const date = currentImageData ? currentImageData.date : '';
+
+            // Update lightbox content
+            document.getElementById('lightboxImage').src = imgSrc;
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxDescription').textContent = description;
+            document.getElementById('lightboxDate').textContent = date ? `Date: ${date}` : '';
+            document.getElementById('lightboxCategory').textContent = `Category: ${category}`;
+
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Close lightbox
+        window.closeLightbox = function() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        // Change image in lightbox
+        window.changeImage = function(direction) {
+            // Filter images based on current filter
+            const filteredImages = images.filter(img => {
+                if (activeFilter === 'all') return true;
+                return img.getAttribute('data-category') === activeFilter;
+            });
+
+            // Find current index in filtered array
+            const currentImage = images[currentImageIndex];
+            const currentFilteredIndex = filteredImages.indexOf(currentImage);
+
+            // Calculate new index
+            let newIndex = currentFilteredIndex + direction;
+
+            // Handle bounds
+            if (newIndex < 0) newIndex = filteredImages.length - 1;
+            if (newIndex >= filteredImages.length) newIndex = 0;
+
+            // Update current image index
+            currentImageIndex = images.indexOf(filteredImages[newIndex]);
+
+            // Update lightbox
+            openLightbox();
+        };
+
+        // Close lightbox on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+            if (e.key === 'ArrowLeft') {
+                changeImage(-1);
+            }
+            if (e.key === 'ArrowRight') {
+                changeImage(1);
+            }
+        });
+
+        // Close lightbox on outside click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Reset filters
+        window.resetFilters = function() {
+            filterGallery('all');
+        };
+    });
+
+    // Video modal functionality
+    function openVideoModal(videoUrl, title) {
+        const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+        const iframe = document.getElementById('videoIframe');
+        const modalTitle = document.getElementById('videoModalTitle');
+
+        // Set iframe src with autoplay
+        iframe.src = videoUrl + '?autoplay=1';
+        modalTitle.textContent = title;
+
+        videoModal.show();
+
+        // Clean up iframe when modal is hidden
+        document.getElementById('videoModal').addEventListener('hidden.bs.modal', function() {
+            iframe.src = '';
+        });
+    }
+
+    // Lazy loading images
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.gallery-item img');
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px',
+            threshold: 0.1
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    });
+</script>

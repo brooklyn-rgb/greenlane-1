@@ -1,0 +1,132 @@
+﻿@page
+@model greenlane.Pages.RegistrationSuccessModel
+@{
+    ViewData["Title"] = "Application Submitted";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success display-1"></i>
+                </div>
+                <h1 class="display-5 fw-bold text-success mb-3">Application Submitted Successfully!</h1>
+                <p class="lead mb-5">Thank you for choosing Greenlane College. We have received your application and will process it shortly.</p>
+
+                @if (!string.IsNullOrEmpty(Model.ApplicationReference))
+                {
+                    <div class="card shadow-lg border-success mb-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-success mb-4">
+                                <i class="bi bi-file-text me-2"></i>Application Details
+                            </h5>
+
+                            <div class="row text-start">
+                                <div class="col-md-6 mb-3">
+                                    <h6>Application Reference</h6>
+                                    <div class="alert alert-info">
+                                        <p class="display-6 fw-bold mb-0">@Model.ApplicationReference</p>
+                                        <small class="text-muted">Please keep this number for all future communication</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>Submission Date</h6>
+                                    <p class="fs-5 fw-bold">@Model.SubmissionDate</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>Child Information</h6>
+                                    <p class="mb-1"><strong>Name:</strong> @Model.ChildName</p>
+                                    <p class="mb-0"><strong>Grade Applied:</strong> @Model.AppliedGrade</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>Contact Information</h6>
+                                    <p class="mb-1"><strong>Email:</strong> @Model.ParentEmail</p>
+                                    <p class="mb-0"><strong>Reference:</strong> @Model.ApplicationReference</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4 text-primary">
+                            <i class="bi bi-clock-history me-2"></i>What Happens Next?
+                        </h5>
+
+                        <div class="row text-start">
+                            <div class="col-md-4 mb-4">
+                                <div class="d-flex">
+                                    <div class="step-number me-3">
+                                        <span class="badge bg-primary rounded-circle p-2">1</span>
+                                    </div>
+                                    <div>
+                                        <h6>Email Confirmation</h6>
+                                        <p class="small text-muted">You'll receive a confirmation email within 24 hours with further instructions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="d-flex">
+                                    <div class="step-number me-3">
+                                        <span class="badge bg-primary rounded-circle p-2">2</span>
+                                    </div>
+                                    <div>
+                                        <h6>Interview Schedule</h6>
+                                        <p class="small text-muted">Our admissions team will contact you within 3 working days to schedule an interview.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="d-flex">
+                                    <div class="step-number me-3">
+                                        <span class="badge bg-primary rounded-circle p-2">3</span>
+                                    </div>
+                                    <div>
+                                        <h6>Document Verification</h6>
+                                        <p class="small text-muted">Bring original documents to your scheduled interview for verification.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mb-5">
+                    <h5><i class="bi bi-gift-fill me-2"></i>Early Registration Benefit</h5>
+                    <p class="mb-0">Since you applied before March 31, 2025, you qualify for our <strong>Free Starter Pack</strong>! This includes school supplies and uniform voucher worth R500.</p>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+                    <a href="/" class="btn btn-outline-primary">
+                        <i class="bi bi-house me-2"></i>Return Home
+                    </a>
+                    <a href="/Admissions" class="btn btn-primary">
+                        <i class="bi bi-info-circle me-2"></i>View Admissions Info
+                    </a>
+                    <a href="/Contact" class="btn btn-success">
+                        <i class="bi bi-telephone me-2"></i>Contact Admissions Office
+                    </a>
+                </div>
+
+                <div class="mt-5 pt-4 border-top">
+                    <h6 class="text-muted mb-3">Need Immediate Assistance?</h6>
+                    <p class="mb-2"><i class="bi bi-telephone me-2"></i> Admissions Office: +27 11 492 1778</p>
+                    <p class="mb-0"><i class="bi bi-envelope me-2"></i> admissions@greenlane.co.za</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .step-number .badge {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+</style>

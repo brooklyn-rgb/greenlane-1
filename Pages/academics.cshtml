@@ -1,0 +1,636 @@
+﻿@page
+@model greenlane.Pages.AcademicsModel
+@{
+    ViewData["Title"] = "Academic Curriculum | Greenlane College";
+}
+
+<!-- Hero Section -->
+<section class="curriculum-hero py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-primary mb-4">Academic Structure & Curriculum</h1>
+                <p class="lead mb-4">
+                    Greenlane College offers a comprehensive educational pathway from Grade 1 through Grade 12, designed to develop critical thinkers, problem solvers, and future-ready leaders.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#academic-phases" class="btn btn-primary btn-lg px-4">
+                        <i class="bi bi-mortarboard me-2"></i>Explore Phases
+                    </a>
+                    <a href="#subject-list" class="btn btn-outline-primary btn-lg px-4">
+                        <i class="bi bi-book me-2"></i>View Subjects
+                    </a>
+                    <a href="/Contact" class="btn btn-success btn-lg px-4">
+                        <i class="bi bi-question-circle me-2"></i>Curriculum Questions
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="card border-0 shadow-lg">
+                    <div class="card-body p-4">
+                        <h3 class="h4 text-primary mb-3">Our Educational Philosophy</h3>
+                        <p class="mb-3">We believe in a balanced approach that combines:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Academic excellence with character development</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Theoretical knowledge with practical application</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Individual growth with community responsibility</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Local relevance with global perspectives</li>
+                        </ul>
+                        <div class="mt-4 pt-3 border-top">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle me-1"></i> All subjects follow the South African CAPS curriculum, enhanced with our institutional methodologies.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Academic Pathway Overview -->
+<section class="py-5" id="academic-phases">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-primary mb-3">Comprehensive Academic Pathway</h2>
+            <p class="lead text-muted">A seamless educational journey from foundational learning to university preparation</p>
+        </div>
+
+        <div class="academic-timeline">
+            @foreach (var phase in Model.AcademicPhases)
+            {
+                <div class="timeline-phase @phase.Color-phase">
+                    <div class="phase-header">
+                        <div class="phase-icon">
+                            <i class="bi @phase.Icon"></i>
+                        </div>
+                        <div class="phase-title">
+                            <h3 class="h4 fw-bold mb-1">@phase.Phase</h3>
+                            <p class="phase-grades mb-0">@phase.Grades • @phase.AgeRange</p>
+                        </div>
+                    </div>
+                    <div class="phase-image">
+                        <img src="@phase.ImageUrl" alt="@phase.Phase" class="img-fluid rounded">
+                    </div>
+                    <div class="phase-description">
+                        <p>@phase.Description</p>
+                        <a href="#@phase.Phase.ToLower().Replace(" ", "-")" class="btn btn-outline-primary btn-sm">
+                            View Subjects <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Subject Breakdown by Phase -->
+<section class="py-5 bg-light" id="subject-list">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Subject Breakdown by Academic Phase</h2>
+
+        <!-- Foundation Phase -->
+        <div class="phase-subjects mb-5" id="foundation-phase">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h4 mb-0">
+                        <i class="bi bi-house-door me-2"></i>Foundation Phase (Grade 1 - 3)
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <p class="mb-4">Building strong literacy, numeracy, and life skills foundations through interactive, play-based learning approaches.</p>
+
+                    <div class="row g-3">
+                        @foreach (var subject in Model.FoundationPhaseSubjects)
+                        {
+                            <div class="col-md-6 col-lg-3">
+                                <div class="subject-card">
+                                    <div class="subject-icon">
+                                        <i class="bi bi-book text-primary"></i>
+                                    </div>
+                                    <h5 class="subject-name">@subject.Name</h5>
+                                    <div class="subject-details">
+                                        <span class="badge bg-primary bg-opacity-10 text-primary">@subject.Category</span>
+                                        <small class="text-muted ms-2">@subject.Hours</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intermediate Phase -->
+        <div class="phase-subjects mb-5" id="intermediate-phase">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-success text-white py-3">
+                    <h3 class="h4 mb-0">
+                        <i class="bi bi-book me-2"></i>Intermediate Phase (Grade 4 - 6)
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <p class="mb-4">Developing subject specialization, critical thinking, and independent learning skills across diverse disciplines.</p>
+
+                    <div class="row g-3">
+                        @foreach (var subject in Model.IntermediatePhaseSubjects)
+                        {
+                            <div class="col-md-6 col-lg-4">
+                                <div class="subject-card">
+                                    <div class="subject-icon">
+                                        <i class="bi bi-pencil text-success"></i>
+                                    </div>
+                                    <h5 class="subject-name">@subject.Name</h5>
+                                    <div class="subject-details">
+                                        <span class="badge bg-success bg-opacity-10 text-success">@subject.Category</span>
+                                        <small class="text-muted ms-2">@subject.Hours</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior Phase -->
+        <div class="phase-subjects mb-5" id="senior-phase">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h3 class="h4 mb-0">
+                        <i class="bi bi-mortarboard me-2"></i>Senior Phase (Grade 7 - 9)
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <p class="mb-4">Preparing for high school with advanced academic rigor, leadership opportunities, and career exploration.</p>
+
+                    <div class="row g-3">
+                        @foreach (var subject in Model.SeniorPhaseSubjects)
+                        {
+                            <div class="col-md-6 col-lg-4">
+                                <div class="subject-card">
+                                    <div class="subject-icon">
+                                        <i class="bi bi-gear text-warning"></i>
+                                    </div>
+                                    <h5 class="subject-name">@subject.Name</h5>
+                                    <div class="subject-details">
+                                        <span class="badge bg-warning bg-opacity-10 text-warning">@subject.Category</span>
+                                        <small class="text-muted ms-2">@subject.Hours</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FET Phase -->
+        <div class="phase-subjects" id="fet-phase">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-danger text-white py-3">
+                    <h3 class="h4 mb-0">
+                        <i class="bi bi-award me-2"></i>FET Phase (Grade 10 - 12)
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-info mb-4">
+                        <h5 class="alert-heading"><i class="bi bi-info-circle me-2"></i>Subject Selection Guidance</h5>
+                        <p class="mb-0">Students select 7 subjects: 4 compulsory + 3 electives based on their chosen career pathway. Career guidance sessions help students make informed choices.</p>
+                    </div>
+
+                    <div class="row">
+                        <!-- Compulsory Subjects -->
+                        <div class="col-lg-6 mb-4">
+                            <h4 class="h5 fw-bold mb-3 text-primary">Compulsory Subjects</h4>
+                            <div class="row g-3">
+                                @foreach (var subject in Model.FETPhaseSubjects.Where(s => s.IsCore))
+                                {
+                                    <div class="col-md-6">
+                                        <div class="subject-card core">
+                                            <div class="subject-icon">
+                                                <i class="bi bi-star-fill text-danger"></i>
+                                            </div>
+                                            <h5 class="subject-name">@subject.Name</h5>
+                                            <div class="subject-details">
+                                                <span class="badge bg-danger bg-opacity-10 text-danger">Core</span>
+                                                <small class="text-muted ms-2">@subject.Hours</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Elective Subjects -->
+                        <div class="col-lg-6">
+                            <h4 class="h5 fw-bold mb-3 text-primary">Elective Subjects (Choose 3)</h4>
+                            <div class="row g-3">
+                                @foreach (var subject in Model.FETPhaseSubjects.Where(s => !s.IsCore))
+                                {
+                                    <div class="col-md-6">
+                                        <div class="subject-card elective">
+                                            <div class="subject-icon">
+                                                <i class="bi bi-bookmark text-primary"></i>
+                                            </div>
+                                            <h5 class="subject-name">@subject.Name</h5>
+                                            <div class="subject-details">
+                                                <span class="badge bg-primary bg-opacity-10 text-primary">@subject.Category</span>
+                                                <small class="text-muted ms-2">@subject.Hours</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Pathways -->
+                    <div class="mt-5 pt-4 border-top">
+                        <h4 class="h5 fw-bold mb-3 text-primary">Suggested Subject Combinations for Career Pathways</h4>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card border-primary h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary">Science & Health</h5>
+                                        <p class="card-text small">Mathematics, Physical Sciences, Life Sciences</p>
+                                        <small class="text-muted">For: Medicine, Engineering, Research</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">Commerce & Business</h5>
+                                        <p class="card-text small">Mathematics, Business Studies, Accounting</p>
+                                        <small class="text-muted">For: Finance, Management, Entrepreneurship</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-warning h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-warning">Humanities & Arts</h5>
+                                        <p class="card-text small">History, Geography, Creative Arts</p>
+                                        <small class="text-muted">For: Law, Education, Social Sciences</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Extracurricular & Support -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Beyond the Classroom</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="extracurricular-icon mb-3">
+                            <i class="bi bi-trophy text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Sports & Athletics</h4>
+                        <p class="text-muted small">Soccer, Basketball, Athletics, Swimming, Netball, and specialized coaching programs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="extracurricular-icon mb-3">
+                            <i class="bi bi-music-note-beamed text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Cultural Activities</h4>
+                        <p class="text-muted small">Music, Drama, Art, Debate Society, Public Speaking, and Cultural Exchange Programs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="extracurricular-icon mb-3">
+                            <i class="bi bi-person-hearts text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Academic Support</h4>
+                        <p class="text-muted small">Remedial classes, tutoring, career guidance, university application assistance, and study skills workshops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Assessment & Progress -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Assessment & Academic Progress</h2>
+                <p class="mb-4">We employ a balanced assessment approach that includes:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Continuous Assessment:</strong> Regular tests, projects, and assignments (40%)
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Formal Examinations:</strong> Mid-year and year-end examinations (60%)
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Practical Components:</strong> Laboratory work, presentations, and practical demonstrations
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <strong>Progress Reports:</strong> Detailed quarterly reports with teacher comments and improvement plans
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-primary">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-primary mb-3">
+                            <i class="bi bi-calendar-check me-2"></i>Academic Calendar 2026
+                        </h4>
+                        <div class="academic-calendar">
+                            <div class="term mb-3">
+                                <h5 class="h6 fw-bold">Term 1: 15 Jan - 27 Mar</h5>
+                                <p class="small mb-0">Orientation, Baseline assessments, Academic planning</p>
+                            </div>
+                            <div class="term mb-3">
+                                <h5 class="h6 fw-bold">Term 2: 10 Apr - 26 Jun</h5>
+                                <p class="small mb-0">Mid-year examinations, Subject choice counseling (Grade 9)</p>
+                            </div>
+                            <div class="term mb-3">
+                                <h5 class="h6 fw-bold">Term 3: 17 Jul - 25 Sep</h5>
+                                <p class="small mb-0">Preliminary examinations, University applications (Grade 12)</p>
+                            </div>
+                            <div class="term">
+                                <h5 class="h6 fw-bold">Term 4: 9 Oct - 4 Dec</h5>
+                                <p class="small mb-0">Final examinations, Valedictory, Academic awards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-5 text-center bg-primary text-white">
+    <div class="container">
+        <h2 class="display-5 fw-bold mb-4">Ready to Explore Our Academic Excellence?</h2>
+        <p class="lead mb-4 mx-auto" style="max-width: 800px;">
+            Discover how Greenlane College's comprehensive curriculum can prepare your child for future success. Contact our academic department for personalized guidance.
+        </p>
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+            <a href="/Contact" class="btn btn-light btn-lg px-5">
+                <i class="bi bi-chat-left-text me-2"></i>Academic Consultation
+            </a>
+            <a href="/Admissions" class="btn btn-outline-light btn-lg px-5">
+                <i class="bi bi-file-earmark-text me-2"></i>View Admissions
+            </a>
+            <a href="/FAQ" class="btn btn-outline-light btn-lg px-5">
+                <i class="bi bi-question-circle me-2"></i>Curriculum FAQs
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Custom styles for Curriculum page */
+    .curriculum-hero {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    /* Academic Timeline */
+    .academic-timeline {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .timeline-phase {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+        .timeline-phase:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+    .phase-header {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem;
+        color: white;
+    }
+
+    .foundation-phase .phase-header {
+        background: linear-gradient(135deg, #1a4d2e, #2e7d32);
+    }
+
+    .intermediate-phase .phase-header {
+        background: linear-gradient(135deg, #1976d2, #2196f3);
+    }
+
+    .senior-phase .phase-header {
+        background: linear-gradient(135deg, #f57c00, #ff9800);
+    }
+
+    .fet-phase .phase-header {
+        background: linear-gradient(135deg, #c2185b, #e91e63);
+    }
+
+    .phase-icon {
+        font-size: 2rem;
+        margin-right: 1rem;
+        background: rgba(255,255,255,0.2);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .phase-grades {
+        opacity: 0.9;
+        font-size: 0.9rem;
+    }
+
+    .phase-image {
+        padding: 1.5rem;
+    }
+
+        .phase-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+    .phase-description {
+        padding: 1.5rem;
+        padding-top: 0;
+    }
+
+    /* Subject Cards */
+    .subject-card {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 1.25rem;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .subject-card.core {
+            border-left: 4px solid var(--danger);
+        }
+
+        .subject-card.elective {
+            border-left: 4px solid var(--primary);
+        }
+
+    .subject-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .subject-name {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .subject-details {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Extracurricular Icons */
+    .extracurricular-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(26, 77, 46, 0.1);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Academic Calendar */
+    .academic-calendar .term {
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed #dee2e6;
+    }
+
+        .academic-calendar .term:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .academic-timeline {
+            grid-template-columns: 1fr;
+        }
+
+        .phase-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .phase-icon {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+
+        .subject-card {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for phase links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Highlight active phase on scroll
+        const phaseSections = document.querySelectorAll('.phase-subjects');
+        const phaseLinks = document.querySelectorAll('.timeline-phase a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const phaseId = entry.target.id;
+                    phaseLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${phaseId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        phaseSections.forEach(section => observer.observe(section));
+
+        // Subject card animations
+        const subjectCards = document.querySelectorAll('.subject-card');
+        subjectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+            card.classList.add('fade-in');
+        });
+
+        // Print curriculum button
+        const printBtn = document.createElement('button');
+        printBtn.className = 'btn btn-outline-primary position-fixed bottom-0 end-0 m-3 d-print-none';
+        printBtn.innerHTML = '<i class="bi bi-printer me-2"></i>Print Curriculum';
+        printBtn.style.zIndex = '1000';
+        printBtn.onclick = () => window.print();
+        document.body.appendChild(printBtn);
+    });
+</script>

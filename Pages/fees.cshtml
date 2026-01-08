@@ -1,0 +1,711 @@
+﻿@page
+@model greenlane.Pages.FeesModel
+@{
+    ViewData["Title"] = "Greenlane College | Fees Structure 2026";
+}
+
+<!-- Hero Banner -->
+<div class="position-relative">
+    <div class="hero-banner" style="background: linear-gradient(rgba(26, 77, 46, 0.9), rgba(26, 77, 46, 0.8)), url('/images/banner/fees-banner.jpg') center/cover no-repeat; min-height: 60vh;">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-8 text-white">
+                    <h1 class="display-3 fw-bold mb-4">2026 Fee Structure</h1>
+                    <p class="lead fs-4">Transparent and comprehensive fee information for Greenlane College students from Grade 1 through Matric.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="#tuition-fees" class="btn btn-light btn-lg px-4 py-3">
+                            <i class="bi bi-cash-stack me-2"></i> View Tuition Fees
+                        </a>
+                        <a href="/downloads/fees" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="bi bi-download me-2"></i> Download Schedule
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="bg-light py-4 border-bottom">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <div class="fs-4 fw-bold text-primary">No Hidden Costs</div>
+                <div class="text-muted">All-inclusive fees</div>
+            </div>
+            <div class="col-md-3">
+                <div class="fs-4 fw-bold text-primary">Flexible Payment</div>
+                <div class="text-muted">Monthly/Quarterly options</div>
+            </div>
+            <div class="col-md-3">
+                <div class="fs-4 fw-bold text-primary">Sibling Discount</div>
+                <div class="text-muted">10% for second child</div>
+            </div>
+            <div class="col-md-3">
+                <div class="fs-4 fw-bold text-primary">Early Payment</div>
+                <div class="text-muted">5% discount available</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Important Notice -->
+<div class="bg-warning py-3">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
+            <div class="d-flex align-items-center mb-3 mb-md-0">
+                <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                <div>
+                    <strong class="fs-5">Fee Payment Information</strong>
+                    <span class="ms-2 d-block d-md-inline">Fees are payable in advance by the 7th of each month</span>
+                </div>
+            </div>
+            <a href="/contact#finance" class="btn btn-dark px-4">Payment Queries →</a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row g-4 align-items-start">
+        <!-- Left Column: Quick Links -->
+        <div class="col-lg-3">
+            <div class="sticky-column">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-link-45deg me-2"></i>Quick Links</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#tuition-fees" class="list-group-item list-group-item-action py-3 active">
+                            <i class="bi bi-cash-coin me-2 text-primary"></i>Tuition Fees
+                        </a>
+                        <a href="#additional-fees" class="list-group-item list-group-item-action py-3">
+                            <i class="bi bi-receipt me-2 text-primary"></i>Additional Costs
+                        </a>
+                        <a href="#payment-methods" class="list-group-item list-group-item-action py-3">
+                            <i class="bi bi-credit-card me-2 text-primary"></i>Payment Methods
+                        </a>
+                        <a href="#discounts" class="list-group-item list-group-item-action py-3">
+                            <i class="bi bi-percent me-2 text-primary"></i>Discounts & Benefits
+                        </a>
+                        <a href="/downloads/fees" class="list-group-item list-group-item-action py-3">
+                            <i class="bi bi-file-earmark-text me-2 text-primary"></i>Download Schedule
+                        </a>
+                        <a href="/contact#finance" class="list-group-item list-group-item-action py-3">
+                            <i class="bi bi-headset me-2 text-primary"></i>Financial Assistance
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-info text-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Payment Deadlines</h5>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="event-item p-3 border-bottom">
+                            <div class="text-primary fw-bold mb-1">January 7, 2026</div>
+                            <div class="text-muted small">First Term Fees Due</div>
+                        </div>
+                        <div class="event-item p-3 border-bottom">
+                            <div class="text-primary fw-bold mb-1">March 31, 2026</div>
+                            <div class="text-muted small">Early Registration Discount Ends</div>
+                        </div>
+                        <div class="event-item p-3">
+                            <div class="text-primary fw-bold mb-1">Monthly</div>
+                            <div class="text-muted small">7th of each month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Column: Main Content -->
+        <div class="col-lg-6">
+            <!-- Introduction -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h2 class="fw-bold mb-3">2026 Fee Structure Overview</h2>
+                    <p class="fs-5 mb-4">
+                        At Greenlane College, we believe in transparent and fair pricing for quality education. Our fees are structured to cover all essential educational costs while providing value for money.
+                    </p>
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-circle-fill fs-4 me-3"></i>
+                            <div>
+                                <strong>Note:</strong> All fees are quoted in South African Rand (ZAR) and are subject to annual review. Fees for 2027 will be communicated by September 2026.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary School Fees -->
+            <div id="tuition-fees" class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                            <i class="bi bi-house-door text-primary fs-3"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-1">Primary School Fees</h3>
+                            <p class="text-muted mb-0">Grade 1 - Grade 7</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th scope="col">Grade</th>
+                                    <th scope="col">Registration Fee (R)</th>
+                                    <th scope="col">Monthly Tuition (R)</th>
+                                    <th scope="col">Annual Total (R)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Grade 1 - 3</strong></td>
+                                    <td>600</td>
+                                    <td>850</td>
+                                    <td>8,500</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 4 - 5</strong></td>
+                                    <td>600</td>
+                                    <td>900</td>
+                                    <td>9,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 6 - 7</strong></td>
+                                    <td>600</td>
+                                    <td>950</td>
+                                    <td>9,500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted">* Registration fee is payable once upon admission and is non-refundable</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High School Fees -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-success bg-opacity-10 p-3 rounded me-3">
+                            <i class="bi bi-award text-success fs-3"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-1">High School Fees</h3>
+                            <p class="text-muted mb-0">Grade 8 - Grade 12 (Matric)</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col">Grade</th>
+                                    <th scope="col">Registration Fee (R)</th>
+                                    <th scope="col">Monthly Tuition (R)</th>
+                                    <th scope="col">Annual Total (R)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Grade 8</strong></td>
+                                    <td>700</td>
+                                    <td>1,000</td>
+                                    <td>10,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 9</strong></td>
+                                    <td>900</td>
+                                    <td>1,050</td>
+                                    <td>10,500</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 10</strong></td>
+                                    <td>1,000</td>
+                                    <td>1,200</td>
+                                    <td>12,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 11</strong></td>
+                                    <td>1,000</td>
+                                    <td>1,400</td>
+                                    <td>14,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grade 12</strong></td>
+                                    <td>1,500</td>
+                                    <td>2,100</td>
+                                    <td>21,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="alert alert-warning mt-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-lightbulb-fill fs-4 me-3"></i>
+                            <div>
+                                <strong>Grade 12 Note:</strong> The higher fee includes matriculation exam registration, career guidance counseling, and university application support.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Fees -->
+            <div id="additional-fees" class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4 border-bottom pb-3">Additional Costs & Services</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-start border-info border-3">
+                                <div class="card-body p-3">
+                                    <h5 class="fw-bold mb-3">Compulsory Additional Fees</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Stationery Pack</span>
+                                            <strong class="text-primary">R 500</strong>
+                                        </li>
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Textbook Levy</span>
+                                            <strong class="text-primary">R 800</strong>
+                                        </li>
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Sports & Culture</span>
+                                            <strong class="text-primary">R 300</strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <span>Technology Fee</span>
+                                            <strong class="text-primary">R 400</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-3 pt-3 border-top">
+                                        <div class="d-flex justify-content-between fw-bold">
+                                            <span>Total Annual Add-ons</span>
+                                            <span class="text-success">R 2,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-start border-secondary border-3">
+                                <div class="card-body p-3">
+                                    <h5 class="fw-bold mb-3">Optional Services</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Aftercare Service</span>
+                                            <strong class="text-primary">R 800/month</strong>
+                                        </li>
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Transport Service</span>
+                                            <strong class="text-primary">R 1,200/month</strong>
+                                        </li>
+                                        <li class="mb-2 d-flex justify-content-between">
+                                            <span>Extra Lessons</span>
+                                            <strong class="text-primary">R 150/session</strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <span>School Tours</span>
+                                            <strong class="text-primary">Cost varies</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-3">
+                                        <small class="text-muted">* Optional services can be added or removed monthly</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Information -->
+            <div id="payment-methods" class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4 border-bottom pb-3">Payment Methods & Terms</h3>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <h5 class="fw-bold mb-3"><i class="bi bi-bank2 text-primary me-2"></i>Banking Details</h5>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-1">Bank Name</strong>
+                                    <span class="text-muted">Standard Bank</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-1">Account Name</strong>
+                                    <span class="text-muted">Greenlane College</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-1">Account Number</strong>
+                                    <span class="text-muted">0123456789</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-1">Branch Code</strong>
+                                    <span class="text-muted">051001</span>
+                                </div>
+                                <div>
+                                    <strong class="d-block mb-1">Reference</strong>
+                                    <span class="text-muted">Student Name & Grade</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <h5 class="fw-bold mb-3"><i class="bi bi-calendar-check text-primary me-2"></i>Payment Options</h5>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-2">Monthly Payments</strong>
+                                    <span class="text-muted">Due by 7th of each month</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-2">Quarterly Payments</strong>
+                                    <span class="text-muted">Due first month of each term</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong class="d-block mb-2">Annual Payment</strong>
+                                    <span class="text-muted">5% discount if paid by Jan 31</span>
+                                </div>
+                                <div>
+                                    <strong class="d-block mb-2">Debit Orders</strong>
+                                    <span class="text-muted">Available for monthly payments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Discounts & Contact -->
+        <div class="col-lg-3">
+            <!-- Discounts -->
+            <div id="discounts" class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-success text-white py-3">
+                    <h5 class="mb-0"><i class="bi bi-percent me-2"></i>Discounts & Benefits</h5>
+                </div>
+                <div class="card-body p-3">
+                    <div class="discount-item mb-3 p-3 border rounded">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-people-fill text-success fs-4 me-2"></i>
+                            <h6 class="fw-bold mb-0">Sibling Discount</h6>
+                        </div>
+                        <p class="text-muted small mb-0">10% discount on tuition fees for second and subsequent children</p>
+                    </div>
+                    <div class="discount-item mb-3 p-3 border rounded">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-calendar-check text-success fs-4 me-2"></i>
+                            <h6 class="fw-bold mb-0">Early Payment</h6>
+                        </div>
+                        <p class="text-muted small mb-0">5% discount for full annual payment before January 31, 2026</p>
+                    </div>
+                    <div class="discount-item p-3 border rounded">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-arrow-repeat text-success fs-4 me-2"></i>
+                            <h6 class="fw-bold mb-0">Loyalty Discount</h6>
+                        </div>
+                        <p class="text-muted small mb-0">5% discount for students with 3+ consecutive years at Greenlane</p>
+                    </div>
+                    <a href="/contact#finance" class="btn btn-success w-100 mt-3">Apply for Discounts</a>
+                </div>
+            </div>
+
+            <!-- Contact Finance -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-dark text-white py-3">
+                    <h5 class="mb-0"><i class="bi bi-headset me-2"></i>Finance Office</h5>
+                </div>
+                <div class="card-body p-3">
+                    <div class="contact-item mb-3 p-2 bg-light rounded">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-telephone text-primary fs-5 me-2 mt-1"></i>
+                            <div>
+                                <strong class="d-block mb-1">Finance Helpline</strong>
+                                <div class="small text-muted">+27 11 492 1779</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item mb-3 p-2 bg-light rounded">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-envelope text-primary fs-5 me-2 mt-1"></i>
+                            <div>
+                                <strong class="d-block mb-1">Finance Email</strong>
+                                <div class="small text-muted">finance@greenlane.co.za</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item p-2 bg-light rounded">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-clock text-primary fs-5 me-2 mt-1"></i>
+                            <div>
+                                <strong class="d-block mb-1">Office Hours</strong>
+                                <div class="small text-muted">Mon-Fri: 8:00 AM - 4:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Downloads -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-info text-white py-3">
+                    <h5 class="mb-0"><i class="bi bi-download me-2"></i>Fee Documents</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="/downloads/fees-schedule" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-pdf text-danger fs-5 me-2"></i>
+                            <div>
+                                <div>2026 Fee Schedule</div>
+                                <small class="text-muted">Complete fee breakdown</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">PDF</span>
+                    </a>
+                    <a href="/downloads/payment-agreement" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-word text-primary fs-5 me-2"></i>
+                            <div>
+                                <div>Payment Agreement</div>
+                                <small class="text-muted">Terms & conditions</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">DOC</span>
+                    </a>
+                    <a href="/downloads/debit-order" class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-file-text text-success fs-5 me-2"></i>
+                            <div>
+                                <div>Debit Order Form</div>
+                                <small class="text-muted">Monthly payments</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">PDF</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Important Notes -->
+<div class="bg-light py-5 border-top">
+    <div class="container">
+        <h3 class="fw-bold mb-4 text-center">Important Information</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center p-3">
+                    <div class="icon-wrapper mb-3">
+                        <i class="bi bi-exclamation-triangle-fill text-warning fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Late Payments</h5>
+                    <p class="text-muted small">A 5% penalty applies to fees paid after the 7th of each month. Persistent late payments may affect enrollment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-3">
+                    <div class="icon-wrapper mb-3">
+                        <i class="bi bi-arrow-left-right text-info fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Refund Policy</h5>
+                    <p class="text-muted small">Registration fees are non-refundable. Tuition refunds are prorated based on the official withdrawal date.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-3">
+                    <div class="icon-wrapper mb-3">
+                        <i class="bi bi-shield-check text-success fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Financial Assistance</h5>
+                    <p class="text-muted small">Limited bursaries available based on merit and financial need. Applications close March 31, 2026.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Hero Banner */
+    .hero-banner {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Sticky Column */
+    .sticky-column {
+        position: sticky;
+        top: 20px;
+    }
+
+    /* Table Styling */
+    .table-hover tbody tr:hover {
+        background-color: rgba(26, 77, 46, 0.05);
+    }
+
+    /* Discount Items */
+    .discount-item {
+        transition: all 0.3s ease;
+    }
+
+        .discount-item:hover {
+            background-color: rgba(25, 135, 84, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+    /* Contact Items */
+    .contact-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .contact-item:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+    /* Icon Wrapper */
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        background: rgba(26, 77, 46, 0.1);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    /* List Group Items */
+    .list-group-item.active {
+        background-color: rgba(26, 77, 46, 0.1);
+        border-color: #1a4d2e;
+        color: #1a4d2e;
+        font-weight: 600;
+    }
+
+        .list-group-item.active i {
+            color: #1a4d2e;
+        }
+
+    /* Responsive Adjustments */
+    @@media (max-width: 992px) {
+        .sticky-column {
+            position: relative;
+            top: 0;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hero-banner {
+            min-height: 50vh;
+            text-align: center;
+        }
+
+        .display-3 {
+            font-size: 2rem;
+        }
+
+        .table-responsive {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Smooth Scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Card Headers */
+    .card-header {
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    /* Table Headers */
+    .table-primary {
+        background-color: rgba(26, 77, 46, 0.1) !important;
+    }
+
+    .table-success {
+        background-color: rgba(25, 135, 84, 0.1) !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Highlight active section in navigation
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('section[id], div[id]');
+            const navLinks = document.querySelectorAll('.list-group-item');
+
+            window.addEventListener('scroll', function () {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        highlightActiveSection();
+
+        // Calculate annual totals
+        function calculateAnnualTotals() {
+            const monthlyCells = document.querySelectorAll('td:nth-child(3)');
+            const annualCells = document.querySelectorAll('td:nth-child(4)');
+
+            monthlyCells.forEach((cell, index) => {
+                if (cell.textContent.includes('R')) {
+                    const monthly = parseInt(cell.textContent.replace(/[^0-9]/g, ''));
+                    const annual = monthly * 10; // 10 months of school
+                    if (annualCells[index]) {
+                        annualCells[index].textContent = annual.toLocaleString();
+                    }
+                }
+            });
+        }
+
+        calculateAnnualTotals();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>

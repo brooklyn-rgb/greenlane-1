@@ -1,0 +1,430 @@
+﻿@page
+@model greenlane.Pages.AboutModel
+@{
+    ViewData["Title"] = "About Greenlane College | A Legacy of Educational Excellence";
+}
+
+<!-- Hero Section -->
+<section class="hero-section-about py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Forging Future Leaders at Greenlane College</h1>
+                <p class="lead mb-4">
+                    We provide a holistic, nurturing, and future-focused education that equips every student not just for academic success, but for a life of purpose, contribution, and leadership.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="/Registration" class="btn btn-primary btn-lg px-4">
+                        Begin Application
+                    </a>
+                    <a href="/Contact" class="btn btn-outline-primary btn-lg px-4">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <img src="/images/banner/banner.png"
+                     alt="Greenlane College students engaged in learning"
+                     class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Institutional Narrative -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="text-center mb-5 fw-bold">Our Institutional Narrative</h2>
+                <div class="card border-0 shadow-sm mb-5">
+                    <div class="card-body p-5">
+                        <h3 class="h4 mb-4">About Greenlane College</h3>
+                        <p class="mb-4">
+                            Established in 2009, Greenlane College is an accredited independent school founded on the principle of delivering exceptional, accessible private education. Our founders' vision was to create an institution distinguished by academic rigour, demonstrated through credible and consistent results at all critical exit points, most notably the National Senior Certificate (Matriculation) examinations.
+                        </p>
+
+                        <h4 class="h5 mb-3 mt-4">A Brief History of Growth & Purpose</h4>
+                        <p>
+                            Conceived in 2009, Greenlane College welcomed its inaugural cohort in 2010 at our original premises. To accommodate our growing community and expanding vision, we relocated in 2013 to our current, central campus at Legal House in Johannesburg. Our evolution from a dedicated high school to a comprehensive Grade 1-12 institution reflects our commitment to providing a continuous, seamless educational journey. From inception, our core purpose has been to offer <strong>quality private education that is both excellent and accessible</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-1 fw-bold">The Pillars of Our Ethos</h2>
+        <p class="text-center text-muted mb-5">The foundational principles that guide every aspect of life at Greenlane College.</p>
+
+        <div class="row g-4">
+            @foreach (var value in Model.CoreValues)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                                    <i class="bi bi-star-fill text-primary fs-5"></i>
+                                </div>
+                                <h5 class="card-title mb-0 fw-bold">@value.Title</h5>
+                            </div>
+                            <p class="card-text text-muted">@value.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Mission, Vision, Objective -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row g-4">
+            @foreach (var point in Model.MissionPoints)
+            {
+                <div class="col-md-4">
+                    <div class="text-center p-4 h-100">
+                        <div class="icon-wrapper mb-4">
+                            <i class="@point.IconClass display-4"></i>
+                        </div>
+                        <h3 class="h4 mb-3">@point.Title</h3>
+                        <p>@point.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Purpose & Achievement -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Our Commitment &amp; Track Record</h2>
+                <div class="accordion" id="purposeAccordion">
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button bg-light fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#purposeOne">
+                                Our Defining Purpose
+                            </button>
+                        </h3>
+                        <div id="purposeOne" class="accordion-collapse collapse show" data-bs-parent="#purposeAccordion">
+                            <div class="accordion-body">
+                                To cultivate learners who maximize their inherent potential, acquire critical and practical skills, and are prepared to participate meaningfully in the ongoing transformation and advancement of their communities.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button bg-light fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#purposeTwo">
+                                Our Institutional Responsibility
+                            </button>
+                        </h3>
+                        <div id="purposeTwo" class="accordion-collapse collapse" data-bs-parent="#purposeAccordion">
+                            <div class="accordion-body">
+                                To provide a secure, stimulating, and supportive environment where students feel valued and empowered to take intellectual and personal risks.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button bg-light fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#purposeThree">
+                                A Legacy of Achievement
+                            </button>
+                        </h3>
+                        <div id="purposeThree" class="accordion-collapse collapse" data-bs-parent="#purposeAccordion">
+                            <div class="accordion-body">
+                                Since our first matriculation class, Greenlane College has consistently produced outstanding Grade 12 results. Our alumni have gained admission to South Africa's most prestigious universities, a testament to the strong academic foundation they received here.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 bg-primary text-white shadow-lg">
+                    <div class="card-body p-5">
+                        <h3 class="card-title h2 mb-4"><i class="bi bi-award me-3"></i>The Greenlane Environment</h3>
+                        <p class="card-text lead">
+                            We intentionally create a welcoming, inclusive, and safe milieu where every child is known and feels a sense of belonging. It is within this positive framework that authentic academic excellence and confident social growth naturally flourish.
+                        </p>
+                        <div class="mt-4 pt-3 border-top border-white-50">
+                            <p class="mb-0">
+                                <i class="bi bi-check-circle-fill me-2"></i> Focused on holistic student development
+                            </p>
+                            <p class="mb-0">
+                                <i class="bi bi-check-circle-fill me-2"></i> Committed to academic distinction
+                            </p>
+                            <p class="mb-0">
+                                <i class="bi bi-check-circle-fill me-2"></i> Dedicated to building character and community
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Educational Journey -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Comprehensive Educational Journey</h2>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="phase-icon mb-3">
+                            <i class="bi bi-house-door-fill text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-3">Foundation Phase</h4>
+                        <p class="mb-2"><strong>Grade 1 - Grade 3</strong></p>
+                        <p class="text-muted small">Building strong literacy, numeracy, and social foundations through play-based learning and structured activities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="phase-icon mb-3">
+                            <i class="bi bi-book-fill text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-3">Intermediate Phase</h4>
+                        <p class="mb-2"><strong>Grade 4 - Grade 6</strong></p>
+                        <p class="text-muted small">Developing subject specialization, critical thinking, and independent learning skills across diverse disciplines.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="phase-icon mb-3">
+                            <i class="bi bi-mortarboard-fill text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-3">Senior Phase</h4>
+                        <p class="mb-2"><strong>Grade 7 - Grade 9</strong></p>
+                        <p class="text-muted small">Preparing for high school with advanced academic rigor, leadership opportunities, and career exploration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="phase-icon mb-3">
+                            <i class="bi bi-award-fill text-primary display-4"></i>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-3">FET Phase</h4>
+                        <p class="mb-2"><strong>Grade 10 - Grade 12</strong></p>
+                        <p class="text-muted small">University preparation with subject specialization, critical analysis, and comprehensive matriculation support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="/Academics" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-journal-text me-2"></i>Explore Our Curriculum
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Team Preview -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Educational Leadership</h2>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="leader-avatar mb-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-4 d-inline-block">
+                                <i class="bi bi-person-badge text-primary display-4"></i>
+                            </div>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-2">Mr. Jamil Lubega</h4>
+                        <p class="text-muted mb-3">Principal & Academic Director</p>
+                        <p class="small text-muted">With over 20 years of educational leadership experience, Mr. Khumalo champions our vision of academic excellence and holistic development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="leader-avatar mb-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-4 d-inline-block">
+                                <i class="bi bi-people-fill text-primary display-4"></i>
+                            </div>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-2">Mrs. Thandi Ndlovu</h4>
+                        <p class="text-muted mb-3">Head of Admissions</p>
+                        <p class="small text-muted">Dedicated to ensuring every family finds their perfect educational fit within our vibrant school community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="leader-avatar mb-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-4 d-inline-block">
+                                <i class="bi bi-graph-up-arrow text-primary display-4"></i>
+                            </div>
+                        </div>
+                        <h4 class="h5 fw-bold text-primary mb-2">Dr. David Moloi</h4>
+                        <p class="text-muted mb-3">Head of Student Development</p>
+                        <p class="small text-muted">Oversees our comprehensive support systems ensuring every student's academic and personal growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p class="text-muted">
+                Have questions? Our leadership team is accessible and committed to transparent communication with our school community.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Links to Other Pages -->
+<section class="py-5 bg-primary bg-opacity-10">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Continue Exploring Greenlane College</h2>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <i class="bi bi-question-circle text-primary display-5 mb-3"></i>
+                        <h4 class="h5 fw-bold mb-3">Have Questions?</h4>
+                        <p class="small text-muted mb-3">Find comprehensive answers to common inquiries about admissions, programs, and school life.</p>
+                        <a href="/FAQ" class="btn btn-outline-primary w-100">Visit FAQ Page</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <i class="bi bi-images text-primary display-5 mb-3"></i>
+                        <h4 class="h5 fw-bold mb-3">View Our Gallery</h4>
+                        <p class="small text-muted mb-3">Explore photos and videos of our campus, classrooms, and student activities.</p>
+                        <a href="/Gallery" class="btn btn-outline-primary w-100">View Gallery</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <i class="bi bi-geo-alt text-primary display-5 mb-3"></i>
+                        <h4 class="h5 fw-bold mb-3">Visit Our Campus</h4>
+                        <p class="small text-muted mb-3">Get directions, view our location, and learn about campus facilities.</p>
+                        <a href="/Location" class="btn btn-outline-primary w-100">View Location</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <i class="bi bi-calendar-check text-primary display-5 mb-3"></i>
+                        <h4 class="h5 fw-bold mb-3">Begin Application</h4>
+                        <p class="small text-muted mb-3">Start your child's educational journey with our streamlined online application process.</p>
+                        <a href="/Registration" class="btn btn-primary w-100">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-5 text-center">
+    <div class="container">
+        <div class="card border-0 shadow-lg py-5 bg-gradient-primary text-white">
+            <div class="card-body">
+                <h2 class="card-title display-6 fw-bold mb-4">Ready to Join Our Community?</h2>
+                <p class="card-text lead mb-4 mx-auto" style="max-width: 700px;">
+                    Discover how Greenlane College can be the foundation for your child's future success. We invite you to learn more about our vibrant school community.
+                </p>
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="/Admissions" class="btn btn-light btn-lg px-5">Explore Admissions</a>
+                    <a href="/Contact" class="btn btn-outline-light btn-lg px-5">Schedule a Visit</a>
+                    <a href="/FAQ" class="btn btn-outline-light btn-lg px-5">View FAQs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Custom styles for the About page */
+    .hero-section-about {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+    }
+
+    .hover-shadow {
+        transition: all 0.3s ease;
+    }
+
+        .hover-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+        }
+
+    .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .phase-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1rem;
+    }
+
+    .leader-avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .display-4 {
+            font-size: 2.5rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+    }
+</style>

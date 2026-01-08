@@ -1,0 +1,782 @@
+﻿@page
+@model greenlane.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Online Registration - Greenlane College";
+}
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bold text-primary mb-3">Online Registration 2026</h1>
+                    <p class="lead">Begin your child's journey at Greenlane College. Complete the form below to apply for the 2026 academic year.</p>
+
+                    <div class="alert alert-info mt-4 mx-auto" style="max-width: 800px;">
+                        <h5><i class="bi bi-gift-fill me-2"></i>Early Registration Benefit!</h5>
+                        <p class="mb-0">Applications submitted before <strong>March 31, 2026</strong> qualify for our Free Starter Pack including school supplies and uniform voucher.</p>
+                    </div>
+                </div>
+
+                <!-- School Information Banner -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="alert alert-success">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="mb-1"><i class="bi bi-info-circle me-2"></i>Greenlane College Offers</h5>
+                                    <p class="mb-0">Comprehensive education from <strong>Grade 1 to Grade 12 (Matric)</strong> - Ages 4 to 18 years</p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <a href="/Academics" class="btn btn-outline-success btn-sm">
+                                        <i class="bi bi-book me-1"></i> View Curriculum
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Progress Steps -->
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="position-relative">
+                            <div class="progress-steps-line"></div>
+                            <div class="d-flex justify-content-between">
+                                <div class="text-center step active" id="step1">
+                                    <div class="step-circle">1</div>
+                                    <p class="mt-2 fw-medium">Child Info</p>
+                                </div>
+                                <div class="text-center step" id="step2">
+                                    <div class="step-circle">2</div>
+                                    <p class="mt-2 fw-medium">Parent Info</p>
+                                </div>
+                                <div class="text-center step" id="step3">
+                                    <div class="step-circle">3</div>
+                                    <p class="mt-2 fw-medium">Documents</p>
+                                </div>
+                                <div class="text-center step" id="step4">
+                                    <div class="step-circle">4</div>
+                                    <p class="mt-2 fw-medium">Review</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Form Card -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="card shadow border-0">
+                            <div class="card-body p-4 p-md-5">
+                                <form method="post" id="registrationForm" enctype="multipart/form-data">
+                                    <!-- Step 1: Child Information -->
+                                    <div class="form-step active" id="formStep1">
+                                        <h4 class="mb-4 border-bottom pb-2 text-primary">
+                                            <i class="bi bi-person-circle me-2"></i>Child's Information
+                                        </h4>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Full Name *</label>
+                                                <input type="text" class="form-control" asp-for="ChildName" required>
+                                                <span asp-validation-for="ChildName" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Date of Birth *</label>
+                                                <input type="date" class="form-control" asp-for="ChildDOB"
+                                                       max="@DateTime.Now.AddYears(-4).ToString("yyyy-MM-dd")"
+                                                       min="@DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd")"
+                                                       required>
+                                                <span asp-validation-for="ChildDOB" class="text-danger small"></span>
+                                                <small class="text-muted">Age range: 4-18 years (Grade 1 - Matric)</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Applying for Grade *</label>
+                                                <select class="form-select" asp-for="Grade" required id="gradeSelect">
+                                                    <option value="">Select Grade</option>
+                                                    <option value="Grade 1">Grade 1 (Reception - Age 4-5)</option>
+                                                    <option value="Grade 1">Grade 1 (Foundation Phase)</option>
+                                                    <option value="Grade 2">Grade 2 (Foundation Phase)</option>
+                                                    <option value="Grade 3">Grade 3 (Foundation Phase)</option>
+                                                    <option value="Grade 4">Grade 4 (Intermediate Phase)</option>
+                                                    <option value="Grade 5">Grade 5 (Intermediate Phase)</option>
+                                                    <option value="Grade 6">Grade 6 (Intermediate Phase)</option>
+                                                    <option value="Grade 7">Grade 7 (Senior Phase)</option>
+                                                    <option value="Grade 8">Grade 8 (FET Phase)</option>
+                                                    <option value="Grade 9">Grade 9 (FET Phase)</option>
+                                                    <option value="Grade 10">Grade 10 (FET Phase)</option>
+                                                    <option value="Grade 11">Grade 11 (FET Phase)</option>
+                                                    <option value="Grade 12">Grade 12 (Matric - FET Phase)</option>
+                                                </select>
+                                                <span asp-validation-for="Grade" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Previous School (if any)</label>
+                                                <input type="text" class="form-control" asp-for="PreviousSchool">
+                                                <small class="text-muted">For transfer students only</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Home Language *</label>
+                                                <select class="form-select" name="HomeLanguage" required>
+                                                    <option value="">Select Language</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Afrikaans">Afrikaans</option>
+                                                    <option value="Zulu">isiZulu</option>
+                                                    <option value="Xhosa">isiXhosa</option>
+                                                    <option value="Sotho">Sesotho</option>
+                                                    <option value="Tswana">Setswana</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Additional Language</label>
+                                                <select class="form-select" name="AdditionalLanguage">
+                                                    <option value="">Select Language</option>
+                                                    <option value="Afrikaans">Afrikaans</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Zulu">isiZulu</option>
+                                                    <option value="French">French</option>
+                                                    <option value="German">German</option>
+                                                    <option value="None">None</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-secondary" disabled>Previous</button>
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                                                Next: Parent Info <i class="bi bi-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 2: Parent/Guardian Information -->
+                                    <div class="form-step" id="formStep2">
+                                        <h4 class="mb-4 border-bottom pb-2 text-primary">
+                                            <i class="bi bi-people-fill me-2"></i>Parent/Guardian Information
+                                        </h4>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Primary Contact Name *</label>
+                                                <input type="text" class="form-control" asp-for="ParentName" required>
+                                                <span asp-validation-for="ParentName" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Relationship to Child *</label>
+                                                <select class="form-select" asp-for="Relationship" required>
+                                                    <option value="">Select Relationship</option>
+                                                    <option value="Mother">Mother</option>
+                                                    <option value="Father">Father</option>
+                                                    <option value="Guardian">Legal Guardian</option>
+                                                    <option value="Grandparent">Grandparent</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                                <span asp-validation-for="Relationship" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Email Address *</label>
+                                                <input type="email" class="form-control" asp-for="ParentEmail" required>
+                                                <span asp-validation-for="ParentEmail" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Phone Number *</label>
+                                                <input type="tel" class="form-control" asp-for="ParentPhone" required>
+                                                <span asp-validation-for="ParentPhone" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Home Address *</label>
+                                                <textarea class="form-control" rows="2" asp-for="Address" required></textarea>
+                                                <span asp-validation-for="Address" class="text-danger small"></span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Occupation</label>
+                                                <input type="text" class="form-control" name="Occupation">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Employer</label>
+                                                <input type="text" class="form-control" name="Employer">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Emergency Contact Name *</label>
+                                                <input type="text" class="form-control" asp-for="EmergencyContact" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Emergency Phone Number *</label>
+                                                <input type="tel" class="form-control" asp-for="EmergencyPhone" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Additional Parent/Guardian (Optional) -->
+                                        <div class="mt-4 border-top pt-4">
+                                            <h6 class="text-primary mb-3">
+                                                <i class="bi bi-person-plus me-2"></i>Additional Parent/Guardian (Optional)
+                                            </h6>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Second Contact Name</label>
+                                                    <input type="text" class="form-control" name="SecondParentName">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Relationship</label>
+                                                    <select class="form-select" name="SecondParentRelationship">
+                                                        <option value="">Select Relationship</option>
+                                                        <option value="Mother">Mother</option>
+                                                        <option value="Father">Father</option>
+                                                        <option value="Guardian">Guardian</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="tel" class="form-control" name="SecondParentPhone">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Email Address</label>
+                                                    <input type="email" class="form-control" name="SecondParentEmail">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="prevStep(1)">
+                                                <i class="bi bi-arrow-left me-2"></i>Previous
+                                            </button>
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+                                                Next: Documents <i class="bi bi-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Document Upload -->
+                                    <div class="form-step" id="formStep3">
+                                        <h4 class="mb-4 border-bottom pb-2 text-primary">
+                                            <i class="bi bi-files me-2"></i>Required Documents
+                                        </h4>
+
+                                        <div class="alert alert-info">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            Please prepare digital copies of the following documents. Maximum file size: 5MB each. Accepted formats: PDF, JPG, PNG.
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Birth Certificate *</label>
+                                                <input type="file" class="form-control" name="BirthCertificate" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <small class="text-muted">Certified copy (Unabridged for international)</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Immunization Record *</label>
+                                                <input type="file" class="form-control" name="ImmunizationRecord" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <small class="text-muted">Up-to-date vaccination records</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Latest School Report</label>
+                                                <input type="file" class="form-control" name="SchoolReport" accept=".pdf,.jpg,.jpeg,.png">
+                                                <small class="text-muted">Required for Grade 1+ transfer students</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Proof of Residence *</label>
+                                                <input type="file" class="form-control" name="ProofResidence" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <small class="text-muted">Utility bill or lease agreement (<3 months)</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">ID Photo (Passport size)</label>
+                                                <input type="file" class="form-control" name="IDPhoto" accept="image/*">
+                                                <small class="text-muted">Recent passport-sized photo</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">ID Copy (Parent/Guardian) *</label>
+                                                <input type="file" class="form-control" name="ParentID" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <small class="text-muted">Certified copy of ID or passport</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Transfer Certificate</label>
+                                                <input type="file" class="form-control" name="TransferCertificate" accept=".pdf,.jpg,.jpeg,.png">
+                                                <small class="text-muted">For students transferring during term</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Medical Aid Card</label>
+                                                <input type="file" class="form-control" name="MedicalAidCard" accept=".pdf,.jpg,.jpeg,.png">
+                                                <small class="text-muted">If applicable</small>
+                                            </div>
+                                        </div>
+
+                                        <!-- For High School Applicants (Grade 8-12) -->
+                                        <div class="mt-4 border-top pt-4" id="highSchoolDocs">
+                                            <h6 class="text-primary mb-3">
+                                                <i class="bi bi-mortarboard me-2"></i>Additional for High School (Grade 8-12)
+                                            </h6>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Previous Year's Report</label>
+                                                    <input type="file" class="form-control" name="PreviousYearReport" accept=".pdf,.jpg,.jpeg,.png">
+                                                    <small class="text-muted">Grade 7/8/9/10/11 final report</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Subject Choice Form</label>
+                                                    <input type="file" class="form-control" name="SubjectChoiceForm" accept=".pdf,.jpg,.jpeg,.png">
+                                                    <small class="text-muted">For Grade 10-12 subject selection</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="agreement" asp-for="TermsAgreed" required>
+                                                <label class="form-check-label" for="agreement">
+                                                    <strong>I certify that:</strong> All information provided is accurate and complete. I understand that submission of false information may lead to disqualification. I agree to the school's code of conduct and policies.
+                                                </label>
+                                                <span asp-validation-for="TermsAgreed" class="text-danger small d-block"></span>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="checkbox" id="feeAgreement" name="FeeAgreement" required>
+                                                <label class="form-check-label" for="feeAgreement">
+                                                    I understand and agree to the school fee structure and payment terms for the 2026 academic year.
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="prevStep(2)">
+                                                <i class="bi bi-arrow-left me-2"></i>Previous
+                                            </button>
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">
+                                                Review Application <i class="bi bi-arrow-right ms-2"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 4: Review and Submit -->
+                                    <div class="form-step" id="formStep4">
+                                        <h4 class="mb-4 border-bottom pb-2 text-primary">
+                                            <i class="bi bi-check-circle me-2"></i>Review Your Application
+                                        </h4>
+
+                                        <div class="card mb-4 border-primary">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary">Application Summary - 2026 Academic Year</h5>
+                                                <div id="reviewSummary">
+                                                    <!-- Will be populated by JavaScript -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-success">
+                                            <h5><i class="bi bi-gift-fill me-2"></i>Early Registration Benefit for 2026!</h5>
+                                            <p class="mb-0">Applications submitted before <strong>March 31, 2026</strong> qualify for our Free Starter Pack including school supplies and uniform voucher worth R800.</p>
+                                        </div>
+
+                                        <!-- Fee Information -->
+                                        <div class="alert alert-warning">
+                                            <h5><i class="bi bi-cash-coin me-2"></i>Application Fee Information</h5>
+                                            <p class="mb-2">A non-refundable application fee of <strong>R250</strong> is required to process your application.</p>
+                                            <p class="mb-0">Payment details will be emailed to you after submission.</p>
+                                        </div>
+
+                                        <div class="mt-4 d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="prevStep(3)">
+                                                <i class="bi bi-arrow-left me-2"></i>Previous
+                                            </button>
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                <i class="bi bi-check-circle me-2"></i>Submit 2026 Application
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Sidebar -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="card border-primary h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary">
+                                            <i class="bi bi-clock-history me-2"></i>2026 Application Timeline
+                                        </h5>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><strong>Application Opens:</strong> January 1, 2026</li>
+                                            <li class="mb-2"><strong>Early Bird Deadline:</strong> March 31, 2026</li>
+                                            <li class="mb-2"><strong>Final Deadline:</strong> May 31, 2026</li>
+                                            <li class="mb-2"><strong>Entrance Assessments:</strong> June 2026</li>
+                                            <li class="mb-2"><strong>Interviews:</strong> July 2026</li>
+                                            <li><strong>Notification:</strong> August 2026</li>
+                                        </ul>
+                                        <div class="mt-3">
+                                            <small class="text-muted">
+                                                <i class="bi bi-info-circle me-1"></i>
+                                                Grade 8 & 12 placements limited. Early application recommended.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-success h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-success">
+                                            <i class="bi bi-question-circle me-2"></i>Need Help with 2026 Applications?
+                                        </h5>
+                                        <p>Contact our Admissions Office:</p>
+                                        <p class="mb-1"><i class="bi bi-telephone me-2"></i> +27 11 492 1778</p>
+                                        <p class="mb-1"><i class="bi bi-envelope me-2"></i> admissions2026@greenlane.co.za</p>
+                                        <p class="mb-3"><i class="bi bi-clock me-2"></i> Mon-Fri: 8:00 AM - 4:00 PM</p>
+                                        <div class="d-grid gap-2">
+                                            <a href="/Contact" class="btn btn-outline-success">
+                                                <i class="bi bi-geo-alt me-1"></i> Visit Admissions Office
+                                            </a>
+                                            <a href="/FAQ" class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-question-circle me-1"></i> View FAQ
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Improved progress steps line positioning */
+    .progress-steps-line {
+        position: absolute;
+        top: 24px;
+        left: 50px;
+        right: 50px;
+        height: 4px;
+        background-color: #e9ecef;
+        z-index: 1;
+    }
+
+    .step {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+    }
+
+    .step-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #e9ecef;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto;
+        border: 4px solid white;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .step.active .step-circle {
+        background-color: #1a4d2e;
+        color: white;
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(26, 77, 46, 0.3);
+    }
+
+    .form-step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+        .form-step.active {
+            display: block;
+        }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #1a4d2e;
+        box-shadow: 0 0 0 0.25rem rgba(26, 77, 46, 0.25);
+    }
+
+    /* Card improvements */
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    @@media (min-width: 768px) {
+        .card-body {
+            padding: 2rem 2.5rem;
+        }
+    }
+
+    /* File input styling */
+    input[type="file"] {
+        padding: 0.5rem;
+    }
+
+        input[type="file"]::file-selector-button {
+            background-color: #1a4d2e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            margin-right: 1rem;
+            transition: background-color 0.2s;
+        }
+
+            input[type="file"]::file-selector-button:hover {
+                background-color: #133624;
+            }
+
+    /* Responsive improvements */
+    @@media (max-width: 768px) {
+        .progress-steps-line {
+            left: 40px;
+            right: 40px;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+        }
+
+        .display-5 {
+            font-size: 2.5rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .progress-steps-line {
+            left: 30px;
+            right: 30px;
+        }
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            font-size: 0.9rem;
+        }
+
+        .display-5 {
+            font-size: 2rem;
+        }
+
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+            .d-flex.justify-content-between button {
+                width: 100%;
+            }
+    }
+
+    /* Ensure consistent heights for cards in contact section */
+    .h-100 {
+        height: 100%;
+    }
+</style>
+
+<script>
+    let currentStep = 1;
+
+    function showStep(step) {
+        // Hide all steps
+        document.querySelectorAll('.form-step').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Show current step
+        document.getElementById(`formStep${step}`).classList.add('active');
+
+        // Update progress indicator
+        document.querySelectorAll('.step').forEach(el => {
+            el.classList.remove('active');
+        });
+        for (let i = 1; i <= step; i++) {
+            document.getElementById(`step${i}`).classList.add('active');
+        }
+
+        if (step === 4) {
+            updateReviewSummary();
+        }
+    }
+
+    function nextStep(step) {
+        if (step > currentStep) {
+            // Validate current step
+            if (!validateStep(currentStep)) {
+                return;
+            }
+        }
+        currentStep = step;
+        showStep(step);
+    }
+
+    function prevStep(step) {
+        currentStep = step;
+        showStep(step);
+    }
+
+    function validateStep(step) {
+        const formStep = document.getElementById(`formStep${step}`);
+        const inputs = formStep.querySelectorAll('[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim() || (input.type === 'checkbox' && !input.checked)) {
+                input.classList.add('is-invalid');
+                valid = false;
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+
+        if (!valid) {
+            alert('Please fill in all required fields before proceeding.');
+        }
+
+        return valid;
+    }
+
+    function updateReviewSummary() {
+        const summary = document.getElementById('reviewSummary');
+        const form = document.getElementById('registrationForm');
+        const formData = new FormData(form);
+
+        let html = '<div class="row">';
+
+        // Child Information
+        html += '<div class="col-md-6 mb-4">';
+        html += '<h6 class="text-primary mb-3">Child Information</h6>';
+        html += `<p><strong>Full Name:</strong> ${formData.get('ChildName') || 'Not provided'}</p>`;
+        html += `<p><strong>Date of Birth:</strong> ${formData.get('ChildDOB') || 'Not provided'}</p>`;
+        html += `<p><strong>Applying for Grade:</strong> ${formData.get('Grade') || 'Not provided'}</p>`;
+        html += `<p><strong>Home Language:</strong> ${formData.get('HomeLanguage') || 'Not provided'}</p>`;
+        html += `<p><strong>Previous School:</strong> ${formData.get('PreviousSchool') || 'Not provided'}</p>`;
+        html += '</div>';
+
+        // Parent Information
+        html += '<div class="col-md-6 mb-4">';
+        html += '<h6 class="text-primary mb-3">Parent/Guardian Information</h6>';
+        html += `<p><strong>Primary Contact:</strong> ${formData.get('ParentName') || 'Not provided'}</p>`;
+        html += `<p><strong>Relationship:</strong> ${formData.get('Relationship') || 'Not provided'}</p>`;
+        html += `<p><strong>Email:</strong> ${formData.get('ParentEmail') || 'Not provided'}</p>`;
+        html += `<p><strong>Phone:</strong> ${formData.get('ParentPhone') || 'Not provided'}</p>`;
+        html += `<p><strong>Emergency Contact:</strong> ${formData.get('EmergencyContact') || 'Not provided'}</p>`;
+        html += '</div>';
+
+        // Documents Status
+        html += '<div class="col-12">';
+        html += '<h6 class="text-primary mb-3">Documents Status</h6>';
+        html += '<div class="row">';
+
+        const docFields = [
+            { name: 'Birth Certificate', field: 'BirthCertificate' },
+            { name: 'Immunization Record', field: 'ImmunizationRecord' },
+            { name: 'Proof of Residence', field: 'ProofResidence' },
+            { name: 'Parent ID Copy', field: 'ParentID' },
+            { name: 'School Report', field: 'SchoolReport' },
+            { name: 'Transfer Certificate', field: 'TransferCertificate' }
+        ];
+
+        docFields.forEach(doc => {
+            const file = formData.get(doc.field);
+            html += '<div class="col-md-6 col-lg-4 mb-2">';
+            html += `<span class="me-2">${doc.name}:</span>`;
+            if (file && file.name) {
+                html += '<span class="badge bg-success">Uploaded</span>';
+            } else if (doc.field.includes('BirthCertificate') || doc.field.includes('ImmunizationRecord') ||
+                      doc.field.includes('ProofResidence') || doc.field.includes('ParentID')) {
+                html += '<span class="badge bg-danger">Required</span>';
+            } else {
+                html += '<span class="badge bg-secondary">Optional</span>';
+            }
+            html += '</div>';
+        });
+
+        html += '</div>';
+        html += '</div>';
+
+        html += '</div>';
+        summary.innerHTML = html;
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        showStep(1);
+
+        // Set date range for DOB (4-18 years old)
+        const dobInput = document.querySelector('input[asp-for="ChildDOB"]');
+        if (dobInput) {
+            const maxDate = new Date();
+            maxDate.setFullYear(maxDate.getFullYear() - 4);
+            dobInput.max = maxDate.toISOString().split('T')[0];
+
+            const minDate = new Date();
+            minDate.setFullYear(minDate.getFullYear() - 18);
+            dobInput.min = minDate.toISOString().split('T')[0];
+        }
+
+        // Show/hide high school documents based on grade selection
+        const gradeSelect = document.getElementById('gradeSelect');
+        const highSchoolDocs = document.getElementById('highSchoolDocs');
+
+        function toggleHighSchoolDocs() {
+            const selectedGrade = gradeSelect.value;
+            const highSchoolGrades = ['Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
+
+            if (highSchoolGrades.includes(selectedGrade)) {
+                highSchoolDocs.style.display = 'block';
+            } else {
+                highSchoolDocs.style.display = 'none';
+            }
+        }
+
+        gradeSelect.addEventListener('change', toggleHighSchoolDocs);
+        toggleHighSchoolDocs(); // Initial check
+
+        // File size validation
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const file = this.files[0];
+                const maxSize = 5 * 1024 * 1024; // 5MB
+
+                if (file && file.size > maxSize) {
+                    alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                    this.value = '';
+                }
+            });
+        });
+
+        // Make sure all containers are properly aligned
+        const containers = document.querySelectorAll('.container, .container-fluid');
+        containers.forEach(container => {
+            container.style.overflow = 'hidden';
+        });
+    });
+</script>

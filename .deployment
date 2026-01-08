@@ -1,0 +1,3 @@
+[config]
+project = .
+SCM_BUILD_ARGS = --configuration Release

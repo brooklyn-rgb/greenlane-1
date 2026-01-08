@@ -1,8 +1,9 @@
-# .github/workflows/deploy.yml
-name: Deploy to Azure
+name: Deploy .NET 8 to Azure
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -10,24 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
     
     - name: Restore dependencies
+      # Removed --locked-mode to prevent build failures
       run: dotnet restore
     
-    - name: Build
+    - name: Build with .NET
       run: dotnet build --configuration Release --no-restore
     
-    - name: Publish
+    - name: Publish with .NET
       run: dotnet publish -c Release -o ./publish
     
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: azure/webapps-deploy@v3
       with:
         app-name: 'GreenlaneCollege'
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}

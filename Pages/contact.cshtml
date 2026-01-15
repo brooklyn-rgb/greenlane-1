@@ -15,7 +15,7 @@
                     <a href="#contact-form" class="btn btn-primary btn-lg">
                         <i class="bi bi-envelope me-2"></i>Send Message
                     </a>
-                    <a href="#map-section" class="btn btn-outline-primary btn-lg">
+                    <a href="#location" class="btn btn-outline-primary btn-lg">
                         <i class="bi bi-geo-alt me-2"></i>Visit Us
                     </a>
                     <a href="tel:+27114921778" class="btn btn-success btn-lg">
@@ -181,63 +181,93 @@
         </div>
     </div>
 </section>
-
-<!-- Map & Location -->
-<section class="py-5" id="map-section">
+<!-- Map & Location Section -->
+<section class="py-5" id="location">
     <div class="container">
+        <h2 class="text-center fw-bold mb-5">Find Our Campus</h2>
+
         <div class="row g-5">
-            <div class="col-lg-7">
-                <h2 class="fw-bold mb-4">Find Our Campus</h2>
-                <div class="card border-0 shadow-lg">
+            <!-- Map Column -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg h-100">
                     <div class="card-body p-0">
                         <div class="ratio ratio-16x9">
-                            <!-- Google Maps Embed -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.056832812689!2d28.047089475997537!3d-26.16654527720005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1b6c5d2e47%3A0x58b8c5b5b5b5b5b5!2sLegal%20House%2C%2032%20Commissioner%20St%2C%20Johannesburg%2C%202000%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza"
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.826011887264!2d28.032558476021623!3d-26.206451777096782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950ea41a237a4b%3A0x9cde22f95554bfb7!2sGreenlane%20College!5e0!3m2!1sen!2sza!4v1712425800000!5m2!1sen!2sza"
                                     style="border:0;"
                                     allowfullscreen=""
                                     loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade">
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Greenlane College Location Map">
                             </iframe>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-5">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary mb-4">
-                            <i class="bi bi-info-circle me-2"></i>Visiting Information
-                        </h3>
+            <!-- Information Column -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow h-100">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-primary mb-4">
+                            <i class="bi bi-geo-alt-fill me-2"></i>Campus Details
+                        </h4>
 
                         <div class="mb-4">
-                            <h5>Parking Facilities</h5>
-                            <p class="mb-0">Visitor parking is available in the building's secure underground parking. Please obtain a visitor's pass from the reception desk.</p>
+                            <h5 class="h6 fw-bold">Address</h5>
+                            <p class="mb-3 text-muted">
+                                Legal House, 32 Commissioner Street<br>
+                                Corner Ntemi Piliso<br>
+                                Johannesburg 2001, South Africa
+                            </p>
                         </div>
 
                         <div class="mb-4">
-                            <h5>Public Transport Access</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="bi bi-train-front text-primary me-2"></i>Nearest Gautrain: Park Station (10 min walk)</li>
-                                <li><i class="bi bi-bus-front text-primary me-2"></i>Rea Vaya Bus: BRT routes available</li>
-                                <li><i class="bi bi-taxi-front text-primary me-2"></i>Taxi rank: 5-minute walk from campus</li>
-                            </ul>
+                            <h5 class="h6 fw-bold">Contact Information</h5>
+                            <p class="mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <a href="tel:+27114921778" class="text-decoration-none text-dark">+27 11 492 1778</a>
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-phone text-primary me-2"></i>
+                                <a href="tel:0812624572" class="text-decoration-none text-dark">081 262 4572</a>
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-envelope text-primary me-2"></i>
+                                <a href="mailto:info@greenlane.co.za" class="text-decoration-none text-dark">info@greenlane.co.za</a>
+                            </p>
                         </div>
 
                         <div class="mb-4">
-                            <h5>Security Protocols</h5>
-                            <p class="mb-0">All visitors must sign in at reception and wear a visitor badge while on campus. CCTV surveillance is in operation 24/7.</p>
+                            <h5 class="h6 fw-bold">Business Hours</h5>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Mon - Fri:</span>
+                                <span class="text-muted">8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Saturday:</span>
+                                <span class="text-muted">9:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Sunday:</span>
+                                <span class="text-danger">Closed</span>
+                            </div>
                         </div>
 
-                        <a href="/Location" class="btn btn-outline-primary w-100 mt-3">
-                            <i class="bi bi-directions me-2"></i>Get Detailed Directions
-                        </a>
+                        <div class="mt-4">
+                            <a href="https://www.google.com/maps?ll=-26.206452,28.035133&z=16&t=m&hl=en&gl=ZA&mapclient=embed&cid=11303510569020342199"
+                               class="btn btn-primary w-100 py-2 fw-bold"
+                               target="_blank"
+                               rel="noopener">
+                                <i class="bi bi-cursor-fill me-2"></i>Get Directions
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- School Hours -->
 <section class="py-5 bg-light">
@@ -337,6 +367,10 @@
     /* Responsive adjustments */
     @@media (max-width: 768px) {
         .contact-info-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        #location .card {
             margin-bottom: 1.5rem;
         }
     }

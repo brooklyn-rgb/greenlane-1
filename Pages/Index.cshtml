@@ -6,7 +6,7 @@
 
 <!-- Modern Hero Banner with Overlay -->
 <div class="position-relative">
-    <div class="hero-banner" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/banner/student.png') center/cover no-repeat; min-height: 85vh;">
+    <div class="hero-banner" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/banner/banner.png') center/cover no-repeat; min-height: 85vh;">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-lg-7 text-white">
@@ -26,6 +26,23 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Add to your _Layout.cshtml or specific page -->
+<div class="announcement-banner">
+    <div class="marquee-wrapper">
+        <marquee class="success-marquee" behavior="alternate" direction="left">
+            <span class="marquee-content">
+                <span class="trophy">🏆</span>
+                <span class="highlight">2025 MATRIC PASS RATE: 100%</span>
+                <span class="trophy">🏆</span>
+                <span class="celebration">Outstanding Academic Achievement</span>
+                <span class="trophy">🏆</span>
+                <span class="highlight">2025 MATRIC PASS RATE: 100%</span>
+                <span class="trophy">🏆</span>
+            </span>
+        </marquee>
     </div>
 </div>
 
@@ -496,6 +513,83 @@
 
     .p-4 {
         padding: 1.5rem !important;
+    }
+
+
+    .announcement-banner {
+        background: linear-gradient(90deg, #1a5fb4 0%, #2d87c8 50%, #1a5fb4 100%);
+        color: white;
+        padding: 10px 0;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .marquee-wrapper {
+        padding: 5px;
+    }
+
+    .success-marquee {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .marquee-content {
+        display: inline-flex;
+        align-items: center;
+        gap: 25px;
+        padding: 0 10px;
+    }
+
+    .trophy {
+        font-size: 1.6rem;
+        animation: bounce 1s infinite alternate;
+    }
+
+    .highlight {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 20px;
+        border-radius: 50px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .celebration {
+        color: #ffeb3b;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    @@keyframes bounce {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .success-marquee {
+            font-size: 1.1rem;
+        }
+
+        .marquee-content {
+            gap: 15px;
+        }
+
+        .trophy {
+            font-size: 1.3rem;
+        }
+
+        .celebration {
+            font-size: 1rem;
+        }
     }
 </style>
 

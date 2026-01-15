@@ -1,0 +1,19 @@
+﻿@{
+    var year = DateTime.Now.Year > 2025 ? DateTime.Now.Year : 2025;
+}
+
+<div class="announcement-banner">
+    <div class="marquee-wrapper">
+        <marquee class="success-marquee" behavior="alternate" direction="left">
+            <span class="marquee-content">
+                <span class="trophy">🏆</span>
+                <span class="highlight">@year MATRIC PASS RATE: 100%</span>
+                <span class="trophy">🏆</span>
+                <span class="celebration">Congratulations to All Students!</span>
+                <span class="trophy">🏆</span>
+                <span class="highlight">@year MATRIC PASS RATE: 100%</span>
+                <span class="trophy">🏆</span>
+            </span>
+        </marquee>
+    </div>
+</div>

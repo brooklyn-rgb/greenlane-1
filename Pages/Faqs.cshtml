@@ -5,11 +5,17 @@
     ViewData["Description"] = "Everything you need to know about Greenlane College admissions, programs, and more.";
 }
 
+
 <div class="container py-5">
     <!-- Page Header -->
     <div class="text-center mb-5">
         <h1 class="display-4 fw-bold text-primary mb-3">Frequently Asked Questions</h1>
         <p class="lead text-muted">Everything you need to know about Greenlane College admissions, programs, and more.</p>
+        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <strong>EMIS No. 700400313 • 2025 Registration Now Open</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 
     <!-- FAQ Content -->
@@ -21,15 +27,16 @@
                 <div class="accordion-item shadow-sm border-0 mb-3">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Where is Greenlane College located?
+                            <i class="bi bi-geo-alt me-2 text-primary"></i> Where is Greenlane College located?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            <p>Greenlane College is located at 123 Education Drive, Academic District, Cityville. Our campus is easily accessible via public transportation and offers ample parking facilities.</p>
+                            <p>Greenlane College is located at <strong>Legal House, 32 Commissioner St, Ferreiras Dorp, Johannesburg, 2001</strong>.</p>
+                            <p>Our campus is centrally located in Johannesburg and easily accessible from all areas of the city.</p>
                             <div class="mt-3">
-                                <a href="/contact" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-map me-1"></i> View Campus Map & Directions
+                                <a href="/contact#directions" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-map me-1"></i> View Map & Directions
                                 </a>
                             </div>
                         </div>
@@ -40,21 +47,55 @@
                 <div class="accordion-item shadow-sm border-0 mb-3">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            What programs and courses does Greenlane College offer?
+                            <i class="bi bi-book me-2 text-primary"></i> What educational phases does Greenlane College offer?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            <p>We offer a comprehensive range of programs across multiple disciplines:</p>
-                            <ul class="list-unstyled mb-0">
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Diploma Programs:</strong> Business Administration, Information Technology, Healthcare Studies</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Certificate Courses:</strong> Digital Marketing, Web Development, Project Management</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Professional Development:</strong> Short courses and workshops for career advancement</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Continuing Education:</strong> Part-time and evening classes for working professionals</li>
-                            </ul>
+                            <p>Greenlane College provides comprehensive education from <strong>Grade 1 to Grade 12</strong> across four distinct phases:</p>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100 border-primary">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">Foundation Phase</h5>
+                                            <p class="card-text">Grades 1-3 for children aged 5-9 years old. The first phase of formal schooling in South Africa.</p>
+                                            <span class="badge bg-primary">Ages 5-9</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100 border-primary">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">Intermediate Phase</h5>
+                                            <p class="card-text">Grades 4-6 building on skills acquired in the Foundation Phase.</p>
+                                            <span class="badge bg-primary">Grades 4-6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100 border-primary">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">Senior Phase</h5>
+                                            <p class="card-text">Grades 7-9 marking a transition towards more specialized subject areas.</p>
+                                            <span class="badge bg-primary">Grades 7-9</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100 border-primary">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">FET Phase</h5>
+                                            <p class="card-text">Grades 10-12 focusing on developing advanced competencies for the National Senior Certificate (Matric).</p>
+                                            <span class="badge bg-primary">Grades 10-12</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="mt-3">
-                                <a href="/programs" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-book me-1"></i> Explore All Programs
+                                <a href="/academics/phases" class="btn btn-outline-primary">
+                                    <i class="bi bi-grid me-1"></i> Explore All Educational Phases
                                 </a>
                             </div>
                         </div>
@@ -65,25 +106,38 @@
                 <div class="accordion-item shadow-sm border-0 mb-3">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            How can I apply to Greenlane College?
+                            <i class="bi bi-pencil-square me-2 text-primary"></i> How can I apply to Greenlane College?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            <p>Our application process is straightforward and fully supported by our admissions team:</p>
+                            <p>To apply to Greenlane College:</p>
                             <ol>
-                                <li><strong>Explore Programs:</strong> Review our offerings and choose your preferred course</li>
-                                <li><strong>Submit Application:</strong> Complete our online application form</li>
-                                <li><strong>Provide Documents:</strong> Upload required academic records and identification</li>
-                                <li><strong>Interview:</strong> Some programs require an admissions interview</li>
-                                <li><strong>Acceptance:</strong> Receive your offer letter and confirm your enrollment</li>
+                                <li><strong>Complete the Online Application:</strong> Fill out our online application form available on our Admissions page</li>
+                                <li><strong>Prepare Required Documents:</strong>
+                                    <ul class="mt-2">
+                                        <li>Academic transcripts from previous school</li>
+                                        <li>Birth certificate or ID document</li>
+                                        <li>Immunization records (for Foundation Phase)</li>
+                                        <li>Recent passport-sized photographs</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Submit Application:</strong> Submit your completed application along with all required documents</li>
+                                <li><strong>Assessment & Interview:</strong> Some phases may require an academic assessment and/or interview</li>
+                                <li><strong>Acceptance & Registration:</strong> Receive your acceptance letter and complete the registration process</li>
                             </ol>
-                            <div class="alert alert-info mt-3">
-                                <i class="bi bi-info-circle me-2"></i> Applications are processed on a rolling basis. Early application is recommended.
+                            
+                            <div class="alert alert-success mt-3">
+                                <i class="bi bi-calendar-check me-2"></i>
+                                <strong>2025 Registration is now open!</strong> Spaces are limited, apply early to secure your child's place.
                             </div>
+                            
                             <div class="mt-3">
-                                <a href="/apply" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-pencil-square me-1"></i> Start Your Application
+                                <a href="/apply" class="btn btn-primary">
+                                    <i class="bi bi-rocket-takeoff me-1"></i> Start Your Application Online
+                                </a>
+                                <a href="/admissions/process" class="btn btn-outline-primary ms-2">
+                                    <i class="bi bi-info-circle me-1"></i> Learn About Admissions Process
                                 </a>
                             </div>
                         </div>
@@ -94,40 +148,55 @@
                 <div class="accordion-item shadow-sm border-0 mb-3">
                     <h2 class="accordion-header" id="headingFour">
                         <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            What are the admission requirements?
+                            <i class="bi bi-clipboard-check me-2 text-primary"></i> What are the admission requirements?
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            <p>Requirements vary by program, but generally include:</p>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="table-light">
+                            <p>Admission requirements vary by phase and grade level. General requirements include:</p>
+                            
+                            <div class="table-responsive mt-3">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="table-primary">
                                         <tr>
-                                            <th>Program Level</th>
-                                            <th>Minimum Requirements</th>
+                                            <th>Phase</th>
+                                            <th>Age Requirement</th>
+                                            <th>Academic Requirements</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Diploma Programs</td>
-                                            <td>High School Diploma or equivalent with minimum 65% average</td>
+                                            <td><strong>Foundation Phase</strong><br>(Grades 1-3)</td>
+                                            <td>5-9 years old</td>
+                                            <td>Age-appropriate readiness assessment</td>
                                         </tr>
                                         <tr>
-                                            <td>Certificate Courses</td>
-                                            <td>Grade 12 completion or mature student status (19+)</td>
+                                            <td><strong>Intermediate Phase</strong><br>(Grades 4-6)</td>
+                                            <td>9-12 years old</td>
+                                            <td>Successful completion of previous grade</td>
                                         </tr>
                                         <tr>
-                                            <td>Professional Development</td>
-                                            <td>Varies by course; some require relevant work experience</td>
+                                            <td><strong>Senior Phase</strong><br>(Grades 7-9)</td>
+                                            <td>12-15 years old</td>
+                                            <td>Grade 6 report or equivalent</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>FET Phase</strong><br>(Grades 10-12)</td>
+                                            <td>15-18 years old</td>
+                                            <td>Grade 9 report or equivalent; subject-specific requirements may apply</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="mb-0">International students have additional requirements including proof of English proficiency.</p>
+                            
+                            <div class="alert alert-info mt-3">
+                                <i class="bi bi-exclamation-circle me-2"></i>
+                                <strong>Note:</strong> All applicants must submit certified copies of birth certificates, previous academic reports, and proof of residence.
+                            </div>
+                            
                             <div class="mt-3">
                                 <a href="/admissions/requirements" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-file-text me-1"></i> View Detailed Requirements
+                                    <i class="bi bi-file-text me-1"></i> View Detailed Requirements by Grade
                                 </a>
                             </div>
                         </div>
@@ -138,23 +207,37 @@
                 <div class="accordion-item shadow-sm border-0">
                     <h2 class="accordion-header" id="headingFive">
                         <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            What curriculum do you offer?
+                            <i class="bi bi-journal-text me-2 text-primary"></i> What curriculum do you offer?
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            <p>Greenlane College offers modern, industry-relevant curricula designed to prepare students for success:</p>
-                            <ul>
-                                <li><strong>Industry-Aligned Content:</strong> Courses developed with input from industry leaders</li>
-                                <li><strong>Practical Skills Focus:</strong> Hands-on learning and real-world projects</li>
-                                <li><strong>Technology Integration:</strong> Current software and tools used in today's workplaces</li>
-                                <li><strong>Soft Skills Development:</strong> Communication, critical thinking, and teamwork</li>
-                                <li><strong>Flexible Learning Paths:</strong> Full-time, part-time, and hybrid delivery options</li>
-                            </ul>
-                            <p>Our curriculum is regularly reviewed and updated to ensure it meets evolving industry standards and student needs.</p>
+                            <p>Greenlane College follows the <strong>modern CAPS-aligned curriculum</strong> (Curriculum and Assessment Policy Statement) as prescribed by the South African Department of Basic Education.</p>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h5 class="text-primary">Our Curriculum Features:</h5>
+                                    <ul>
+                                        <li>Comprehensive education from Grade 1 to Grade 12</li>
+                                        <li>CAPS-aligned content and assessment standards</li>
+                                        <li>Focus on holistic development of learners</li>
+                                        <li>Preparation for the National Senior Certificate (Matric)</li>
+                                        <li>Integration of 21st-century skills</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-primary">Academic Excellence:</h5>
+                                    <p>Since 2010, Greenlane College has consistently produced excellent Grade 12 results, with many learners gaining admission to South Africa's top tertiary institutions.</p>
+                                    <div class="bg-light p-3 rounded">
+                                        <i class="bi bi-award text-warning me-2"></i>
+                                        <strong>Proven Track Record:</strong> Strong academic results at all exit points
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="mt-3">
-                                <a href="/academics/curriculum" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-journal-bookmark me-1"></i> View Curriculum Details
+                                <a href="/academics/curriculum" class="btn btn-outline-primary">
+                                    <i class="bi bi-journal-bookmark me-1"></i> View Our Full Curriculum
                                 </a>
                             </div>
                         </div>
@@ -162,17 +245,56 @@
                 </div>
             </div>
 
-            <!-- Still Have Questions Section -->
+            <!-- About Greenlane College -->
             <div class="card mt-5 border-primary">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">About Greenlane College</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center p-3">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-bullseye fs-4"></i>
+                                </div>
+                                <h5 class="mt-3">Our Mission</h5>
+                                <p class="small">To promote high quality teaching and learning and self-worth among our staff and learners</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center p-3">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-eye fs-4"></i>
+                                </div>
+                                <h5 class="mt-3">Our Vision</h5>
+                                <p class="small">To be the leading provider of high quality education and training at all levels</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center p-3">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-flag fs-4"></i>
+                                </div>
+                                <h5 class="mt-3">Established</h5>
+                                <p class="small">Founded in 2009 • EMIS No. 700400313<br>Ordinary Independent School</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still Have Questions Section -->
+            <div class="card mt-5 border-success">
                 <div class="card-body text-center py-4">
                     <h3 class="h4 mb-3">Still Have Questions?</h3>
                     <p class="mb-4">Our admissions team is here to help you with any questions about Greenlane College.</p>
                     <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
-                        <a href="/contact" class="btn btn-primary">
+                        <a href="/contact" class="btn btn-success">
                             <i class="bi bi-envelope me-2"></i> Contact Admissions
                         </a>
-                        <a href="tel:+1234567890" class="btn btn-outline-primary">
-                            <i class="bi bi-telephone me-2"></i> Call (123) 456-7890
+                        <a href="tel:+27114921778" class="btn btn-outline-success">
+                            <i class="bi bi-telephone me-2"></i> Call (011) 492 1778
+                        </a>
+                        <a href="mailto:info@greenlane.co.za" class="btn btn-outline-primary">
+                            <i class="bi bi-envelope-paper me-2"></i> Email Us
                         </a>
                     </div>
                 </div>
@@ -183,9 +305,8 @@
 
 @section Scripts {
     <script>
-        // Optional: Add smooth scrolling and FAQ state management
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for URL hash to open specific FAQ
+            // Open FAQ based on URL hash
             if (window.location.hash) {
                 const targetId = window.location.hash.replace('#', '');
                 const targetElement = document.getElementById(targetId);
@@ -195,6 +316,27 @@
                     }, 100);
                 }
             }
+            
+            // Highlight 2025 registration alert
+            const registrationAlert = document.querySelector('.alert-success');
+            if (registrationAlert) {
+                registrationAlert.style.animation = 'pulse 2s infinite';
+            }
         });
     </script>
+    
+    <style>
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+        @@keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+    </style>
 }

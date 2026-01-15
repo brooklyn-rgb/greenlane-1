@@ -147,40 +147,6 @@
     </div>
 </section>
 
-<!-- Departments & Contacts -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center fw-bold mb-5">Contact Specific Departments</h2>
-
-        <div class="row g-4">
-            @foreach (var dept in Model.Departments)
-            {
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="department-icon mb-3">
-                                <i class="bi bi-person-badge text-primary fs-3"></i>
-                            </div>
-                            <h5 class="card-title text-primary">@dept.Department</h5>
-                            <p class="card-text mb-2"><strong>Contact:</strong> @dept.Person</p>
-                            <p class="card-text mb-1">
-                                <i class="bi bi-telephone me-2 text-muted"></i>
-                                @dept.Phone <small class="text-muted">(Ext: @dept.Ext)</small>
-                            </p>
-                            <p class="card-text mb-1">
-                                <i class="bi bi-envelope me-2 text-muted"></i>
-                                <a href="mailto:@dept.Email" class="text-decoration-none">@dept.Email</a>
-                            </p>
-                            <p class="card-text mt-3">
-                                <small class="text-muted"><i class="bi bi-clock me-1"></i> @dept.Hours</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</section>
 <!-- Map & Location Section -->
 <section class="py-5" id="location">
     <div class="container">
@@ -303,7 +269,7 @@
                     <div class="card-footer bg-white border-0">
                         <div class="alert alert-info mb-0">
                             <i class="bi bi-info-circle me-2"></i>
-                            <strong>After-hours Contact:</strong> For emergencies outside office hours, please call our security line at <strong>+27 11 492 1790</strong>.
+                            <strong>After-hours Contact:</strong> For emergencies outside office hours, please call our security line at <strong>+27 11 492 1778</strong>.
                         </div>
                     </div>
                 </div>
@@ -312,22 +278,7 @@
     </div>
 </section>
 
-<!-- Emergency Contact -->
-<section class="py-5 bg-danger bg-opacity-10">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <h3 class="fw-bold mb-2"><i class="bi bi-exclamation-triangle-fill me-2"></i>Emergency Contact</h3>
-                <p class="mb-0">For urgent matters requiring immediate attention outside of regular hours, please use our dedicated emergency contact line.</p>
-            </div>
-            <div class="col-md-4 text-md-end">
-                <a href="tel:+27114921790" class="btn btn-danger btn-lg">
-                    <i class="bi bi-telephone me-2"></i>Emergency: +27 11 492 1790
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <style>
     .contact-hero {

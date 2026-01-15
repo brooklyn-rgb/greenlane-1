@@ -159,7 +159,7 @@ namespace greenlane.Pages
 
             SchoolHours = new List<SchoolHour>
             {
-                new SchoolHour { Day = "Monday - Thursday", Hours = "7:30 AM - 2:30 PM", Notes = "Academic Instruction" },
+                new SchoolHour { Day = "Monday - Thursday", Hours = "7:30 AM - 5:00 PM", Notes = "Academic Instruction" },
                 new SchoolHour { Day = "Friday", Hours = "7:30 AM - 1:00 PM", Notes = "Academic & Assembly" },
                 new SchoolHour { Day = "Office Hours", Hours = "8:00 AM - 4:30 PM", Notes = "Administration" },
                 new SchoolHour { Day = "Saturday", Hours = "8:00 AM - 12:00 PM", Notes = "Extra Classes & Sports" },

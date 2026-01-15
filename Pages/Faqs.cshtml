@@ -1,0 +1,200 @@
+﻿@page
+@model greenlane.Pages.FaqsModel
+@{
+    ViewData["Title"] = "Frequently Asked Questions";
+    ViewData["Description"] = "Everything you need to know about Greenlane College admissions, programs, and more.";
+}
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-3">Frequently Asked Questions</h1>
+        <p class="lead text-muted">Everything you need to know about Greenlane College admissions, programs, and more.</p>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="accordion" id="faqAccordion">
+                
+                <!-- Location Question -->
+                <div class="accordion-item shadow-sm border-0 mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Where is Greenlane College located?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Greenlane College is located at 123 Education Drive, Academic District, Cityville. Our campus is easily accessible via public transportation and offers ample parking facilities.</p>
+                            <div class="mt-3">
+                                <a href="/contact" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-map me-1"></i> View Campus Map & Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programs Question -->
+                <div class="accordion-item shadow-sm border-0 mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            What programs and courses does Greenlane College offer?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>We offer a comprehensive range of programs across multiple disciplines:</p>
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Diploma Programs:</strong> Business Administration, Information Technology, Healthcare Studies</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Certificate Courses:</strong> Digital Marketing, Web Development, Project Management</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Professional Development:</strong> Short courses and workshops for career advancement</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Continuing Education:</strong> Part-time and evening classes for working professionals</li>
+                            </ul>
+                            <div class="mt-3">
+                                <a href="/programs" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-book me-1"></i> Explore All Programs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Process -->
+                <div class="accordion-item shadow-sm border-0 mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            How can I apply to Greenlane College?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Our application process is straightforward and fully supported by our admissions team:</p>
+                            <ol>
+                                <li><strong>Explore Programs:</strong> Review our offerings and choose your preferred course</li>
+                                <li><strong>Submit Application:</strong> Complete our online application form</li>
+                                <li><strong>Provide Documents:</strong> Upload required academic records and identification</li>
+                                <li><strong>Interview:</strong> Some programs require an admissions interview</li>
+                                <li><strong>Acceptance:</strong> Receive your offer letter and confirm your enrollment</li>
+                            </ol>
+                            <div class="alert alert-info mt-3">
+                                <i class="bi bi-info-circle me-2"></i> Applications are processed on a rolling basis. Early application is recommended.
+                            </div>
+                            <div class="mt-3">
+                                <a href="/apply" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil-square me-1"></i> Start Your Application
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admission Requirements -->
+                <div class="accordion-item shadow-sm border-0 mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            What are the admission requirements?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Requirements vary by program, but generally include:</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Program Level</th>
+                                            <th>Minimum Requirements</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Diploma Programs</td>
+                                            <td>High School Diploma or equivalent with minimum 65% average</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Certificate Courses</td>
+                                            <td>Grade 12 completion or mature student status (19+)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Professional Development</td>
+                                            <td>Varies by course; some require relevant work experience</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mb-0">International students have additional requirements including proof of English proficiency.</p>
+                            <div class="mt-3">
+                                <a href="/admissions/requirements" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-file-text me-1"></i> View Detailed Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curriculum Question -->
+                <div class="accordion-item shadow-sm border-0">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            What curriculum do you offer?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Greenlane College offers modern, industry-relevant curricula designed to prepare students for success:</p>
+                            <ul>
+                                <li><strong>Industry-Aligned Content:</strong> Courses developed with input from industry leaders</li>
+                                <li><strong>Practical Skills Focus:</strong> Hands-on learning and real-world projects</li>
+                                <li><strong>Technology Integration:</strong> Current software and tools used in today's workplaces</li>
+                                <li><strong>Soft Skills Development:</strong> Communication, critical thinking, and teamwork</li>
+                                <li><strong>Flexible Learning Paths:</strong> Full-time, part-time, and hybrid delivery options</li>
+                            </ul>
+                            <p>Our curriculum is regularly reviewed and updated to ensure it meets evolving industry standards and student needs.</p>
+                            <div class="mt-3">
+                                <a href="/academics/curriculum" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-journal-bookmark me-1"></i> View Curriculum Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still Have Questions Section -->
+            <div class="card mt-5 border-primary">
+                <div class="card-body text-center py-4">
+                    <h3 class="h4 mb-3">Still Have Questions?</h3>
+                    <p class="mb-4">Our admissions team is here to help you with any questions about Greenlane College.</p>
+                    <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                        <a href="/contact" class="btn btn-primary">
+                            <i class="bi bi-envelope me-2"></i> Contact Admissions
+                        </a>
+                        <a href="tel:+1234567890" class="btn btn-outline-primary">
+                            <i class="bi bi-telephone me-2"></i> Call (123) 456-7890
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional: Add smooth scrolling and FAQ state management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for URL hash to open specific FAQ
+            if (window.location.hash) {
+                const targetId = window.location.hash.replace('#', '');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement && targetElement.classList.contains('accordion-collapse')) {
+                    setTimeout(() => {
+                        new bootstrap.Collapse(targetElement, { toggle: true });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+}

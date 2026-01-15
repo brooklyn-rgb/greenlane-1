@@ -434,56 +434,11 @@
             </button>
         </div>
 
-        <!-- Video Section -->
-        <div class="video-section">
-            <div class="container">
-                <div class="text-center mb-4">
-                    <h2 class="section-title">School Videos</h2>
-                    <p class="section-subtitle">Watch highlights from school events, performances, and activities.</p>
-                </div>
-
-                <div class="video-grid">
-                    @foreach (var video in Model.Videos)
-                    {
-                        <div class="video-card">
-                            <div class="video-thumbnail" onclick="openVideoModal('@video.VideoUrl', '@video.Title')">
-                                <img src="@video.Thumbnail" alt="@video.Title">
-                                <div class="play-button">
-                                    <i class="bi bi-play-fill"></i>
-                                </div>
-                                <span class="video-duration">@video.Duration</span>
-                            </div>
-                            <div class="video-content">
-                                <h3 class="video-title">@video.Title</h3>
-                                <p class="video-description">@video.Description</p>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
+        
+         <!-- Video Section -->
+            
 
         <!-- Gallery Statistics -->
-        <div class="row mt-5 pt-4">
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="display-4 fw-bold text-primary">@Model.Images.Count+</div>
-                <p class="text-muted">Gallery Photos</p>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="display-4 fw-bold text-primary">@Model.Videos.Count+</div>
-                <p class="text-muted">School Videos</p>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="display-4 fw-bold text-primary">6</div>
-                <p class="text-muted">Categories</p>
-            </div>
-            <div class="col-md-3 col-6 text-center mb-4">
-                <div class="display-4 fw-bold text-primary">2025</div>
-                <p class="text-muted">Updated</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Lightbox Modal -->
 <div class="lightbox" id="lightbox">

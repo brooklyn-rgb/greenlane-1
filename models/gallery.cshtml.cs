@@ -27,7 +27,7 @@ namespace greenlane.Pages
                     Category = "sports",
                     Title = "Sports Day Champions",
                     Description = "Annual inter-house sports competition",
-                    ImageUrl = "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80",
+                    ImageUrl = "/images/gallery/sport2.webp",
                     Date = "2025-02-20"
                 },
                 new GalleryImage
@@ -36,7 +36,7 @@ namespace greenlane.Pages
                     Category = "arts",
                     Title = "Art Exhibition",
                     Description = "Student artwork display",
-                    ImageUrl = "https://images.unsplash.com/photo-1545235617-9465d2a55698?w=800&q=80",
+                    ImageUrl = "/images/gallery/tour.webp",
                     Date = "2025-03-10"
                 },
                 new GalleryImage
@@ -45,7 +45,7 @@ namespace greenlane.Pages
                     Category = "events",
                     Title = "Cultural Day",
                     Description = "Celebrating South African heritage",
-                    ImageUrl = "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+                    ImageUrl = "/images/gallery/tour2.webp",
                     Date = "2025-04-05"
                 },
                 new GalleryImage
@@ -54,7 +54,7 @@ namespace greenlane.Pages
                     Category = "academic",
                     Title = "Reading Corner",
                     Description = "Early learning literacy program",
-                    ImageUrl = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+                    ImageUrl = "/images/gallery/senior.webp",
                     Date = "2025-01-30"
                 },
                 new GalleryImage
@@ -63,7 +63,7 @@ namespace greenlane.Pages
                     Category = "sports",
                     Title = "Swimming Lessons",
                     Description = "Junior swimming program",
-                    ImageUrl = "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
+                    ImageUrl = "/images/gallery/lessons.webp",
                     Date = "2025-02-15"
                 },
                 new GalleryImage
@@ -90,7 +90,7 @@ namespace greenlane.Pages
                     Category = "facilities",
                     Title = "Modern Library",
                     Description = "Our state-of-the-art resource center",
-                    ImageUrl = "https://images.unsplash.com/photo-1589998059171-988d887df646?w=800&q=80",
+                    ImageUrl = "/images/gallery/boys.webp",
                     Date = "2025-01-10"
                 },
                 new GalleryImage
@@ -117,7 +117,7 @@ namespace greenlane.Pages
                     Category = "events",
                     Title = "Science Fair",
                     Description = "Annual science exhibition",
-                    ImageUrl = "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80",
+                    ImageUrl = "/images/gallery/child.webp",
                     Date = "2025-04-20"
                 }
             };

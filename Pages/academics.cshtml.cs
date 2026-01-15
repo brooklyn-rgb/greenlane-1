@@ -119,7 +119,7 @@ namespace greenlane.Pages
                 // Commerce Stream
                 new Subject { Name = "Business Studies", Category = "Commerce", Hours = "4 hours/week", IsCore = false },
                 new Subject { Name = "Economics", Category = "Commerce", Hours = "4 hours/week", IsCore = false },
-                new Subject { Name = "Accounting", Category = "Commerce", Hours = "5 hours/week", IsCore = false },
+                new Subject { Name = "Religion Studies", Category = "Commerce", Hours = "4 hours/week", IsCore = false },
                 
                 // Humanities Stream
                 new Subject { Name = "Geography", Category = "Humanities", Hours = "4 hours/week", IsCore = false },

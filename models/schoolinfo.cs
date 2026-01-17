@@ -5,12 +5,12 @@ namespace greenlane.Models
 {
     public class SchoolInfo
     {
-        public string Mission { get; set; } = "To promote high quality teaching and learning and self-worth among our staff and learners";
-        public string Vision { get; set; } = "To be the leading provider of high quality education and training at all levels";
-        public string StrategicObjective { get; set; } = "To position the Greenlane College as a transformative and sustainable learning centre";
+        public string Mission { get; set; } = "We are commited to fostering excellence in teaching, igniting a passion for learning, and nurturing the intrinsic value of every individual in our community.";
+        public string Vision { get; set; } = "We envision a future where Greenlane College is the undisputed benchmark for educational excellence and innovation at every stage.";
+        public string StrategicObjective { get; set; } = "Our focused aim is to cement Greenlane College's legacy as a resilient and revolutionary center for lifelong growth.";
         public List<FAQ> FrequentlyAskedQuestions { get; set; } = new();
         public string ContactEmail { get; set; } = "info@greenlane.co.za";
-        public string PhoneNumber { get; set; } = "+27 11 123 4567";
+        public string PhoneNumber { get; set; } = "+27 11 492 1778";
     }
 
     public class FAQ

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace greenlane.Pages
 {
-    public class chatbotModel : PageModel
+    public class ChatbotModel : PageModel
     {
         public void OnGet()
         {

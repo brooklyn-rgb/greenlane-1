@@ -1,689 +1,283 @@
 ﻿@page
 @model greenlane.Pages.GalleryModel
+@using System.IO
+@using System.Collections.Generic
+@using System.Linq
+
 @{
-    ViewData["Title"] = "Photo & Video Gallery - Greenlane College";
+    ViewData["Title"] = "Photo Gallery - Greenlane College";
+
+    // 1. Setup paths and lists
+    var root = System.IO.Directory.GetCurrentDirectory();
+    var galleryPath = System.IO.Path.Combine(root, "wwwroot", "images", "gallery2");
+    var allGalleryImages = new List<GalleryImageInfo>();
+    var carouselImages = new List<GalleryImageInfo>();
+
+    // 2. Scan Directory
+    if (System.IO.Directory.Exists(galleryPath))
+    {
+        for (int i = 1; i <= 45; i++)
+        {
+            var fileName = $"({i}).jpeg";
+            var filePath = System.IO.Path.Combine(galleryPath, fileName);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                var imageInfo = new GalleryImageInfo
+                {
+                    Path = $"/images/gallery2/{fileName}",
+                    Name = GetTitleFromNumber(i),
+                    Category = GetCategoryFromNumber(i),
+                    Number = i
+                };
+                allGalleryImages.Add(imageInfo);
+            }
+        }
+    }
+
+    // Fallback
+    if (!allGalleryImages.Any())
+    {
+        allGalleryImages = GetFallbackImages();
+    }
+
+    // Carousel = random
+    carouselImages = allGalleryImages
+        .OrderBy(_ => Guid.NewGuid())
+        .Take(8)
+        .ToList();
+
+    // Gallery = organised
+    allGalleryImages = allGalleryImages
+        .OrderBy(x => x.Category)
+        .ThenBy(x => x.Number)
+        .ToList();
 }
 
+@functions {
+    public class GalleryImageInfo
+    {
+        public string Path { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string Category { get; set; } = "";
+        public int Number { get; set; }
+    }
+
+    private string GetCategoryFromNumber(int number) => number switch
+    {
+        <= 9 => "academic",
+        <= 18 => "sports",
+        <= 27 => "arts",
+        <= 36 => "events",
+        _ => "facilities"
+    };
+
+    private string GetTitleFromNumber(int number)
+    {
+        var titles = new Dictionary<int, string>
+        {
+            {1, "Science Laboratory Session"},
+            {10, "Soccer Team Training"},
+            {20, "Cultural Celebration"},
+            {30, "Art Exhibition"},
+            {40, "School Facilities"}
+        };
+
+        return titles.GetValueOrDefault(number, $"Greenlane College Photo #{number}");
+    }
+
+    private List<GalleryImageInfo> GetFallbackImages() => new()
+    {
+        new() { Path = "/images/banner/academics.png", Name = "Science Lab Discovery", Category = "academic", Number = 1 },
+        new() { Path = "/images/gallery/sport2.webp", Name = "Sports Day Champions", Category = "sports", Number = 2 },
+        new() { Path = "/images/gallery/tour.webp", Name = "Art Exhibition", Category = "arts", Number = 3 },
+        new() { Path = "/images/gallery/tour2.webp", Name = "Cultural Day", Category = "events", Number = 4 },
+        new() { Path = "/images/gallery/senior.webp", Name = "Reading Corner", Category = "academic", Number = 5 },
+        new() { Path = "/images/gallery/lessons.webp", Name = "Swimming Lessons", Category = "sports", Number = 6 },
+        new() { Path = "/images/gallery/boys.webp", Name = "Modern Library", Category = "facilities", Number = 7 },
+      
+
+    new() { Path = "https://images.unsplash.com/photo-1541692641319-981cc79ee10a?w=800&q=80", Name = "Graduation Ceremony", Category = "events", Number = 8 },
+    new() { Path = "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80", Name = "Music Class", Category = "arts", Number = 9 },
+    new() { Path = "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80", Name = "Math Class", Category = "academic", Number = 10 },
+    new() { Path = "/images/banner/sports.jpg", Name = "Marathon Champions", Category = "sports", Number = 11 },
+    new() { Path = "/images/gallery/child.webp", Name = "Science Fair", Category = "events", Number = 12 },
+   
+
+    new() { Path = "/images/gallery2/2.jpeg",  Name = "College Entrance Display", Category = "general", Number = 2 },
+    new() { Path = "/images/gallery2/3.jpeg",  Name = "Campus Information Display", Category = "general", Number = 3 },
+    new() { Path = "/images/gallery2/4.jpeg",  Name = "Student Academic Highlights", Category = "academic", Number = 4 },
+    new() { Path = "/images/gallery2/5.jpeg",  Name = "School Branding Banner", Category = "general", Number = 5 },
+
+    new() { Path = "/images/gallery2/6.jpeg",  Name = "Sports Participation Highlights", Category = "sports", Number = 6 },
+    new() { Path = "/images/gallery2/7.jpeg",  Name = "Student Activities Showcase", Category = "events", Number = 7 },
+    new() { Path = "/images/gallery2/8.jpeg",  Name = "Learning Environment Display", Category = "academic", Number = 8 },
+    new() { Path = "/images/gallery2/9.jpeg",  Name = "School Facilities Overview", Category = "facilities", Number = 9 },
+    new() { Path = "/images/gallery2/10.jpeg", Name = "Academic Performance Board", Category = "academic", Number = 10 },
+
+    new() { Path = "/images/gallery2/11.jpeg", Name = "Admissions Promotion 2023", Category = "admissions", Number = 11 },
+    new() { Path = "/images/gallery2/12.jpeg", Name = "Technology Showcase", Category = "events", Number = 12 },
+    new() { Path = "/images/gallery2/13.jpeg", Name = "Student Success Highlights", Category = "academic", Number = 13 },
+    new() { Path = "/images/gallery2/14.jpeg", Name = "Campus Branding Display", Category = "general", Number = 14 },
+    new() { Path = "/images/gallery2/15.jpeg", Name = "College Admission Announcement", Category = "admissions", Number = 15 },
+
+    new() { Path = "/images/gallery2/16.jpeg", Name = "Digital Learning Promotion", Category = "academic", Number = 16 },
+    new() { Path = "/images/gallery2/17.jpeg", Name = "Admission Information", Category = "admissions", Number = 17 },
+    new() { Path = "/images/gallery2/18.jpeg", Name = "School Logo Display", Category = "general", Number = 18 },
+    new() { Path = "/images/gallery2/19.jpeg", Name = "Technology Event", Category = "events", Number = 19 },
+    new() { Path = "/images/gallery2/20.jpeg", Name = "Emirates Partnership", Category = "admissions", Number = 20 },
+
+    new() { Path = "/images/gallery2/21.jpeg", Name = "Mobile Technology Display", Category = "events", Number = 21 },
+    new() { Path = "/images/gallery2/22.jpeg", Name = "Smartphone Exhibition", Category = "events", Number = 22 },
+    new() { Path = "/images/gallery2/23.jpeg", Name = "Innovation Showcase", Category = "events", Number = 23 },
+    new() { Path = "/images/gallery2/24.jpeg", Name = "Student Development Program", Category = "academic", Number = 24 },
+    new() { Path = "/images/gallery2/25.jpeg", Name = "Sponsor Partnerships", Category = "partnerships", Number = 25 },
+
+    new() { Path = "/images/gallery2/26.jpeg", Name = "Learning Resources Display", Category = "academic", Number = 26 },
+    new() { Path = "/images/gallery2/27.jpeg", Name = "School Achievement Board", Category = "academic", Number = 27 },
+    new() { Path = "/images/gallery2/28.jpeg", Name = "Admission & Technology Event", Category = "admissions", Number = 28 },
+    new() { Path = "/images/gallery2/29.jpeg", Name = "Campus Life Moments", Category = "events", Number = 29 },
+    new() { Path = "/images/gallery2/30.jpeg", Name = "Student Leadership Display", Category = "academic", Number = 30 },
+
+    new() { Path = "/images/gallery2/31.jpeg", Name = "Academic Excellence Board", Category = "academic", Number = 31 },
+    new() { Path = "/images/gallery2/32.jpeg", Name = "Career Guidance Promotion", Category = "academic", Number = 32 },
+    new() { Path = "/images/gallery2/33.jpeg", Name = "Educational Technology Display", Category = "events", Number = 33 },
+    new() { Path = "/images/gallery2/34.jpeg", Name = "School Community Engagement", Category = "events", Number = 34 },
+    new() { Path = "/images/gallery2/35.jpeg", Name = "Learning Environment Promotion", Category = "academic", Number = 35 },
+
+    new() { Path = "/images/gallery2/36.jpeg", Name = "School Values Display", Category = "general", Number = 36 },
+    new() { Path = "/images/gallery2/37.jpeg", Name = "Modern Classroom Facilities", Category = "facilities", Number = 37 },
+    new() { Path = "/images/gallery2/38.jpeg", Name = "Student Support Services", Category = "academic", Number = 38 },
+    new() { Path = "/images/gallery2/39.jpeg", Name = "Campus Safety Information", Category = "general", Number = 39 },
+    new() { Path = "/images/gallery2/40.jpeg", Name = "Academic Resources Overview", Category = "academic", Number = 40 },
+
+    new() { Path = "/images/gallery2/41.jpeg", Name = "School Infrastructure Display", Category = "facilities", Number = 41 },
+    new() { Path = "/images/gallery2/42.jpeg", Name = "Educational Excellence Promotion", Category = "academic", Number = 42 },
+    new() { Path = "/images/gallery2/43.jpeg", Name = "School Innovation Highlights", Category = "events", Number = 43 },
+    new() { Path = "/images/gallery2/44.jpeg", Name = "Student Achievement Showcase", Category = "academic", Number = 44 },
+    new() { Path = "/images/gallery2/45.jpeg", Name = "Greenlane College Overview", Category = "general", Number = 45 }
+
+
+    };
+
+    private string GetCategoryIcon(string cat) => cat switch
+    {
+        "academic" => "bi-book",
+        "sports" => "bi-trophy",
+        "arts" => "bi-palette",
+        "events" => "bi-calendar-event",
+        "facilities" => "bi-building",
+        _ => "bi-image"
+    };
+}
+
+<!-- ===================== STYLES ===================== -->
 <style>
-    .gallery-section {
-        padding: 80px 0;
-        background-color: #f8f9fa;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--primary);
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .section-subtitle {
-        font-size: 1.1rem;
-        color: #6c757d;
-        text-align: center;
-        margin-bottom: 3rem;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Gallery Filters */
-    .gallery-filters {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .filter-btn {
-        padding: 8px 20px;
-        border: 2px solid #dee2e6;
-        background: white;
-        color: #495057;
-        border-radius: 30px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-    /* Gallery Grid */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
-        margin-bottom: 4rem;
+    .gallery-img {
+        height: 230px;
+        width: 100%;
+        object-fit: cover;
     }
 
     .gallery-item {
-        position: relative;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.4s ease;
-        background: white;
+        transition: transform .2s ease, opacity .2s ease;
         cursor: pointer;
-        height: 300px;
     }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-    .gallery-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        color: white;
-        padding: 20px;
-        transform: translateY(0);
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-        transform: translateY(0);
-    }
-
-    .gallery-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    .gallery-description {
-        font-size: 0.9rem;
-        opacity: 0.9;
-        margin-bottom: 0;
-    }
-
-    .gallery-category {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background: var(--primary);
-        color: white;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        z-index: 2;
-    }
-
-    /* Video Section */
-    .video-section {
-        background: white;
-        padding: 60px 0;
-        border-radius: 15px;
-        margin-top: 4rem;
-    }
-
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 30px;
-        margin-top: 2rem;
-    }
-
-    .video-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-
-        .video-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-    .video-thumbnail {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
+    .card {
+        border-radius: 14px;
     }
 
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-    .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60px;
-        height: 60px;
-        background: rgba(255,255,255,0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--primary);
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .video-card:hover .play-button {
-        background: var(--primary);
-        color: white;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    .video-duration {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(0,0,0,0.7);
-        color: white;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-size: 0.8rem;
-    }
-
-    .video-content {
-        padding: 20px;
-    }
-
-    .video-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--primary);
-        margin-bottom: 10px;
-    }
-
-    .video-description {
-        color: #666;
-        font-size: 0.95rem;
-        line-height: 1.5;
-    }
-
-    /* Lightbox */
-    .lightbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.95);
-        z-index: 9999;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-        .lightbox.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-    .lightbox-content {
-        max-width: 90%;
-        max-height: 90%;
-        position: relative;
-    }
-
-    .lightbox-image {
-        max-width: 100%;
-        max-height: 80vh;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .lightbox-info {
-        color: white;
-        text-align: center;
-        margin-top: 20px;
-        padding: 0 20px;
-    }
-
-    .lightbox-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-
-    .lightbox-description {
-        color: #ccc;
-        margin-bottom: 5px;
-    }
-
-    .lightbox-date {
-        color: #999;
-        font-size: 0.9rem;
-    }
-
-    .lightbox-close {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        padding: 5px;
-    }
-
-    .lightbox-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255,255,255,0.1);
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-        .lightbox-nav:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-    .lightbox-prev {
-        left: 20px;
-    }
-
-    .lightbox-next {
-        right: 20px;
-    }
-
-    /* Empty State */
-    .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .empty-state-icon {
-        font-size: 4rem;
-        color: #dee2e6;
-        margin-bottom: 20px;
-    }
-
-    .empty-state-title {
-        font-size: 1.5rem;
-        color: #6c757d;
-        margin-bottom: 10px;
-    }
-
-    .empty-state-text {
-        color: #adb5bd;
-        max-width: 500px;
-        margin: 0 auto 20px;
-    }
-
-    /* Responsive Design */
-    @@media (max-width: 768px) {
-        .gallery-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .video-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .gallery-filters {
-            padding: 10px;
-        }
-
-        .filter-btn {
-            padding: 6px 15px;
-            font-size: 0.9rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-        }
-    }
-
-    @@keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    .filter-btn.active {
+        background-color: #212529;
+        color: #fff;
     }
 </style>
 
-<section class="gallery-section">
-    <div class="container">
-        <!-- Page Header -->
-        <div class="text-center mb-5">
-            <h1 class="section-title">School Gallery</h1>
-            <p class="section-subtitle">Explore moments from our vibrant school community. From academic achievements to sports events and cultural celebrations.</p>
-        </div>
+<!-- ===================== PAGE CONTENT ===================== -->
+<div class="container py-5">
+    <h2 class="text-center mb-4">Campus Gallery</h2>
 
-        <!-- Gallery Filters -->
-        <div class="gallery-filters">
-            <button class="filter-btn active" data-filter="all">All Photos</button>
-            <button class="filter-btn" data-filter="academic">Academic</button>
-            <button class="filter-btn" data-filter="sports">Sports</button>
-            <button class="filter-btn" data-filter="arts">Arts & Culture</button>
-            <button class="filter-btn" data-filter="events">School Events</button>
-            <button class="filter-btn" data-filter="facilities">Facilities</button>
-        </div>
+    <!-- Filters -->
+    <div class="text-center mb-4">
+        <button class="btn btn-outline-dark btn-sm me-2 filter-btn active" data-filter="all">All</button>
+        <button class="btn btn-outline-dark btn-sm me-2 filter-btn" data-filter="academic">Academic</button>
+        <button class="btn btn-outline-dark btn-sm me-2 filter-btn" data-filter="sports">Sports</button>
+        <button class="btn btn-outline-dark btn-sm me-2 filter-btn" data-filter="arts">Arts</button>
+        <button class="btn btn-outline-dark btn-sm me-2 filter-btn" data-filter="events">Events</button>
+        <button class="btn btn-outline-dark btn-sm filter-btn" data-filter="facilities">Facilities</button>
+    </div>
 
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" id="galleryGrid">
-            @foreach (var image in Model.Images)
-            {
-                <div class="gallery-item" data-category="@image.Category" data-id="@image.Id">
-                    <span class="gallery-category">@image.Category.ToUpper()</span>
-                    <img src="@image.ImageUrl" alt="@image.Title" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h5 class="gallery-title">@image.Title</h5>
-                        <p class="gallery-description">@image.Description</p>
+    <!-- Gallery Grid -->
+    <div class="row g-4">
+        @foreach (var img in allGalleryImages)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 gallery-item"
+                 data-category="@img.Category"
+                 data-src="@img.Path"
+                 data-title="@img.Name">
+
+                <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                    <img src="@img.Path" class="gallery-img" alt="@img.Name" loading="lazy">
+                    <div class="card-body text-center">
+                        <h6 class="mb-0 fw-semibold">
+                            <i class="bi @GetCategoryIcon(img.Category) me-2 text-muted"></i>
+                            @img.Name
+                        </h6>
                     </div>
                 </div>
-            }
-        </div>
-
-        <!-- Empty State (Hidden by default) -->
-        <div class="empty-state" id="emptyState" style="display: none;">
-            <div class="empty-state-icon">
-                <i class="bi bi-images"></i>
             </div>
-            <h3 class="empty-state-title">No Images Found</h3>
-            <p class="empty-state-text">There are no images in this category. Try selecting a different filter.</p>
-            <button class="btn btn-primary" onclick="resetFilters()">
-                <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Filters
-            </button>
-        </div>
-
-        
-         <!-- Video Section -->
-            
-
-        <!-- Gallery Statistics -->
-
-<!-- Lightbox Modal -->
-<div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">
-        <i class="bi bi-x-lg"></i>
-    </button>
-
-    <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
-        <i class="bi bi-chevron-left"></i>
-    </button>
-
-    <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">
-        <i class="bi bi-chevron-right"></i>
-    </button>
-
-    <div class="lightbox-content">
-        <img id="lightboxImage" class="lightbox-image" src="" alt="">
-        <div class="lightbox-info">
-            <h3 id="lightboxTitle" class="lightbox-title"></h3>
-            <p id="lightboxDescription" class="lightbox-description"></p>
-            <p id="lightboxDate" class="lightbox-date"></p>
-            <p id="lightboxCategory" class="lightbox-date"></p>
-        </div>
-    </div>
-</div>
-
-<!-- Video Modal -->
-<div class="modal fade" id="videoModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="videoModalTitle"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="ratio ratio-16x9">
-                    <iframe id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Gallery filtering functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // Filter buttons
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const galleryGrid = document.getElementById('galleryGrid');
-        const emptyState = document.getElementById('emptyState');
-
-        // Active filter
-        let activeFilter = 'all';
-
-        // Filter images
-        function filterGallery(category) {
-            activeFilter = category;
-            let visibleItems = 0;
-
-            galleryItems.forEach(item => {
-                const itemCategory = item.getAttribute('data-category');
-
-                if (category === 'all' || itemCategory === category) {
-                    item.style.display = 'block';
-                    visibleItems++;
-
-                    // Add fade-in animation
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 50);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
-            });
-
-            // Show/hide empty state
-            if (visibleItems === 0) {
-                galleryGrid.style.display = 'none';
-                emptyState.style.display = 'block';
-            } else {
-                galleryGrid.style.display = 'grid';
-                emptyState.style.display = 'none';
-            }
-
-            // Update active button
-            filterButtons.forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
         }
+    </div>
+</div>
 
-        // Add click events to filter buttons
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                filterGallery(filter);
+<!-- ===================== LIGHTBOX MODAL ===================== -->
+<div class="modal fade" id="galleryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark border-0">
+            <img id="modalImage" class="img-fluid rounded">
+            <div class="text-white text-center py-2" id="modalTitle"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+    // Filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.style.display =
+                    filter === 'all' || item.dataset.category === filter
+                        ? 'block'
+                        : 'none';
             });
         });
-
-        // Initialize gallery
-        filterGallery('all');
-
-        // Lightbox functionality
-        let currentImageIndex = 0;
-        const images = Array.from(galleryItems);
-
-        // Open lightbox
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                currentImageIndex = index;
-                openLightbox();
-            });
-        });
-
-        // Open lightbox function
-        window.openLightbox = function() {
-            const lightbox = document.getElementById('lightbox');
-            const image = images[currentImageIndex];
-            const imgSrc = image.querySelector('img').src;
-            const title = image.querySelector('.gallery-title').textContent;
-            const description = image.querySelector('.gallery-description').textContent;
-            const category = image.getAttribute('data-category');
-            const id = image.getAttribute('data-id');
-
-            // Find date from model data (you might need to pass this differently)
-            const imageData = @Html.Raw(Json.Serialize(Model.Images));
-            const currentImageData = imageData.find(img => img.id == id);
-            const date = currentImageData ? currentImageData.date : '';
-
-            // Update lightbox content
-            document.getElementById('lightboxImage').src = imgSrc;
-            document.getElementById('lightboxTitle').textContent = title;
-            document.getElementById('lightboxDescription').textContent = description;
-            document.getElementById('lightboxDate').textContent = date ? `Date: ${date}` : '';
-            document.getElementById('lightboxCategory').textContent = `Category: ${category}`;
-
-            // Show lightbox
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        };
-
-        // Close lightbox
-        window.closeLightbox = function() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
-
-        // Change image in lightbox
-        window.changeImage = function(direction) {
-            // Filter images based on current filter
-            const filteredImages = images.filter(img => {
-                if (activeFilter === 'all') return true;
-                return img.getAttribute('data-category') === activeFilter;
-            });
-
-            // Find current index in filtered array
-            const currentImage = images[currentImageIndex];
-            const currentFilteredIndex = filteredImages.indexOf(currentImage);
-
-            // Calculate new index
-            let newIndex = currentFilteredIndex + direction;
-
-            // Handle bounds
-            if (newIndex < 0) newIndex = filteredImages.length - 1;
-            if (newIndex >= filteredImages.length) newIndex = 0;
-
-            // Update current image index
-            currentImageIndex = images.indexOf(filteredImages[newIndex]);
-
-            // Update lightbox
-            openLightbox();
-        };
-
-        // Close lightbox on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-            if (e.key === 'ArrowLeft') {
-                changeImage(-1);
-            }
-            if (e.key === 'ArrowRight') {
-                changeImage(1);
-            }
-        });
-
-        // Close lightbox on outside click
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
-        });
-
-        // Reset filters
-        window.resetFilters = function() {
-            filterGallery('all');
-        };
     });
 
-    // Video modal functionality
-    function openVideoModal(videoUrl, title) {
-        const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
-        const iframe = document.getElementById('videoIframe');
-        const modalTitle = document.getElementById('videoModalTitle');
+    // Lightbox
+    const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
 
-        // Set iframe src with autoplay
-        iframe.src = videoUrl + '?autoplay=1';
-        modalTitle.textContent = title;
-
-        videoModal.show();
-
-        // Clean up iframe when modal is hidden
-        document.getElementById('videoModal').addEventListener('hidden.bs.modal', function() {
-            iframe.src = '';
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', () => {
+            modalImage.src = item.dataset.src;
+            modalTitle.innerText = item.dataset.title;
+            modal.show();
         });
-    }
-
-    // Lazy loading images
-    document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('.gallery-item img');
-
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
-            });
-        }, {
-            rootMargin: '50px',
-            threshold: 0.1
-        });
-
-        images.forEach(img => imageObserver.observe(img));
     });
+
+    // Carousel data ready for use
+    const carouselData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(carouselImages));
+    console.log("Carousel Images:", carouselData);
 </script>

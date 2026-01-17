@@ -27,7 +27,7 @@ namespace greenlane.Pages
                 },
                 new CoreValue { 
                     Title = "Dedicated Service", 
-                    Description = "We ensure the efficient and effective application of our resources and expertise to provide facilities and education that yield the utmost benefit and growth for every learner."
+                    Description = "We are committed to efficient and effective application of our resources and expertise to provide facilities and education that yield the utmost benefit and growth for every learner."
                 },
                 new CoreValue { 
                     Title = "Integrity & Discipline", 
@@ -40,7 +40,7 @@ namespace greenlane.Pages
             {
                 new MissionPoint { 
                     Title = "Our Mission", 
-                    Description = "To champion exceptional teaching and learning while fostering intrinsic self-worth among both our educators and students, creating a foundation for lifelong achievement.",
+                    Description = "To deliver exceptional teaching and learning while fostering intrinsic self-worth among both our educators and students, creating a foundation for lifelong achievement.",
                     IconClass = "bi-bullseye"
                 },
                 new MissionPoint { 

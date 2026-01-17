@@ -1,126 +1,522 @@
-﻿<!-- Chat Bot Functionality -->
-<script>
-    // Chat Bot Functionality
-    const chatbotToggle = document.getElementById('chatbotToggle');
-    const closeChatbot = document.getElementById('closeChatbot');
-    const chatbotContainer = document.getElementById('chatbotContainer');
-    const chatbotBody = document.getElementById('chatbotBody');
-    const chatbotInput = document.getElementById('chatbotInput');
-    const sendMessage = document.getElementById('sendMessage');
-    const quickQuestionBtns = document.querySelectorAll('.quick-question-btn');
+﻿@page
+@using System.IO
+@using System.Collections.Generic
+@using System.Linq
+@model greenlane.Pages.GalleryModel
+@{
+    ViewData["Title"] = "Photo Gallery - Greenlane College";
 
-    // Toggle chatbot
-    chatbotToggle.addEventListener('click', () => {
-        chatbotContainer.classList.toggle('open');
-        if (chatbotContainer.classList.contains('open')) {
-            chatbotInput.focus();
+    // Scan gallery folder for ALL images with format (1).jpeg to (45).jpeg
+    // Fix: Use System.IO.Path to avoid conflict with local 'Path' strings
+    var galleryPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot", "images", "gallery2");
+    var allGalleryImages = new List<GalleryImageInfo>();  // All 45 images for main gallery
+    var carouselImages = new List<GalleryImageInfo>();    // First 8 images for carousel
+
+    if (System.IO.Directory.Exists(galleryPath))
+    {
+        // Look for all numbered images (1) to (45)
+        for (int i = 1; i <= 45; i++)
+        {
+            var fileName = $"({i}).jpeg";
+            var filePath = System.IO.Path.Combine(galleryPath, fileName);
+
+            // Fix: Use System.IO.File to avoid conflict with the PageBase.File() method
+            if (System.IO.File.Exists(filePath))
+            {
+                var category = GetCategoryFromNumber(i);
+                var imageInfo = new GalleryImageInfo
+                {
+                    Path = $"/images/gallery2/{fileName}",
+                    Name = GetTitleFromNumber(i),
+                    Category = category,
+                    Number = i
+                };
+
+                allGalleryImages.Add(imageInfo);
+
+                // Add first 8 images to carousel
+                if (i <= 8)
+                {
+                    carouselImages.Add(imageInfo);
+                }
+            }
+        } // End of For Loop
+    } // End of If Directory Exists
+
+
+        // Shuffle carousel images for random display
+        if (carouselImages.Count > 0)
+        {
+            var random = new Random();
+            carouselImages = carouselImages.OrderBy(x => random.Next()).ToList();
         }
-    });
 
-    closeChatbot.addEventListener('click', () => {
-        chatbotContainer.classList.remove('open');
-    });
+        // Shuffle all gallery images
+        if (allGalleryImages.Count > 0)
+        {
+            var random = new Random();
+            allGalleryImages = allGalleryImages.OrderBy(x => random.Next()).ToList();
+        }
+    }
 
-    // Quick question buttons
-    quickQuestionBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const question = btn.getAttribute('data-question');
-            sendUserMessage(question);
-            handleBotResponse(question);
+    // If no images found, use fallbacks
+    if (allGalleryImages.Count == 0)
+    {
+        allGalleryImages = GetFallbackImages();
+        carouselImages = allGalleryImages.Take(6).ToList();
+    }
+    else if (carouselImages.Count == 0 && allGalleryImages.Count > 0)
+    {
+        // Take first 8 for carousel if we have images but carousel is empty
+        carouselImages = allGalleryImages.Take(8).ToList();
+    }
+}
+
+@functions {
+    public class GalleryImageInfo
+    {
+        public string Path { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string Category { get; set; } = "";
+        public int Number { get; set; }
+    }
+
+    private string GetCategoryFromNumber(int number)
+    {
+        // Group images into categories based on number ranges
+        if (number <= 9) return "academic";          // 1-9: Academic
+        if (number <= 18) return "sports";           // 10-18: Sports
+        if (number <= 27) return "arts";             // 19-27: Arts & Culture
+        if (number <= 36) return "events";           // 28-36: School Events
+        return "facilities";                         // 37-45: Campus Facilities
+    }
+
+    private string GetTitleFromNumber(int number)
+    {
+        // Predefined titles for each image number
+        var titles = new Dictionary<int, string>
+        {
+            // Academic (1-9)
+            {1, "Science Laboratory Session"}, {2, "Mathematics Class Learning"}, {3, "Computer Studies Practical"},
+            {4, "Library Research Time"}, {5, "Early Childhood Education"}, {6, "Physics Experiment"},
+            {7, "Group Study Collaboration"}, {8, "Interactive Whiteboard Lesson"}, {9, "Academic Award Ceremony"},
+
+            // Sports (10-18)
+            {10, "Annual Sports Day Champions"}, {11, "Soccer Team Training"}, {12, "Athletics Track Event"},
+            {13, "Netball Tournament Finals"}, {14, "Swimming Pool Activities"}, {15, "Cross Country Marathon"},
+            {16, "Basketball Team Practice"}, {17, "Sports Awards Evening"}, {18, "Physical Education Class"},
+
+            // Arts & Culture (19-27)
+            {19, "Annual Art Exhibition"}, {20, "Music Band Performance"}, {21, "Drama Club Rehearsal"},
+            {22, "Cultural Heritage Day"}, {23, "Traditional Dance Show"}, {24, "Creative Arts Workshop"},
+            {25, "School Choir Practice"}, {26, "Visual Arts Display"}, {27, "Cultural Festival"},
+
+            // School Events (28-36)
+            {28, "Matric Graduation Ceremony"}, {29, "Academic Prize Giving"}, {30, "Open Day Visitors"},
+            {31, "Parent-Teacher Conference"}, {32, "Career Guidance Expo"}, {33, "Science Fair Projects"},
+            {34, "Matric Dance Celebration"}, {35, "Founders Day Assembly"}, {36, "Annual Music Concert"},
+
+            // Campus Facilities (37-45)
+            {37, "Modern Classroom Setup"}, {38, "Science Lab Equipment"}, {39, "Computer Center"},
+            {40, "School Library Interior"}, {41, "Sports Field Overview"}, {42, "Auditorium Stage"},
+            {43, "Art Room Facilities"}, {44, "School Playground"}, {45, "Learning Resource Center"}
+        };
+
+        return titles.ContainsKey(number) ? titles[number] : $"Greenlane College Photo #{number}";
+    }
+
+    private List<GalleryImageInfo> GetFallbackImages()
+    {
+        return new List<GalleryImageInfo>
+        {
+            new GalleryImageInfo { Path = "/images/banner/academics.png", Name = "Academic Excellence", Category = "academic", Number = 1 },
+            new GalleryImageInfo { Path = "/images/gallery/sport2.webp", Name = "Sports Champions", Category = "sports", Number = 2 },
+            new GalleryImageInfo { Path = "/images/gallery/tour.webp", Name = "School Tour", Category = "events", Number = 3 },
+            new GalleryImageInfo { Path = "/images/gallery/tour2.webp", Name = "Cultural Display", Category = "arts", Number = 4 },
+            new GalleryImageInfo { Path = "/images/gallery/senior.webp", Name = "Senior Students", Category = "academic", Number = 5 },
+            new GalleryImageInfo { Path = "/images/gallery/lessons.webp", Name = "Classroom Learning", Category = "academic", Number = 6 }
+        };
+    }
+
+    // Function to get category icon (used in gallery grid)
+    private string GetCategoryIcon(string category)
+    {
+        return category switch
+        {
+            "academic" => "bi-book",
+            "sports" => "bi-trophy",
+            "arts" => "bi-palette",
+            "events" => "bi-calendar-event",
+            "facilities" => "bi-building",
+            _ => "bi-image"
+        };
+    }
+}
+
+<!-- CSS and HTML sections remain the same until the script section -->
+
+<script>
+    // Book-style Carousel
+    class BookCarousel {
+        constructor() {
+            this.carousel = document.getElementById('bookCarousel');
+            this.prevBtn = document.getElementById('prevBtn');
+            this.nextBtn = document.getElementById('nextBtn');
+            this.dotsContainer = document.getElementById('carouselDots');
+
+            this.pages = [];
+            this.currentPageIndex = 0;
+
+            // Get carousel image data from server
+            this.carouselData = @Html.Raw(Json.Serialize(carouselImages));
+
+            // Use carousel images
+            if (this.carouselData && this.carouselData.length > 0) {
+                this.totalPages = Math.min(this.carouselData.length, 8); // Max 8 pages for carousel
+            } else {
+                // Fallback data
+                this.carouselData = this.getFallbackData();
+                this.totalPages = this.carouselData.length;
+            }
+
+            this.init();
+        }
+
+        getFallbackData() {
+            return [
+                { path: '/images/banner/academics.png', name: 'Academic Excellence', category: 'academic', number: 1 },
+                { path: '/images/gallery/sport2.webp', name: 'Sports Day Champions', category: 'sports', number: 2 },
+                { path: '/images/gallery/tour.webp', name: 'School Tour', category: 'events', number: 3 },
+                { path: '/images/gallery/tour2.webp', name: 'Cultural Display', category: 'arts', number: 4 },
+                { path: '/images/gallery/senior.webp', name: 'Senior Students', category: 'academic', number: 5 },
+                { path: '/images/gallery/lessons.webp', name: 'Classroom Learning', category: 'academic', number: 6 }
+            ];
+        }
+
+        init() {
+            this.createPages();
+            this.setupControls();
+            this.updateCarousel();
+        }
+
+        createPages() {
+            // Clear existing content
+            this.carousel.innerHTML = '';
+            this.dotsContainer.innerHTML = '';
+
+            // Create pages based on available images
+            for (let i = 0; i < this.totalPages; i++) {
+                const data = this.carouselData[i];
+                const angle = (i / this.totalPages) * 360;
+                const page = this.createPageElement(i, angle, data);
+                this.carousel.appendChild(page);
+
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => this.goToPage(i));
+                this.dotsContainer.appendChild(dot);
+            }
+
+            this.pages = Array.from(this.carousel.children);
+        }
+
+        createPageElement(index, angle, data) {
+            const page = document.createElement('div');
+            page.className = 'carousel-page';
+            page.dataset.index = index;
+
+            // Calculate position and rotation
+            const radius = 400; // Distance from center
+            const radian = angle * (Math.PI / 180);
+            const x = Math.cos(radian) * radius;
+            const z = Math.sin(radian) * radius;
+
+            page.style.transform = `translateX(-50%) translateY(-50%) rotateY(${angle}deg) translateX(${x}px) translateZ(${z}px)`;
+
+            // Front side - get icon based on category
+            const icon = this.getIconForCategory(data.category);
+            const front = document.createElement('div');
+            front.className = 'page-front';
+            front.innerHTML = `
+                <i class="bi ${icon}"></i>
+                <h3>${data.name}</h3>
+                <p>${data.category.charAt(0).toUpperCase() + data.category.slice(1)} Collection</p>
+                <button class="flip-btn" onclick="carousel.flipPage(${index})">View Photo #${data.number}</button>
+            `;
+
+            // Back side - show the image
+            const back = document.createElement('div');
+            back.className = 'page-back';
+
+            // Create image with error handling
+            const img = document.createElement('img');
+            img.src = data.path;
+            img.alt = data.name;
+            img.loading = 'lazy';
+            img.onerror = function() {
+                // If image fails to load, show a placeholder
+                this.onerror = null;
+                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="300" height="400" fill="%23f0f0f0"/><text x="150" y="200" text-anchor="middle" fill="%23999" font-family="Arial" font-size="16">${data.name}</text></svg>';
+            };
+
+            back.appendChild(img);
+
+            page.appendChild(front);
+            page.appendChild(back);
+
+            return page;
+        }
+
+        getIconForCategory(category) {
+            const icons = {
+                'academic': 'bi-book',
+                'sports': 'bi-trophy',
+                'arts': 'bi-palette',
+                'events': 'bi-calendar-event',
+                'facilities': 'bi-building'
+            };
+            return icons[category] || 'bi-image';
+        }
+
+        setupControls() {
+            this.prevBtn.addEventListener('click', () => this.prevPage());
+            this.nextBtn.addEventListener('click', () => this.nextPage());
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') this.prevPage();
+                if (e.key === 'ArrowRight') this.nextPage();
+            });
+
+            // Auto-rotate every 10 seconds
+            this.autoRotateInterval = setInterval(() => {
+                if (!document.hidden) {
+                    this.nextPage();
+                }
+            }, 10000);
+        }
+
+        prevPage() {
+            this.currentPageIndex = (this.currentPageIndex - 1 + this.totalPages) % this.totalPages;
+            this.updateCarousel();
+        }
+
+        nextPage() {
+            this.currentPageIndex = (this.currentPageIndex + 1) % this.totalPages;
+            this.updateCarousel();
+        }
+
+        goToPage(index) {
+            this.currentPageIndex = index;
+            this.updateCarousel();
+        }
+
+        updateCarousel() {
+            // Update carousel rotation
+            const rotation = -this.currentPageIndex * (360 / this.totalPages);
+            this.carousel.style.transform = `rotateY(${rotation}deg)`;
+
+            // Update dots
+            const dots = this.dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === this.currentPageIndex);
+            });
+
+            // Reset auto-rotate timer
+            if (this.autoRotateInterval) {
+                clearInterval(this.autoRotateInterval);
+                this.autoRotateInterval = setInterval(() => {
+                    if (!document.hidden) {
+                        this.nextPage();
+                    }
+                }, 10000);
+            }
+        }
+
+        flipPage(pageIndex) {
+            const page = this.pages[pageIndex];
+            page.classList.toggle('flipped');
+
+            // If flipping to back, pause auto-rotate
+            if (page.classList.contains('flipped')) {
+                if (this.autoRotateInterval) {
+                    clearInterval(this.autoRotateInterval);
+                }
+            } else {
+                // If flipping back to front, resume auto-rotate
+                this.autoRotateInterval = setInterval(() => {
+                    if (!document.hidden) {
+                        this.nextPage();
+                    }
+                }, 10000);
+            }
+
+            // Reset other pages
+            this.pages.forEach((p, idx) => {
+                if (idx !== pageIndex && p.classList.contains('flipped')) {
+                    p.classList.remove('flipped');
+                    // Resume auto-rotate if all pages are closed
+                    if (!this.pages.some(p => p.classList.contains('flipped'))) {
+                        if (this.autoRotateInterval) {
+                            clearInterval(this.autoRotateInterval);
+                            this.autoRotateInterval = setInterval(() => {
+                                if (!document.hidden) {
+                                    this.nextPage();
+                                }
+                            }, 10000);
+                        }
+                    }
+                }
+            });
+        }
+
+        destroy() {
+            if (this.autoRotateInterval) {
+                clearInterval(this.autoRotateInterval);
+            }
+        }
+    }
+
+    // Gallery Filtering functionality
+    class GalleryFilter {
+        constructor() {
+            this.filterButtons = document.querySelectorAll('.filter-btn');
+            this.galleryItems = document.querySelectorAll('.gallery-item');
+            this.galleryGrid = document.getElementById('galleryGrid');
+            this.emptyState = document.getElementById('emptyState');
+
+            this.init();
+        }
+
+        init() {
+            this.setupFilters();
+            this.setupGalleryClick();
+        }
+
+        setupFilters() {
+            this.filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    this.filterGallery(filter);
+                });
+            });
+        }
+
+        filterGallery(category) {
+            let visibleCount = 0;
+
+            this.galleryItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = 'block';
+                    visibleCount++;
+
+                    // Add fade-in animation
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0) scale(1)';
+                    }, 50);
+                } else {
+                    // Hide with animation
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px) scale(0.95)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            // Show/hide empty state
+            if (visibleCount === 0) {
+                this.galleryGrid.style.display = 'none';
+                this.emptyState.style.display = 'block';
+            } else {
+                this.galleryGrid.style.display = 'grid';
+                this.emptyState.style.display = 'none';
+            }
+
+            // Update active button
+            this.filterButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === category);
+            });
+        }
+
+        setupGalleryClick() {
+            this.galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const imageUrl = item.querySelector('img').src;
+                    const imageTitle = item.querySelector('.gallery-title').textContent;
+                    const imageDesc = item.querySelector('.gallery-description').textContent;
+                    const imageNumber = item.dataset.number;
+
+                    this.openLightbox(imageUrl, imageTitle, imageDesc, imageNumber);
+                });
+            });
+        }
+
+        openLightbox(imageUrl, title, description, number) {
+            const lightboxHtml = `
+                <div class="lightbox-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
+                    <div style="max-width:90%;max-height:90%;position:relative;">
+                        <button onclick="this.closest('.lightbox-overlay').remove()"
+                                style="position:absolute;top:-50px;right:0;background:rgba(255,255,255,0.1);border:none;width:40px;height:40px;border-radius:50%;color:white;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+                            ×
+                        </button>
+                        <img src="${imageUrl}" alt="${title}"
+                             style="max-width:100%;max-height:70vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+                        <div style="color:white;text-align:center;margin-top:20px;padding:0 20px;">
+                            <h3 style="margin-bottom:10px;font-size:1.5rem;">${title}</h3>
+                            <p style="margin-bottom:5px;color:#ddd;">${description}</p>
+                            <small style="color:#999;">Photo #${number}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', lightboxHtml);
+
+            // Close on ESC key
+            const lightbox = document.querySelector('.lightbox-overlay');
+            const closeLightbox = (e) => {
+                if (e.key === 'Escape') {
+                    lightbox.remove();
+                    document.removeEventListener('keydown', closeLightbox);
+                }
+            };
+            document.addEventListener('keydown', closeLightbox);
+        }
+    }
+
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize carousel
+        window.carousel = new BookCarousel();
+
+        // Initialize gallery filtering
+        window.galleryFilter = new GalleryFilter();
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (carousel) {
+                carousel.destroy();
+            }
+        });
+
+        // Pause auto-rotate when page is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && carousel.autoRotateInterval) {
+                clearInterval(carousel.autoRotateInterval);
+            }
         });
     });
 
-    // Send message on button click
-    sendMessage.addEventListener('click', sendUserMessageFromInput);
-
-    // Send message on Enter key
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendUserMessageFromInput();
+    // Global reset function
+    window.resetFilters = function() {
+        if (window.galleryFilter) {
+            window.galleryFilter.filterGallery('all');
         }
-    });
-
-    function sendUserMessageFromInput() {
-        const message = chatbotInput.value.trim();
-        if (message) {
-            sendUserMessage(message);
-            handleBotResponse(message);
-            chatbotInput.value = '';
-            chatbotInput.focus();
-        }
-    }
-
-    function sendUserMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'chat-message user';
-        messageDiv.innerHTML = `
-            <div class="message-content">${message}</div>
-            <div class="message-time">${getCurrentTime()}</div>
-        `;
-        chatbotBody.appendChild(messageDiv);
-        chatbotBody.scrollTop = chatbotBody.scrollHeight;
-    }
-
-    function handleBotResponse(userMessage) {
-        // Responses database
-        const responses = {
-            'registration deadlines': 'Our 2026 registration deadlines are:<br><br>• Early Bird: March 31, 2026<br>• Final Deadline: May 31, 2026<br>• Applications open: January 1, 2026',
-            'required documents': 'Required documents for registration:<br><br>1. Birth Certificate<br>2. Immunization Record<br>3. Proof of Residence<br>4. Parent ID Copy<br>5. Latest School Report (for transfers)<br>6. ID Photo (passport size)',
-            'application fee': 'The non-refundable application fee is R250. Payment details are emailed after submission. Early bird applications (before March 31, 2026) qualify for a free starter pack worth R800!',
-            'grades offered': 'We offer comprehensive education from:<br><br>• Grade 1 (Age 4-5)<br>• Foundation Phase: Grades 1-3<br>• Intermediate Phase: Grades 4-6<br>• Senior Phase: Grade 7<br>• FET Phase: Grades 8-12 (Matric)'
-        };
-
-        const messageLower = userMessage.toLowerCase();
-        let response = 'Thank you for your question! For specific information about ' + userMessage + ', please contact our admissions office at admissions2026@greenlane.co.za or call +27 11 492 1778. Our team will be happy to assist you.';
-
-        // Check for keywords in the question
-        for (const [key, value] of Object.entries(responses)) {
-            if (messageLower.includes(key)) {
-                response = value;
-                break;
-            }
-        }
-
-        // Simulate typing delay
-        setTimeout(() => {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chat-message bot';
-            messageDiv.innerHTML = `
-                <div class="message-content">${response}</div>
-                <div class="message-time">${getCurrentTime()}</div>
-            `;
-            chatbotBody.appendChild(messageDiv);
-            chatbotBody.scrollTop = chatbotBody.scrollHeight;
-        }, 1000);
-    }
-
-    function getCurrentTime() {
-        const now = new Date();
-        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-
-    // Auto-open chat after 10 seconds on registration page
-    if (window.location.pathname.includes('/Registration')) {
-        setTimeout(() => {
-            if (!localStorage.getItem('chatbotOpenedRegistration')) {
-                chatbotContainer.classList.add('open');
-                localStorage.setItem('chatbotOpenedRegistration', 'true');
-            }
-        }, 10000);
-    }
-
-    // Auto-open on other pages after 20 seconds
-    setTimeout(() => {
-        if (!localStorage.getItem('chatbotOpenedGeneral') && !window.location.pathname.includes('/Registration')) {
-            chatbotContainer.classList.add('open');
-            localStorage.setItem('chatbotOpenedGeneral', 'true');
-
-            // Auto-close after 30 seconds if no interaction
-            setTimeout(() => {
-                if (chatbotContainer.classList.contains('open')) {
-                    chatbotContainer.classList.remove('open');
-                }
-            }, 30000);
-        }
-    }, 20000);
+    };
 </script>

@@ -264,20 +264,66 @@
         });
     });
 
-    // Lightbox
+    // Lightbox Modal with Swipe
     const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => {
-            modalImage.src = item.dataset.src;
-            modalTitle.innerText = item.dataset.title;
-            modal.show();
-        });
+    // Build gallery array for swiping
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'))
+        .filter(i => i.style.display !== 'none');
+
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
+        const item = galleryItems[currentIndex];
+        modalImage.src = item.dataset.src;
+        modalTitle.innerText = item.dataset.title;
+        modal.show();
+    }
+
+    document.querySelectorAll('.gallery-item').forEach((item, index) => {
+        item.addEventListener('click', () => openModal(index));
     });
 
-    // Carousel data ready for use
-    const carouselData = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(carouselImages));
-    console.log("Carousel Images:", carouselData);
+    // Swipe detection
+    let startX = 0;
+    modalImage.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+    });
+
+    modalImage.addEventListener('touchend', e => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+
+        if (Math.abs(diff) > 50) { // swipe threshold
+            if (diff < 0) nextImage(); // swipe left = next
+            else prevImage();            // swipe right = previous
+        }
+    });
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        updateModal();
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        updateModal();
+    }
+
+    function updateModal() {
+        const item = galleryItems[currentIndex];
+        modalImage.src = item.dataset.src;
+        modalTitle.innerText = item.dataset.title;
+    }
+
+    // Keyboard support (optional)
+    document.addEventListener('keydown', e => {
+        if (!modal._isShown) return;
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'Escape') modal.hide();
+    });
 </script>

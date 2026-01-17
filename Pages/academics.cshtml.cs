@@ -36,7 +36,7 @@ namespace greenlane.Pages
                     Grades = "Grade 4 - 6",
                     AgeRange = "Ages 9-12",
                     Description = "Builds on foundational knowledge by introducing more complex problem-solving, languages, sciences, and social studies.",
-                    ImageUrl = "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "/images/gallery/computer-lessons.jpeg",
                     Icon = "bi-book",
                     Color = "intermediate"
                 },
@@ -56,7 +56,7 @@ namespace greenlane.Pages
                     Grades = "Grade 10 - 12",
                     AgeRange = "Ages 15-18",
                     Description = "Focused specialization for career pathways and higher education readiness with advanced subjects across multiple disciplines.",
-                    ImageUrl = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    ImageUrl = "/images/gallery/teacher.jpeg",
                     Icon = "bi-award",
                     Color = "fet"
                 }

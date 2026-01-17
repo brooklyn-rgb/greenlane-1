@@ -1,204 +1,9 @@
 ﻿@page
 @model greenlane.Pages.GalleryModel
-@using System.IO
-@using System.Collections.Generic
-@using System.Linq
-
 @{
-    ViewData["Title"] = "Photo Gallery - Greenlane College";
-
-    // 1. Setup paths and lists
-    var root = System.IO.Directory.GetCurrentDirectory();
-    var galleryPath = System.IO.Path.Combine(root, "wwwroot", "images", "gallery2");
-    var allGalleryImages = new List<GalleryImageInfo>();
-    var carouselImages = new List<GalleryImageInfo>();
-
-    // 2. Scan Directory
-    if (System.IO.Directory.Exists(galleryPath))
-    {
-        for (int i = 1; i <= 45; i++)
-        {
-            var fileName = $"({i}).jpeg";
-            var filePath = System.IO.Path.Combine(galleryPath, fileName);
-
-            if (System.IO.File.Exists(filePath))
-            {
-                var imageInfo = new GalleryImageInfo
-                {
-                    Path = $"/images/gallery2/{fileName}",
-                    Name = GetTitleFromNumber(i),
-                    Category = GetCategoryFromNumber(i),
-                    Number = i
-                };
-                allGalleryImages.Add(imageInfo);
-            }
-        }
-    }
-
-    // Fallback
-    if (!allGalleryImages.Any())
-    {
-        allGalleryImages = GetFallbackImages();
-    }
-
-    // Carousel = random
-    carouselImages = allGalleryImages
-        .OrderBy(_ => Guid.NewGuid())
-        .Take(8)
-        .ToList();
-
-    // Gallery = organised
-    allGalleryImages = allGalleryImages
-        .OrderBy(x => x.Category)
-        .ThenBy(x => x.Number)
-        .ToList();
+    ViewData["Title"] = "Photo Gallery";
 }
 
-@functions {
-    public class GalleryImageInfo
-    {
-        public string Path { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string Category { get; set; } = "";
-        public int Number { get; set; }
-    }
-
-    private string GetCategoryFromNumber(int number) => number switch
-    {
-        <= 9 => "academic",
-        <= 18 => "sports",
-        <= 27 => "arts",
-        <= 36 => "events",
-        _ => "facilities"
-    };
-
-    private string GetTitleFromNumber(int number)
-    {
-        var titles = new Dictionary<int, string>
-        {
-            {1, "Science Laboratory Session"},
-            {10, "Soccer Team Training"},
-            {20, "Cultural Celebration"},
-            {30, "Art Exhibition"},
-            {40, "School Facilities"}
-        };
-
-        return titles.GetValueOrDefault(number, $"Greenlane College Photo #{number}");
-    }
-
-    private List<GalleryImageInfo> GetFallbackImages() => new()
-    {
-        new() { Path = "/images/banner/academics.png", Name = "Science Lab Discovery", Category = "academic", Number = 1 },
-        new() { Path = "/images/gallery/sport2.webp", Name = "Sports Day Champions", Category = "sports", Number = 2 },
-        new() { Path = "/images/gallery/tour.webp", Name = "Art Exhibition", Category = "arts", Number = 3 },
-        new() { Path = "/images/gallery/tour2.webp", Name = "Cultural Day", Category = "events", Number = 4 },
-        new() { Path = "/images/gallery/senior.webp", Name = "Reading Corner", Category = "academic", Number = 5 },
-        new() { Path = "/images/gallery/lessons.webp", Name = "Swimming Lessons", Category = "sports", Number = 6 },
-        new() { Path = "/images/gallery/boys.webp", Name = "Modern Library", Category = "facilities", Number = 7 },
-      
-
-    new() { Path = "https://images.unsplash.com/photo-1541692641319-981cc79ee10a?w=800&q=80", Name = "Graduation Ceremony", Category = "events", Number = 8 },
-    new() { Path = "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80", Name = "Music Class", Category = "arts", Number = 9 },
-    new() { Path = "/images/gallery/computer-lessons.jpeg", Name = "Computer Lessons", Category = "academic", Number = 10 },
-    new() { Path = "/images/banner/sports.jpg", Name = "Marathon Champions", Category = "sports", Number = 11 },
-    new() { Path = "/images/gallery/child.webp", Name = "Science Fair", Category = "events", Number = 12 },
-   
-
-    new() { Path = "/images/gallery2/2.jpeg",  Name = "College Entrance Display", Category = "general", Number = 2 },
-    new() { Path = "/images/gallery2/3.jpeg",  Name = "Campus Information Display", Category = "general", Number = 3 },
-    new() { Path = "/images/gallery2/4.jpeg",  Name = "Student Academic Highlights", Category = "academic", Number = 4 },
-    new() { Path = "/images/gallery2/5.jpeg",  Name = "School Branding Banner", Category = "general", Number = 5 },
-
-    new() { Path = "/images/gallery2/6.jpeg",  Name = "Sports Participation Highlights", Category = "sports", Number = 6 },
-    new() { Path = "/images/gallery2/7.jpeg",  Name = "Student Activities Showcase", Category = "events", Number = 7 },
-    new() { Path = "/images/gallery2/8.jpeg",  Name = "Learning Environment Display", Category = "academic", Number = 8 },
-    new() { Path = "/images/gallery2/9.jpeg",  Name = "School Facilities Overview", Category = "facilities", Number = 9 },
-    new() { Path = "/images/gallery2/10.jpeg", Name = "Academic Performance Board", Category = "academic", Number = 10 },
-
-    new() { Path = "/images/gallery2/11.jpeg", Name = "Admissions Promotion 2023", Category = "admissions", Number = 11 },
-    new() { Path = "/images/gallery2/12.jpeg", Name = "Technology Showcase", Category = "events", Number = 12 },
-    new() { Path = "/images/gallery2/13.jpeg", Name = "Student Success Highlights", Category = "academic", Number = 13 },
-    new() { Path = "/images/gallery2/14.jpeg", Name = "Campus Branding Display", Category = "general", Number = 14 },
-    new() { Path = "/images/gallery2/15.jpeg", Name = "College Admission Announcement", Category = "admissions", Number = 15 },
-
-    new() { Path = "/images/gallery2/16.jpeg", Name = "Digital Learning Promotion", Category = "academic", Number = 16 },
-    new() { Path = "/images/gallery2/17.jpeg", Name = "Admission Information", Category = "admissions", Number = 17 },
-    new() { Path = "/images/gallery2/18.jpeg", Name = "School Logo Display", Category = "general", Number = 18 },
-    new() { Path = "/images/gallery2/19.jpeg", Name = "Technology Event", Category = "events", Number = 19 },
-    new() { Path = "/images/gallery2/20.jpeg", Name = "Emirates Partnership", Category = "admissions", Number = 20 },
-
-    new() { Path = "/images/gallery2/21.jpeg", Name = "Mobile Technology Display", Category = "events", Number = 21 },
-    new() { Path = "/images/gallery2/22.jpeg", Name = "Smartphone Exhibition", Category = "events", Number = 22 },
-    new() { Path = "/images/gallery2/23.jpeg", Name = "Innovation Showcase", Category = "events", Number = 23 },
-    new() { Path = "/images/gallery2/24.jpeg", Name = "Student Development Program", Category = "academic", Number = 24 },
-    new() { Path = "/images/gallery2/25.jpeg", Name = "Sponsor Partnerships", Category = "partnerships", Number = 25 },
-
-    new() { Path = "/images/gallery2/26.jpeg", Name = "Learning Resources Display", Category = "academic", Number = 26 },
-    new() { Path = "/images/gallery2/27.jpeg", Name = "School Achievement Board", Category = "academic", Number = 27 },
-    new() { Path = "/images/gallery2/28.jpeg", Name = "Admission & Technology Event", Category = "admissions", Number = 28 },
-    new() { Path = "/images/gallery2/29.jpeg", Name = "Campus Life Moments", Category = "events", Number = 29 },
-    new() { Path = "/images/gallery2/30.jpeg", Name = "Student Leadership Display", Category = "academic", Number = 30 },
-
-    new() { Path = "/images/gallery2/31.jpeg", Name = "Academic Excellence Board", Category = "academic", Number = 31 },
-    new() { Path = "/images/gallery2/32.jpeg", Name = "Career Guidance Promotion", Category = "academic", Number = 32 },
-    new() { Path = "/images/gallery2/33.jpeg", Name = "Educational Technology Display", Category = "events", Number = 33 },
-    new() { Path = "/images/gallery2/34.jpeg", Name = "School Community Engagement", Category = "events", Number = 34 },
-    new() { Path = "/images/gallery2/35.jpeg", Name = "Learning Environment Promotion", Category = "academic", Number = 35 },
-
-    new() { Path = "/images/gallery2/36.jpeg", Name = "School Values Display", Category = "general", Number = 36 },
-    new() { Path = "/images/gallery2/37.jpeg", Name = "Modern Classroom Facilities", Category = "facilities", Number = 37 },
-    new() { Path = "/images/gallery2/38.jpeg", Name = "Student Support Services", Category = "academic", Number = 38 },
-    new() { Path = "/images/gallery2/39.jpeg", Name = "Campus Safety Information", Category = "general", Number = 39 },
-    new() { Path = "/images/gallery2/40.jpeg", Name = "Academic Resources Overview", Category = "academic", Number = 40 },
-
-    new() { Path = "/images/gallery2/41.jpeg", Name = "School Infrastructure Display", Category = "facilities", Number = 41 },
-    new() { Path = "/images/gallery2/42.jpeg", Name = "Educational Excellence Promotion", Category = "academic", Number = 42 },
-    new() { Path = "/images/gallery2/43.jpeg", Name = "School Innovation Highlights", Category = "events", Number = 43 },
-    new() { Path = "/images/gallery2/44.jpeg", Name = "Student Achievement Showcase", Category = "academic", Number = 44 },
-    new() { Path = "/images/gallery2/45.jpeg", Name = "Greenlane College Overview", Category = "general", Number = 45 }
-
-
-    };
-
-    private string GetCategoryIcon(string cat) => cat switch
-    {
-        "academic" => "bi-book",
-        "sports" => "bi-trophy",
-        "arts" => "bi-palette",
-        "events" => "bi-calendar-event",
-        "facilities" => "bi-building",
-        _ => "bi-image"
-    };
-}
-
-<!-- ===================== STYLES ===================== -->
-<style>
-    .gallery-img {
-        height: 230px;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .gallery-item {
-        transition: transform .2s ease, opacity .2s ease;
-        cursor: pointer;
-    }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-    .card {
-        border-radius: 14px;
-    }
-
-    .filter-btn.active {
-        background-color: #212529;
-        color: #fff;
-    }
-</style>
-
-<!-- ===================== PAGE CONTENT ===================== -->
 <div class="container py-5">
     <h2 class="text-center mb-4">Campus Gallery</h2>
 
@@ -213,117 +18,133 @@
     </div>
 
     <!-- Gallery Grid -->
-    <div class="row g-4">
-        @foreach (var img in allGalleryImages)
+    <div class="row g-4" id="galleryGrid">
+        @foreach (var img in Model.AllGalleryImages)
         {
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 gallery-item"
                  data-category="@img.Category"
                  data-src="@img.Path"
-                 data-title="@img.Name">
-
-                <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                    <img src="@img.Path" class="gallery-img" alt="@img.Name" loading="lazy">
-                    <div class="card-body text-center">
-                        <h6 class="mb-0 fw-semibold">
-                            <i class="bi @GetCategoryIcon(img.Category) me-2 text-muted"></i>
-                            @img.Name
-                        </h6>
-                    </div>
-                </div>
+                 data-title="@img.Name"
+                 data-number="@img.Number">
+                <img src="@img.Path" class="gallery-img" alt="@img.Name">
+                <h6 class="text-center mt-2">@img.Name</h6>
             </div>
         }
     </div>
 </div>
 
-<!-- ===================== LIGHTBOX MODAL ===================== -->
-<div class="modal fade" id="galleryModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark border-0">
-            <img id="modalImage" class="img-fluid rounded">
-            <div class="text-white text-center py-2" id="modalTitle"></div>
-        </div>
-    </div>
-</div>
+<style>
+    .gallery-img {
+        height: 230px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
-<!-- ===================== SCRIPTS ===================== -->
+    .gallery-item {
+        cursor: pointer;
+        transition: transform .2s ease;
+    }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+    .filter-btn.active {
+        background-color: #212529;
+        color: #fff;
+    }
+
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        flex-direction: column;
+        touch-action: none;
+    }
+
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+    .lightbox-info {
+        color: white;
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
 <script>
-    // Filtering
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        let currentIndex = 0;
+        let lightbox = null;
 
-            const filter = btn.dataset.filter;
-
-            document.querySelectorAll('.gallery-item').forEach(item => {
-                item.style.display =
-                    filter === 'all' || item.dataset.category === filter
-                        ? 'block'
-                        : 'none';
+        // Filtering
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                galleryItems.forEach(item => {
+                    const cat = item.dataset.category;
+                    item.style.display = (filter==='all' || cat===filter) ? 'block':'none';
+                });
             });
         });
-    });
 
-    // Lightbox Modal with Swipe
-    const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
+        // Lightbox open
+        galleryItems.forEach((item, idx) => {
+            item.addEventListener('click', () => {
+                currentIndex = idx;
+                openLightbox(currentIndex);
+            });
+        });
 
-    // Build gallery array for swiping
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'))
-        .filter(i => i.style.display !== 'none');
+        function openLightbox(index) {
+            const imgData = galleryItems[index].dataset;
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox-overlay';
+            overlay.innerHTML = `<img src="${imgData.src}" alt="${imgData.title}"><div class="lightbox-info"><h3>${imgData.title}</h3><small>Photo #${imgData.number}</small></div>`;
+            document.body.appendChild(overlay);
+            lightbox = overlay;
+            const img = overlay.querySelector('img');
+            let startX = 0, startY = 0;
 
-    let currentIndex = 0;
+            // Swipe
+            img.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; });
+            img.addEventListener('touchend', e => {
+                const diffX = e.changedTouches[0].clientX - startX;
+                const diffY = e.changedTouches[0].clientY - startY;
+                if(Math.abs(diffX)>50){ diffX<0 ? nextImage() : prevImage(); }
+                else if(Math.abs(diffY)>50){ closeLightbox(); }
+            });
 
-    function openModal(index) {
-        currentIndex = index;
-        const item = galleryItems[currentIndex];
-        modalImage.src = item.dataset.src;
-        modalTitle.innerText = item.dataset.title;
-        modal.show();
-    }
+            // Keyboard
+            const keyHandler = e => {
+                if(!lightbox) return;
+                if(e.key==='ArrowRight') nextImage();
+                if(e.key==='ArrowLeft') prevImage();
+                if(e.key==='Escape') closeLightbox();
+            };
+            document.addEventListener('keydown', keyHandler);
+            overlay.addEventListener('click', e=>{ if(e.target===overlay) closeLightbox(); });
 
-    document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.addEventListener('click', () => openModal(index));
-    });
-
-    // Swipe detection
-    let startX = 0;
-    modalImage.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    });
-
-    modalImage.addEventListener('touchend', e => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = endX - startX;
-
-        if (Math.abs(diff) > 50) { // swipe threshold
-            if (diff < 0) nextImage(); // swipe left = next
-            else prevImage();            // swipe right = previous
+            function nextImage(){ currentIndex=(currentIndex+1)%galleryItems.length; updateLightbox(); }
+            function prevImage(){ currentIndex=(currentIndex-1+galleryItems.length)%galleryItems.length; updateLightbox(); }
+            function updateLightbox(){ const imgData=galleryItems[currentIndex].dataset; img.src=imgData.src; overlay.querySelector('.lightbox-info h3').textContent=imgData.title; overlay.querySelector('.lightbox-info small').textContent=`Photo #${imgData.number}`;}
+            function closeLightbox(){ overlay.remove(); lightbox=null; document.removeEventListener('keydown', keyHandler); }
         }
-    });
-
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % galleryItems.length;
-        updateModal();
-    }
-
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-        updateModal();
-    }
-
-    function updateModal() {
-        const item = galleryItems[currentIndex];
-        modalImage.src = item.dataset.src;
-        modalTitle.innerText = item.dataset.title;
-    }
-
-    // Keyboard support (optional)
-    document.addEventListener('keydown', e => {
-        if (!modal._isShown) return;
-        if (e.key === 'ArrowRight') nextImage();
-        if (e.key === 'ArrowLeft') prevImage();
-        if (e.key === 'Escape') modal.hide();
     });
 </script>

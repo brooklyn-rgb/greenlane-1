@@ -44,20 +44,20 @@
     } // End of If Directory Exists
 
 
-        // Shuffle carousel images for random display
-        if (carouselImages.Count > 0)
-        {
-            var random = new Random();
-            carouselImages = carouselImages.OrderBy(x => random.Next()).ToList();
-        }
-
-        // Shuffle all gallery images
-        if (allGalleryImages.Count > 0)
-        {
-            var random = new Random();
-            allGalleryImages = allGalleryImages.OrderBy(x => random.Next()).ToList();
-        }
+    // Shuffle carousel images for random display
+    if (carouselImages.Count > 0)
+    {
+        var random = new Random();
+        carouselImages = carouselImages.OrderBy(x => random.Next()).ToList();
     }
+
+    // Shuffle all gallery images
+    if (allGalleryImages.Count > 0)
+    {
+        var random = new Random();
+        allGalleryImages = allGalleryImages.OrderBy(x => random.Next()).ToList();
+    }
+}
 
     // If no images found, use fallbacks
     if (allGalleryImages.Count == 0)

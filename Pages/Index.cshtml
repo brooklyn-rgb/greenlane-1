@@ -4,13 +4,25 @@
     ViewData["Title"] = "Greenlane College | Excellence in Education from Grade 1 to Matric";
 }
 
-<!-- Modern Hero Banner with Overlay -->
-<div class="position-relative">
-    <div class="hero-banner" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/banner/banner.png') center/cover no-repeat; min-height: 85vh;">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-lg-7 text-white">
-                    <h1 class="display-2 fw-bold mb-4">Building South Africa's Future Leaders</h1>
+<!-- Modern Hero Banner with Video Background -->
+<div class="position-relative overflow-hidden">
+    <div class="hero-video-container" style="min-height: 85vh;">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="/images/kids.mp4" type="video/mp4">
+            <div class="fallback-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/kids-fallback.jpg') center/cover no-repeat;"></div>
+        </video>
+
+        <!-- Dark Overlay -->
+        <div class="video-overlay"></div>
+
+        <!-- Content: Added pt-5 (padding-top) to clear the navbar -->
+        <div class="container h-100 position-relative z-2 pt-5">
+            <div class="row h-100 align-items-center pt-5">
+                <!-- Added pt-5 here as well for extra spacing -->
+                <div class="col-lg-7 text-white mt-5">
+                    <!-- mt-5 adds a top margin to the text block -->
+                    <h1 class="display-1 fw-bold mb-4">Building South Africa's Future Leaders</h1>
                     <p class="lead mb-4 fs-4">Greenlane College provides exceptional education from <strong>Grade 1 to Grade 12</strong>, combining academic excellence with character development for holistic student growth.</p>
                     <div class="d-flex flex-wrap gap-3 mt-5">
                         <a href="/registration" class="btn btn-primary btn-lg px-5 py-3">
@@ -18,13 +30,14 @@
                         </a>
                         <a href="/images/reg-form.pdf" class="btn btn-outline-light btn-lg px-5 py-3">
                             <i class="bi bi-camera-video me-2"></i> Registration Form Pdf
-                        </a>                        
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Add to your _Layout.cshtml or specific page -->
 <div class="announcement-banner">
@@ -542,7 +555,77 @@
             </div>
         </div>
 
-    
+        <style>
+            .hero-video-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .video-background {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+            }
+
+            .video-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+                z-index: 1;
+            }
+
+            /* Fallback styles for older browsers */
+            .fallback-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+
+            /* Ensure content stays above video */
+            .position-relative.z-2 {
+                z-index: 2;
+            }
+
+            /* Performance optimizations */
+            video.video-background {
+                pointer-events: none;
+                user-select: none;
+            }
+        </style>
+
+        <script>
+            // Video loading fallback
+            document.addEventListener('DOMContentLoaded', function() {
+                const video = document.querySelector('.video-background');
+
+                video.addEventListener('error', function() {
+                    // If video fails to load, show fallback
+                    this.style.display = 'none';
+                    const fallback = document.querySelector('.fallback-bg');
+                    if (fallback) {
+                        fallback.style.display = 'block';
+                    }
+                });
+
+                // Ensure video plays on mobile
+                video.play().catch(function(error) {
+                    console.log('Video autoplay failed:', error);
+                    // Fallback to showing poster image or playing on user interaction
+                });
+            });
+        </script>
 
 <style>
     /* Testimonial Carousel Styling */

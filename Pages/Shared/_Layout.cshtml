@@ -32,7 +32,7 @@
         :root {
             --primary: #1a4d2e; /* Green - main brand color */
             --primary-light: #2e7d5a; /* Lighter green for hover */
-            --accent: #ff9f29; /* Orange accent from your design */
+            --accent: #1a4d2e; /* Orange accent from your design */
             --dark-bg: #0a2918; /* Darker green for footer */
             --text-light: #f8f9fa; /* Light text for dark backgrounds */
             --text-dark: #212529; /* Dark text for light backgrounds */
@@ -79,7 +79,7 @@
 
             .navbar-brand .brand-part-2 {
                 color: var(--accent);
-                background: linear-gradient(135deg, var(--accent), #ff8c00);
+                background: linear-gradient(135deg, var(--accent), #1a4d2e);
                 -webkit-background-clip: text;
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -181,7 +181,7 @@
 
         /* Updated Apply Now Button */
         .btn-apply {
-            background: linear-gradient(135deg, var(--accent), #ff8c00);
+            background: linear-gradient(135deg, var(--accent), #1a4d2e);
             color: white !important;
             border: none;
             padding: 0.6rem 1.5rem;
@@ -195,7 +195,7 @@
             .btn-apply:hover {
                 transform: translateY(-2px);
                 box-shadow: 0 6px 20px rgba(255, 159, 41, 0.4);
-                background: linear-gradient(135deg, #ff8c00, var(--accent));
+                background: linear-gradient(135deg, #1a4d2e, var(--accent));
             }
 
         /* ==================== */
@@ -678,9 +678,9 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand fw-bold" asp-page="/Index">
-                <i class="bi bi-mortarboard-fill brand-icon"></i>
-                <span class="brand-part-1">Greenlane College</span>
-               
+                <!-- Logo Image Replacement -->
+                <img src="~/images/logo.svg" alt="Greenlane College Logo" class="brand-logo me-2">
+                
             </a>
 
             <!-- Mobile menu button -->
@@ -768,8 +768,11 @@
                 <!-- Brand & Description -->
                 <div class="col-lg-4">
                     <h4 class="mb-4 fw-bold d-flex align-items-center">
-                        <i class="bi bi-mortarboard-fill me-2"></i>Greenlane College
+                        <img src="~/images/logo.svg" alt="Greenlane College Logo" class="logo-small me-2">
+                        <span class="text-dark">Greenlane College</span>
                     </h4>
+
+
                     <p class="mb-4" style="opacity: 0.9;">Providing exceptional education from Grade 1 through Matric since 2009. Committed to academic excellence and holistic student development in Johannesburg.</p>
 
                     <!-- Newsletter -->

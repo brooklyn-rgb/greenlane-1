@@ -65,37 +65,52 @@ namespace greenlane.Pages
 
             try
             {
-                // Here you would typically:
-                // 1. Save to database
-                // 2. Send email notification
-                // 3. Send auto-response to user
+                // CONFIGURATION
+                string myEmail = "macshap04@gmail.com";
+                // IMPORTANT: Use the 16-character App Password from Google Account Settings
+                string appPassword = "pemdnxbqiovbvtuk";
 
-                // Example email sending (commented out for safety)
-                /*
-                using (var client = new SmtpClient("smtp.yourserver.com", 587))
+                using (var smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    client.Credentials = new NetworkCredential("your-email@greenlane.co.za", "your-password");
-                    client.EnableSsl = true;
+                    smtp.Credentials = new NetworkCredential(myEmail, appPassword);
+                    smtp.EnableSsl = true;
 
                     var mailMessage = new MailMessage
                     {
-                        From = new MailAddress("noreply@greenlane.co.za"),
-                        Subject = $"New Contact Form: {Subject}",
-                        Body = $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nMessage: {Message}",
+                        From = new MailAddress(myEmail, "Greenlane College Website"),
+                        Subject = $"Contact Inquiry 2026: {Subject}",
+                        Body = $@"
+                        NEW WEBSITE INQUIRY - {DateTime.Now:dd MMMM yyyy}
+                        --------------------------------------------
+                        From: {Name}
+                        Email: {Email}
+                        Phone: {Phone ?? "Not provided"}
+                        Subject: {Subject}
+                        Newsletter Opt-in: {(SubscribeToNewsletter ? "Yes" : "No")}
+
+                        MESSAGE:
+                        {Message}
+
+                        --------------------------------------------
+                        Note: You can reply directly to this email to contact the sender.",
                         IsBodyHtml = false
                     };
-                    mailMessage.To.Add("info@greenlane.co.za");
 
-                    await client.SendMailAsync(mailMessage);
+                    // Send the email to yourself
+                    mailMessage.To.Add(myEmail);
+
+                    // Allows you to hit "Reply" in Gmail to answer the user immediately
+                    mailMessage.ReplyToList.Add(new MailAddress(Email));
+
+                    await smtp.SendMailAsync(mailMessage);
                 }
-                */
 
-                SuccessMessage = "Thank you for your message! We have received your inquiry and will respond within 24-48 hours during business days.";
+                SuccessMessage = "Thank you for your message! We have received your inquiry and will respond within 24-48 hours.";
                 return RedirectToPage("/Contact");
             }
             catch (Exception)
             {
-                ErrorMessage = "There was an error sending your message. Please try again or call us directly.";
+                ErrorMessage = "There was an error sending your message. Please check your internet connection or contact us via phone.";
                 InitializeData();
                 return Page();
             }

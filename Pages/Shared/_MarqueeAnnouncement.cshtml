@@ -1,17 +1,55 @@
 ﻿@{
-    var year = DateTime.Now.Year > 2025 ? DateTime.Now.Year : 2025;
+    // Ensures 2026 is displayed as per current date
+    var year = DateTime.Now.Year;
 }
 
+<style>
+    /* Custom Green Theme for the Banner */
+    .announcement-banner {
+        background-color: #1a4d2e;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 15px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .green-marquee-bg {
+        background-color: #1a4d2e !important;
+        padding: 10px 0;
+    }
+
+    .success-marquee {
+        color: #1a4d2e;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .highlight-box {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 5px 20px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        margin: 0 10px;
+    }
+
+    .celebration-text {
+        color: #ffffff;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+</style>
+
 <div class="announcement-banner">
-    <div class="marquee-wrapper">
+    <div class="marquee-wrapper green-marquee-bg">
         <marquee class="success-marquee" behavior="alternate" direction="left">
             <span class="marquee-content">
                 <span class="trophy">🏆</span>
-                <span class="highlight">@year MATRIC PASS RATE: 100%</span>
+                <span class="highlight-box">@year MATRIC PASS RATE: 100%</span>
                 <span class="trophy">🏆</span>
-                <span class="celebration">Congratulations to All Students!</span>
+                <span class="celebration-text">Congratulations to All Students!</span>
                 <span class="trophy">🏆</span>
-                <span class="highlight">@year MATRIC PASS RATE: 100%</span>
+                <span class="highlight-box">@year MATRIC PASS RATE: 100%</span>
                 <span class="trophy">🏆</span>
             </span>
         </marquee>

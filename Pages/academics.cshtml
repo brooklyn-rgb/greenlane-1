@@ -9,15 +9,15 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold text-primary mb-4">Academic Structure & Curriculum</h1>
+                <h1 class="display-4 fw-bold text-success mb-4">Academic Structure & Curriculum</h1>
                 <p class="lead mb-4">
                     Greenlane College offers a comprehensive educational pathway from Grade 1 through Grade 12, designed to develop critical thinkers, problem solvers, and future-ready leaders.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="#academic-phases" class="btn btn-primary btn-lg px-4">
+                    <a href="#academic-phases" class="btn btn-success btn-lg px-4">
                         <i class="bi bi-mortarboard me-2"></i>Explore Phases
                     </a>
-                    <a href="#subject-list" class="btn btn-outline-primary btn-lg px-4">
+                    <a href="#subject-list" class="btn btn-outline-success btn-lg px-4">
                         <i class="bi bi-book me-2"></i>View Subjects
                     </a>
                     <a href="/Contact" class="btn btn-success btn-lg px-4">
@@ -28,7 +28,7 @@
             <div class="col-lg-6 mt-4 mt-lg-0">
                 <div class="card border-0 shadow-lg">
                     <div class="card-body p-4">
-                        <h3 class="h4 text-primary mb-3">Our Educational Philosophy</h3>
+                        <h3 class="h4 text-success mb-3">Our Educational Philosophy</h3>
                         <p class="mb-3">We believe in a balanced approach that combines:</p>
                         <ul class="list-unstyled">
                             <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Academic excellence with character development</li>
@@ -52,7 +52,7 @@
 <section class="py-5" id="academic-phases">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary mb-3">Comprehensive Academic Pathway</h2>
+            <h2 class="fw-bold text-success mb-3">Comprehensive Academic Pathway</h2>
             <p class="lead text-muted">A seamless educational journey from foundational learning to university preparation</p>
         </div>
 
@@ -74,7 +74,7 @@
                     </div>
                     <div class="phase-description">
                         <p>@phase.Description</p>
-                        <a href="#@phase.Phase.ToLower().Replace(" ", "-")" class="btn btn-outline-primary btn-sm">
+                        <a href="#@phase.Phase.ToLower().Replace(" ", "-")" class="btn btn-outline-success btn-sm">
                             View Subjects <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                     </div>
@@ -92,7 +92,7 @@
         <!-- Foundation Phase -->
         <div class="phase-subjects mb-5" id="foundation-phase">
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-primary text-white py-3">
+                <div class="card-header bg-success text-white py-3">
                     <h3 class="h4 mb-0">
                         <i class="bi bi-house-door me-2"></i>Foundation Phase (Grade 1 - 3)
                     </h3>
@@ -106,11 +106,11 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="subject-card">
                                     <div class="subject-icon">
-                                        <i class="bi bi-book text-primary"></i>
+                                        <i class="bi bi-book text-success"></i>
                                     </div>
                                     <h5 class="subject-name">@subject.Name</h5>
                                     <div class="subject-details">
-                                        <span class="badge bg-primary bg-opacity-10 text-primary">@subject.Category</span>
+                                        <span class="badge bg-success bg-opacity-10 text-success">@subject.Category</span>
                                         <small class="text-muted ms-2">@subject.Hours</small>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                     <div class="row">
                         <!-- Compulsory Subjects -->
                         <div class="col-lg-6 mb-4">
-                            <h4 class="h5 fw-bold mb-3 text-primary">Compulsory Subjects</h4>
+                            <h4 class="h5 fw-bold mb-3 text-success">Compulsory Subjects</h4>
                             <div class="row g-3">
                                 @foreach (var subject in Model.FETPhaseSubjects.Where(s => s.IsCore))
                                 {
@@ -224,18 +224,18 @@
 
                         <!-- Elective Subjects -->
                         <div class="col-lg-6">
-                            <h4 class="h5 fw-bold mb-3 text-primary">Elective Subjects (Choose 3)</h4>
+                            <h4 class="h5 fw-bold mb-3 text-success">Elective Subjects (Choose 3)</h4>
                             <div class="row g-3">
                                 @foreach (var subject in Model.FETPhaseSubjects.Where(s => !s.IsCore))
                                 {
                                     <div class="col-md-6">
                                         <div class="subject-card elective">
                                             <div class="subject-icon">
-                                                <i class="bi bi-bookmark text-primary"></i>
+                                                <i class="bi bi-bookmark text-success"></i>
                                             </div>
                                             <h5 class="subject-name">@subject.Name</h5>
                                             <div class="subject-details">
-                                                <span class="badge bg-primary bg-opacity-10 text-primary">@subject.Category</span>
+                                                <span class="badge bg-success bg-opacity-10 text-success">@subject.Category</span>
                                                 <small class="text-muted ms-2">@subject.Hours</small>
                                             </div>
                                         </div>
@@ -247,12 +247,12 @@
 
                     <!-- Career Pathways -->
                     <div class="mt-5 pt-4 border-top">
-                        <h4 class="h5 fw-bold mb-3 text-primary">Suggested Subject Combinations for Career Pathways</h4>
+                        <h4 class="h5 fw-bold mb-3 text-success">Suggested Subject Combinations for Career Pathways</h4>
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <div class="card border-primary h-100">
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary">Science & Health</h5>
+                                        <h5 class="card-title text-success">Science & Health</h5>
                                         <p class="card-text small">Mathematics, Physical Sciences, Life Sciences</p>
                                         <small class="text-muted">For: Medicine, Engineering, Research</small>
                                     </div>
@@ -294,7 +294,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4 text-center">
                         <div class="extracurricular-icon mb-3">
-                            <i class="bi bi-trophy text-primary display-4"></i>
+                            <i class="bi bi-trophy text-success display-4"></i>
                         </div>
                         <h4 class="h5 fw-bold mb-3">Sports & Athletics</h4>
                         <p class="text-muted small">Soccer, Basketball, Athletics, Swimming, Netball, and specialized coaching programs.</p>
@@ -306,7 +306,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4 text-center">
                         <div class="extracurricular-icon mb-3">
-                            <i class="bi bi-music-note-beamed text-primary display-4"></i>
+                            <i class="bi bi-music-note-beamed text-success display-4"></i>
                         </div>
                         <h4 class="h5 fw-bold mb-3">Cultural Activities</h4>
                         <p class="text-muted small">Music, Drama, Art, Debate Society, Public Speaking, and Cultural Exchange Programs.</p>
@@ -318,7 +318,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4 text-center">
                         <div class="extracurricular-icon mb-3">
-                            <i class="bi bi-person-hearts text-primary display-4"></i>
+                            <i class="bi bi-person-hearts text-success display-4"></i>
                         </div>
                         <h4 class="h5 fw-bold mb-3">Academic Support</h4>
                         <p class="text-muted small">Remedial classes, tutoring, career guidance, university application assistance, and study skills workshops.</p>
@@ -358,7 +358,7 @@
             <div class="col-lg-6">
                 <div class="card border-primary">
                     <div class="card-body p-4">
-                        <h4 class="card-title text-primary mb-3">
+                        <h4 class="card-title text-success mb-3">
                             <i class="bi bi-calendar-check me-2"></i>Academic Calendar 2026
                         </h4>
                         <div class="academic-calendar">
@@ -387,7 +387,7 @@
 </section>
 
 <!-- Final CTA -->
-<section class="py-5 text-center bg-primary text-white">
+<section class="py-5 text-center bg-success text-white">
     <div class="container">
         <h2 class="display-5 fw-bold mb-4">Ready to Explore Our Academic Excellence?</h2>
         <p class="lead mb-4 mx-auto" style="max-width: 800px;">
@@ -627,7 +627,7 @@
 
         // Print curriculum button
         const printBtn = document.createElement('button');
-        printBtn.className = 'btn btn-outline-primary position-fixed bottom-0 end-0 m-3 d-print-none';
+        printBtn.className = 'btn btn-outline-success position-fixed bottom-0 end-0 m-3 d-print-none';
         printBtn.innerHTML = '<i class="bi bi-printer me-2"></i>Print Curriculum';
         printBtn.style.zIndex = '1000';
         printBtn.onclick = () => window.print();

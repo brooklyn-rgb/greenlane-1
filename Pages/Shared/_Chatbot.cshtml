@@ -1,0 +1,395 @@
+﻿@* Chatbot Widget - Fixed Position Bottom Left *@
+<div class="chatbot-widget">
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+        <i class="bi bi-chat-dots"></i>
+    </button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h6><i class="bi bi-robot me-2"></i>Greenlane College Assistant</h6>
+            <button class="btn-close btn-close-white" id="closeChatbot"></button>
+        </div>
+
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chat-message bot">
+                <div class="message-content">
+                    Hello! I'm here to help with Greenlane College 2026 registrations.
+                    How can I assist you today?
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+
+        <div class="chatbot-footer">
+            <div class="quick-questions">
+                <button class="quick-question-btn" data-question="What are the registration deadlines?">
+                    Registration deadlines?
+                </button>
+                <button class="quick-question-btn" data-question="What documents are required?">
+                    Required documents?
+                </button>
+                <button class="quick-question-btn" data-question="How much is the application fee?">
+                    Application fee?
+                </button>
+                <button class="quick-question-btn" data-question="What grades do you offer?">
+                    Grades offered?
+                </button>
+            </div>
+
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       id="chatbotInput"
+                       placeholder="Type your question..."
+                       aria-label="Chat input">
+                <button class="btn btn-success" id="sendMessage" type="button">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Chatbot Widget Styles */
+    .chatbot-widget {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 1000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .chatbot-toggle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .chatbot-toggle i {
+            font-size: 24px;
+        }
+
+    .chatbot-container {
+        position: absolute;
+        bottom: 70px;
+        left: 0;
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+    }
+
+    .chatbot-header {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .chatbot-header h6 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+    .chatbot-body {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background: #f8f9fa;
+    }
+
+    .chat-message {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        max-width: 80%;
+    }
+
+        .chat-message.bot {
+            align-items: flex-start;
+        }
+
+        .chat-message.user {
+            align-items: flex-end;
+            margin-left: auto;
+        }
+
+    .message-content {
+        padding: 12px 16px;
+        border-radius: 18px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .chat-message.bot .message-content {
+        background: #e9ecef;
+        color: #212529;
+        border-bottom-left-radius: 5px;
+    }
+
+    .chat-message.user .message-content {
+        background: #28a745;
+        color: white;
+        border-bottom-right-radius: 5px;
+    }
+
+    .message-time {
+        font-size: 11px;
+        color: #6c757d;
+        margin-top: 4px;
+        padding: 0 8px;
+    }
+
+    .chatbot-footer {
+        border-top: 1px solid #e9ecef;
+        background: white;
+        padding: 15px;
+    }
+
+    .quick-questions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .quick-question-btn {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 20px;
+        padding: 8px 12px;
+        font-size: 12px;
+        color: #495057;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .quick-question-btn:hover {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+    .input-group {
+        display: flex;
+        gap: 8px;
+    }
+
+        .input-group input {
+            flex: 1;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+            .input-group input:focus {
+                outline: none;
+                border-color: #28a745;
+                box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+            }
+
+        .input-group button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #28a745;
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            .input-group button:hover {
+                background: #218838;
+            }
+
+    /* Animation for new messages */
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .chat-message {
+        animation: fadeInUp 0.3s ease;
+    }
+
+    /* Pulse animation for toggle button */
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+        }
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .chatbot-widget {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .chatbot-container {
+            width: calc(100vw - 40px);
+            height: 450px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .quick-questions {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatbotBody = document.getElementById('chatbotBody');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const sendMessageBtn = document.getElementById('sendMessage');
+        const quickQuestionBtns = document.querySelectorAll('.quick-question-btn');
+
+        // Toggle chatbot
+        chatbotToggle.addEventListener('click', function() {
+            chatbotContainer.style.display = 'flex';
+            chatbotToggle.style.display = 'none';
+            chatbotInput.focus();
+        });
+
+        // Close chatbot
+        closeChatbot.addEventListener('click', function() {
+            chatbotContainer.style.display = 'none';
+            chatbotToggle.style.display = 'flex';
+        });
+
+        // Send message
+        function sendMessage(message) {
+            if (!message.trim()) return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user';
+            userMessage.innerHTML = `
+                <div class="message-content">${message}</div>
+                <div class="message-time">${getCurrentTime()}</div>
+            `;
+            chatbotBody.appendChild(userMessage);
+
+            // Clear input
+            chatbotInput.value = '';
+
+            // Scroll to bottom
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(message);
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot';
+                botMessage.innerHTML = `
+                    <div class="message-content">${botResponse}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                `;
+                chatbotBody.appendChild(botMessage);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            }, 1000);
+        }
+
+        // Send message on button click
+        sendMessageBtn.addEventListener('click', function() {
+            sendMessage(chatbotInput.value);
+        });
+
+        // Send message on Enter key
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage(chatbotInput.value);
+            }
+        });
+
+        // Quick question buttons
+        quickQuestionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const question = this.getAttribute('data-question');
+                sendMessage(question);
+            });
+        });
+
+        // Get current time for message timestamp
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Simple bot response logic (extend this with actual AI/API integration)
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            if (lowerMessage.includes('deadline') || lowerMessage.includes('registration date')) {
+                return "For 2026 registrations, the deadline is 30 November 2025 for early registration. Late registrations may be accepted subject to availability.";
+            } else if (lowerMessage.includes('document') || lowerMessage.includes('required')) {
+                return "Required documents include: Certified ID copy of learner and parent, latest school report, proof of residence, and transfer card from previous school.";
+            } else if (lowerMessage.includes('fee') || lowerMessage.includes('application fee')) {
+                return "The application fee is R250 (non-refundable). Please visit our Fees page for detailed fee structure for 2026 academic year.";
+            } else if (lowerMessage.includes('grade') || lowerMessage.includes('offer')) {
+                return "We offer Grades 8-12 (FET Phase) following the CAPS curriculum. All our classes have a maximum of 25 learners for personalized attention.";
+            } else if (lowerMessage.includes('facility') || lowerMessage.includes('sport')) {
+                return "Our facilities include modern science labs, computer labs, library, sports fields for rugby/soccer, netball courts, and a swimming pool.";
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('number')) {
+                return "You can contact us at 012 998 2311 during office hours (07:30-16:00) or email info@greenlane.co.za";
+            } else if (lowerMessage.includes('faq') || lowerMessage.includes('frequently')) {
+                return "You can find more detailed answers in our FAQ section: <a href='https://www.greenlane.co.za/Faqs' target='_blank' style='color: #28a745;'>View FAQs</a>";
+            } else {
+                return "Thank you for your question! For specific inquiries about 2026 registrations, please contact our admissions office at 012 998 2311 or visit <a href='https://www.greenlane.co.za/Faqs' target='_blank' style='color: #28a745;'>our FAQ page</a> for more information.";
+            }
+        }
+    });
+</script>

@@ -14,24 +14,24 @@ namespace greenlane.Pages
             CoreValues = new List<CoreValue>
             {
                 new CoreValue { 
-                    Title = "Passion for Potential", 
-                    Description = "We are deeply committed to delivering relevant knowledge, skills, and values with unwavering enthusiasm, empowering each learner to realize their full potential and make a positive impact in their community."
+                    Title = "Passion", 
+                    Description = "We are deeply committed to providing relevant knowledge, skills and values to learners, doing this with enthusiasm and dedication to enable learners realize their potential and have a positive impact in their lives and community."
                 },
                 new CoreValue { 
-                    Title = "Mutual Respect", 
-                    Description = "We cultivate an environment of high regard for the dignity of every individual, expecting and encouraging respectful conduct from all stakeholders within our established legal and ethical frameworks."
+                    Title = "Respect", 
+                    Description = "We emphasize high regard for the dignity of all people, encouraging respectful conduct by all stakeholders at all times and in accordance with legal frameworks, policies and procedures."
                 },
                 new CoreValue { 
-                    Title = "Collaborative Excellence", 
-                    Description = "We recognize the interdependence of our work and believe that harmonious, purpose-driven teamwork is fundamental to achieving effective and outstanding educational outcomes."
+                    Title = "TeamWork", 
+                    Description = "We appreciate that all aspects of our work are interdependent and believe that operating in harmonious teams leads to more effective and efficient results."
                 },
                 new CoreValue { 
-                    Title = "Dedicated Service", 
-                    Description = "We are committed to efficient and effective application of our resources and expertise to provide facilities and education that yield the utmost benefit and growth for every learner."
+                    Title = "Serving Clients", 
+                    Description = "We ensure efficient and effective application of our capabilities to provide facilities, skills, and knowledge in a manner that yields utmost benefits to learners."
                 },
                 new CoreValue { 
-                    Title = "Integrity & Discipline", 
-                    Description = "We are committed to upholding the highest standards of positive discipline and ethical behavior, ensuring a safe, structured, and conducive environment for learning and personal development."
+                    Title = "Discipline", 
+                    Description = "We are committed to enforcing high standards of positive discipline through engagement and strict enforcement of guidelines, policies, and procedures to ensure safety, comfort, and good behavior."
                 }
             };
 
@@ -40,17 +40,17 @@ namespace greenlane.Pages
             {
                 new MissionPoint { 
                     Title = "Our Mission", 
-                    Description = "To deliver exceptional teaching and learning while fostering intrinsic self-worth among both our educators and students, creating a foundation for lifelong achievement.",
+                    Description = "To promote high quality teaching and learning and self-worth among our staff and learners.",
                     IconClass = "bi-bullseye"
                 },
                 new MissionPoint { 
                     Title = "Our Vision", 
-                    Description = "To be recognized as the preeminent provider of transformative, high-caliber education and training across all academic levels in South Africa.",
+                    Description = "To be the leading provider of high quality education and training at all levels.",
                     IconClass = "bi-eye"
                 },
                 new MissionPoint { 
                     Title = "Our Strategic Objective", 
-                    Description = "To impart a robust body of knowledge, critical skills, and enduring values that are recognized and sought after by leading tertiary institutions and employers.",
+                    Description = "To position the Greenlane College as a transformative and sustainable learning centre.",
                     IconClass = "bi-flag"
                 }
             };

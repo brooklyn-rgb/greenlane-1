@@ -13,8 +13,8 @@
                     <p class="lead">Begin your child's journey at Greenlane College. Complete the form below to apply for the 2026 academic year.</p>
 
                     <div class="alert alert-info mt-4 mx-auto" style="max-width: 800px;">
-                        <h5><i class="bi bi-gift-fill me-2"></i>Early Registration Benefit!</h5>
-                        <p class="mb-0">Applications submitted before <strong>March 31, 2026</strong> qualify for our Free Starter Pack including school supplies and uniform voucher.</p>
+                        <h5><i class="bi bi-gift-fill me-2"></i>2026 Registration!</h5>
+                        <p class="mb-0">Online Applications </p>
                     </div>
                 </div>
 
@@ -249,106 +249,8 @@
                                         </div>
                                     </div>
 
-                                    <!-- Step 3: Document Upload -->
-                                    <div class="form-step" id="formStep3">
-                                        <h4 class="mb-4 border-bottom pb-2 text-success">
-                                            <i class="bi bi-files me-2"></i>Required Documents
-                                        </h4>
-
-                                        <div class="alert alert-info">
-                                            <i class="bi bi-info-circle me-2"></i>
-                                            Please prepare digital copies of the following documents. Maximum file size: 5MB each. Accepted formats: PDF, JPG, PNG.
-                                        </div>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Birth Certificate *</label>
-                                                <input type="file" class="form-control" name="BirthCertificate" accept=".pdf,.jpg,.jpeg,.png" required>
-                                                <small class="text-muted">Certified copy (Unabridged for international)</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Immunization Record *</label>
-                                                <input type="file" class="form-control" name="ImmunizationRecord" accept=".pdf,.jpg,.jpeg,.png" required>
-                                                <small class="text-muted">Up-to-date vaccination records</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Latest School Report</label>
-                                                <input type="file" class="form-control" name="SchoolReport" accept=".pdf,.jpg,.jpeg,.png">
-                                                <small class="text-muted">Required for Grade 1+ transfer students</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Proof of Residence *</label>
-                                                <input type="file" class="form-control" name="ProofResidence" accept=".pdf,.jpg,.jpeg,.png" required>
-                                                <small class="text-muted">Utility bill or lease agreement (<3 months)</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">ID Photo (Passport size)</label>
-                                                <input type="file" class="form-control" name="IDPhoto" accept="image/*">
-                                                <small class="text-muted">Recent passport-sized photo</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">ID Copy (Parent/Guardian) *</label>
-                                                <input type="file" class="form-control" name="ParentID" accept=".pdf,.jpg,.jpeg,.png" required>
-                                                <small class="text-muted">Certified copy of ID or passport</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Transfer Certificate</label>
-                                                <input type="file" class="form-control" name="TransferCertificate" accept=".pdf,.jpg,.jpeg,.png">
-                                                <small class="text-muted">For students transferring during term</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Medical Aid Card</label>
-                                                <input type="file" class="form-control" name="MedicalAidCard" accept=".pdf,.jpg,.jpeg,.png">
-                                                <small class="text-muted">If applicable</small>
-                                            </div>
-                                        </div>
-
-                                        <!-- For High School Applicants (Grade 8-12) -->
-                                        <div class="mt-4 border-top pt-4" id="highSchoolDocs">
-                                            <h6 class="text-success mb-3">
-                                                <i class="bi bi-mortarboard me-2"></i>Additional for High School (Grade 8-12)
-                                            </h6>
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Previous Year's Report</label>
-                                                    <input type="file" class="form-control" name="PreviousYearReport" accept=".pdf,.jpg,.jpeg,.png">
-                                                    <small class="text-muted">Grade 7/8/9/10/11 final report</small>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Subject Choice Form</label>
-                                                    <input type="file" class="form-control" name="SubjectChoiceForm" accept=".pdf,.jpg,.jpeg,.png">
-                                                    <small class="text-muted">For Grade 10-12 subject selection</small>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="agreement" asp-for="TermsAgreed" required>
-                                                <label class="form-check-label" for="agreement">
-                                                    <strong>I certify that:</strong> All information provided is accurate and complete. I understand that submission of false information may lead to disqualification. I agree to the school's code of conduct and policies.
-                                                </label>
-                                                <span asp-validation-for="TermsAgreed" class="text-danger small d-block"></span>
-                                            </div>
-                                            <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" id="feeAgreement" name="FeeAgreement" required>
-                                                <label class="form-check-label" for="feeAgreement">
-                                                    I understand and agree to the school fee structure and payment terms for the 2026 academic year.
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4 d-flex justify-content-between">
-                                            <button type="button" class="btn btn-outline-secondary" onclick="prevStep(2)">
-                                                <i class="bi bi-arrow-left me-2"></i>Previous
-                                            </button>
-                                            <button type="button" class="btn btn-success" onclick="nextStep(4)">
-                                                Review Application <i class="bi bi-arrow-right ms-2"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 4: Review and Submit -->
+                                   
+                                    <!-- Step 3: Review and Submit -->
                                     <div class="form-step" id="formStep4">
                                         <h4 class="mb-4 border-bottom pb-2 text-success">
                                             <i class="bi bi-check-circle me-2"></i>Review Your Application
@@ -363,10 +265,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="alert alert-success">
-                                            <h5><i class="bi bi-gift-fill me-2"></i>Early Registration Benefit for 2026!</h5>
-                                            <p class="mb-0">Applications submitted before <strong>March 31, 2026</strong> qualify for our Free Starter Pack including school supplies and uniform voucher worth R800.</p>
-                                        </div>
+                                        
 
                                         <!-- Fee Information -->
                                         <div class="alert alert-warning">
@@ -398,20 +297,20 @@
                                 <div class="card border-primary h-100">
                                     <div class="card-body">
                                         <h5 class="card-title text-success">
-                                            <i class="bi bi-clock-history me-2"></i>2026 Application Timeline
+                                            <i class="bi bi-clock-history me-2"></i>2026 Application
                                         </h5>
                                         <ul class="list-unstyled">
-                                            <li class="mb-2"><strong>Application Opens:</strong> January 1, 2026</li>
-                                            <li class="mb-2"><strong>Early Bird Deadline:</strong> March 31, 2026</li>
-                                            <li class="mb-2"><strong>Final Deadline:</strong> May 31, 2026</li>
-                                            <li class="mb-2"><strong>Entrance Assessments:</strong> June 2026</li>
-                                            <li class="mb-2"><strong>Interviews:</strong> July 2026</li>
-                                            <li><strong>Notification:</strong> August 2026</li>
+                                            <li class="mb-2"><strong>Application Open:</strong> January 1, 2026</li>
+             
+                                            <li class="mb-2"><strong>We Aim For:</strong> High Quality Teaching</li>
+                                            <li class="mb-2"><strong>We Aim to be Leaders in:</strong> high quality education </li>
+ 
+                                
                                         </ul>
                                         <div class="mt-3">
                                             <small class="text-muted">
                                                 <i class="bi bi-info-circle me-1"></i>
-                                                Grade 8 & 12 placements limited. Early application recommended.
+                                                Comprehensive education from Grade 1 to Grade 12 (Matric) - Ages 4 to 18 years
                                             </small>
                                         </div>
                                     </div>
@@ -425,7 +324,10 @@
                                         </h5>
                                         <p>Contact our Admissions Office:</p>
                                         <p class="mb-1"><i class="bi bi-telephone me-2"></i> +27 11 492 1778</p>
-                                        <p class="mb-1"><i class="bi bi-envelope me-2"></i> admissions2026@greenlane.co.za</p>
+                                        <p class="mb-1"><i class="bi bi-telephone me-2"></i> +27 81 262 4572</p>
+
+                                       
+                                        <p class="mb-1"><i class="bi bi-envelope me-2"></i> info@greenlane.co.za</p>
                                         <p class="mb-3"><i class="bi bi-clock me-2"></i> Mon-Fri: 8:00 AM - 4:00 PM</p>
                                         <div class="d-grid gap-2">
                                             <a href="/Contact" class="btn btn-outline-success">

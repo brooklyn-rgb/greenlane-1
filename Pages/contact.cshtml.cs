@@ -138,7 +138,7 @@ namespace greenlane.Pages
                 {
                     Department = "Admissions Office",
                     Person = "Mrs. Thandi Ndlovu",
-                    Email = "admissions@greenlane.co.za",
+                    Email = "info@greenlane.co.za",
                     Phone = "+27 11 492 1778",
                     Ext = "101",
                     Hours = "Mon-Fri: 8:00 AM - 4:00 PM"

@@ -25,7 +25,7 @@ namespace greenlane.Pages
                     Phase = "Foundation Phase",
                     Grades = "Grade 1 - 3",
                     AgeRange = "Ages 5-9",
-                    Description = "Lays the groundwork for literacy, numeracy, and life skills, ensuring cognitive and emotional development in early learners.",
+                    Description = "Lays the groundwork for literacy, numeracy, and life skills, ensuring cognitive and emotional development in early learners aged 5-9.",
                     ImageUrl = "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                     Icon = "bi-house-door",
                     Color = "foundation"
@@ -55,7 +55,7 @@ namespace greenlane.Pages
                     Phase = "FET Phase",
                     Grades = "Grade 10 - 12",
                     AgeRange = "Ages 15-18",
-                    Description = "Focused specialization for career pathways and higher education readiness with advanced subjects across multiple disciplines.",
+                    Description = "Focused specialization for career pathways and higher education readiness with advanced subjects across multiple discipline.",
                     ImageUrl = "/images/gallery/teacher.jpeg",
                     Icon = "bi-award",
                     Color = "fet"

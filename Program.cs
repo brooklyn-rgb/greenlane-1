@@ -19,6 +19,7 @@ builder.Services.Configure<IISServerOptions>(options =>
 // Health checks for Azure
 builder.Services.AddHealthChecks();
 
+
 var app = builder.Build();
 
 // Configure pipeline

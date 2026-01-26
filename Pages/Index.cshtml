@@ -8,22 +8,20 @@
 <div class="position-relative overflow-hidden">
     <div class="hero-video-container" style="min-height: 85vh;">
         <!-- Video Background -->
-        <video autoplay muted loop playsinline class="video-background">
+        <video autoplay muted loop playsinline class="video-background w-100 h-100" style="object-fit: cover;">
             <source src="/images/kids2.mp4" type="video/mp4">
-            <div class="fallback-bg" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/kids-fallback.jpg') center/cover no-repeat;"></div>
+            <!-- Removed the dark rgba gradient from the fallback background -->
+            <div class="fallback-bg" style="background: url('/images/kids-fallback.jpg') center/cover no-repeat;"></div>
         </video>
 
-        <!-- Dark Overlay -->
-        <div class="video-overlay"></div>
-
+        <!-- Removed the <div class="video-overlay"></div> entirely -->
         <!-- Content: Added pt-5 (padding-top) to clear the navbar -->
         <div class="container h-100 position-relative z-2 pt-5">
             <div class="row h-100 align-items-center pt-5">
-                <!-- Added pt-5 here as well for extra spacing -->
                 <div class="col-lg-7 text-white mt-5">
-                    <!-- mt-5 adds a top margin to the text block -->
-                    <h1 class="display-1 fw-bold mb-4">Building South Africa's Future Leaders</h1>
-                    <p class="lead mb-4 fs-4">Greenlane College provides exceptional education from <strong>Grade 1 to Grade 12</strong>, combining academic excellence with character development for holistic student growth.</p>
+                    <!-- Note: If your video is very bright, you may need 'text-dark' or a text-shadow for readability -->
+                    <h1 class="display-1 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Building South Africa's Future Leaders</h1>
+                    <p class="lead mb-4 fs-4" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Greenlane College provides exceptional education from <strong>Grade 1 to Grade 12</strong>, combining academic excellence with character development for holistic student growth.</p>
                     <div class="d-flex flex-wrap gap-3 mt-5">
                         <a href="/registration" class="btn btn-success btn-lg px-5 py-3">
                             <i class="bi bi-pencil-square me-2"></i> Apply for 2026
@@ -37,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Add to your _Layout.cshtml or specific page -->
@@ -140,10 +139,7 @@
                             <div class="text-success fw-bold mb-1">Jan 30, 2026</div>
                             <div class="text-muted">Parent Orientation Day</div>
                         </div>
-                        <div class="event-item p-3">
-                            <div class="text-success fw-bold mb-1">Mar 31, 2026</div>
-                            <div class="text-muted">Early Registration Deadline</div>
-                        </div>
+                       
                         <a href="/events" class="btn btn-outline-success btn-sm w-100 mt-3">View All Events</a>
                     </div>
                 </div>
